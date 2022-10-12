@@ -1,3 +1,4 @@
+
 .carousel{
   margin-inline: 0;
   padding-inline: 0;
@@ -173,7 +174,7 @@
 /*FUENTE DE LETRA DEL DISEÑO*/
 @font-face {
   font-family: thewestgate;
-  src: url(../Template/Resources/The\ West\ Gate.ttf) format('truetype');
+  src: url(/static/resources/The\ West\ Gate.ttf) format('truetype');
 }
 
 /*BLUR FONDO DE COMIDA*/
@@ -328,7 +329,7 @@ hr{
 
 /*BODY BACKGROUND*/
 body {
-  background: url(../Template/Resources/Navegacion/food.jpg)  no-repeat center center fixed;
+  background: url('/static/resources/Navegacion/food.jpg')  no-repeat center center fixed;
   background-size: cover;
 }
 
