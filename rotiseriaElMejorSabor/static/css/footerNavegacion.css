@@ -1,0 +1,10 @@
+/*-----------------FOOTER---------------*/
+/*CSS PIE DE PAGINA*/
+.navbar-brand:hover{
+    color: grey;
+  }
+/*ICONO FOOTER*/
+#icono{
+    margin-inline: 1rem;
+    width: 40px;
+}

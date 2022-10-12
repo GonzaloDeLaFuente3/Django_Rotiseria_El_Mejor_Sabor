@@ -1,0 +1,254 @@
+<!--CUIL, nombre completo (apellidos y nombres), 
+teléfonos  (fijo  y  celular),  domicilio  (calle,  número,  localidad,  departamento),  fecha  de 
+nacimiento, fecha en la que ingresó a trabajar a la rotisería. De los cadetes que entregan los 
+pedidos también se guarda información de la  de su carnet de conductor, patente 
+del vehículo y código de zona de entregas asignada.-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrar Empleado</title>
+        <link rel="icon" href="{% static 'resources/Logos/iconRotiseria.png'}"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'css/empleado.css' %}">
+        <link rel="stylesheet" href="{% static 'css/header-footer.css' %}">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top col-primary">
+                <div class="container-fluid">
+                    <a href="../index.html">
+                    <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="../admin/admin-login.html">Página Principal</a>
+                            </li>
+                        </ul>
+                        </form>
+                        <form class="d-flex notificaciones">
+                            <button class="btn btn-outline-light" type="submit">
+                                <i class="bi bi-bell-fill"></i>
+                                Notificaciones
+                                <span class="badge bg-danger text-light ms-1 rounded-pill">0</span>
+                            </button>
+                        </form>
+        
+                        <ul class="navbar-nav micuenta">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-light dropdown-toggle" id="navbarDropdown" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                                Administrador
+                            </button>   
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="../index.html">Salir</a>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container my-5">
+            <div id="titulo">
+                <img src="{% static 'resources/Logos/titulo.png' %}" alt="titulo_rotiseria">
+            </div>
+            <div id="cajaMenu">
+                <h1>Registro de Empleados</h1>
+            </div>
+            <section>
+                <div class="card">
+                    <h2 class="card-header text-white bg-success mb-3">Registro</h2>
+                    <div class="card-body">
+                        <small><strong>Nota:</strong> los campos que cuentan con el simbolo (*) son obligatorios</small>
+                    <br><br>
+                    </div>
+                  
+                </div>
+                <br><br>
+                
+                    <form action="#" method="post" autocomplete="on" class="needs-validation" onsubmit="return validacion()" novalidate>
+                        <fieldset>
+                            <div class="card">
+                                <legend class="card-header text-white bg-success mb-3"><strong>Informacion para completar el registro</strong></legend>
+                                <div class="card-body">
+                                <div>
+                                    <label class="col-form-label"><strong>(*) Cuil</strong></label>
+                                    <br>
+                                    <input class="form-control" type="number" placeholder="Ingresar el cuil sin guiones" required="">
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese un Cuil</div>
+                                </div>
+                                <div>
+                                    <br>
+                                    <h4 class="card-header text-white bg-success mb-3"><strong>(*) Apellido y nombre</strong></h4>
+                                    <label class="col-form-label" for="nombre">Nombre:</label> 
+                                    
+                                    <input class="form-control" type="text" name="nombre" id="nombre" size="50" maxlength="50" placeholder="Nombre" required="">
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese un Nombre</div>
+                                    <label class="col-form-label" for="apellido">Apellido:</label> 
+                                    <input class="form-control" type="text" name="apellido" id="apellido" size="50" maxlength="50" placeholder="Apellido" required="">
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese un Apellido</div>
+                                </div>
+                                <div>
+                                    <br>
+                                    <h4 class="card-header text-white bg-success mb-3"><strong>Numeros de Telefonos</strong></h4>
+                                    <label class="col-form-label" for="telefonoFijo"> Telefono fijo:</label>
+                                    
+                                    <input class="form-control" type="tel" name="telefonoFijo" id="telefonoFijo" placeholder="Telefono fijo">
+                                    <label class="col-form-label" for="telefonoCelular">(*) Telefono celular:</label>
+                                    <input class="form-control" type="tel" name="telefonoCelular" id="telefonoCelular" placeholder="Telefono celular" required="">
+                                    
+                                </div>
+                                <div> 
+                                    <br>
+                                    <h4 class="card-header text-white bg-success mb-3"><strong>Domicilio</strong></h4>
+                                    <label class="col-form-label" for="calle"></label>(*) Calle: 
+                                     
+                                    <input class="form-control" type="text" name="calle" id="calle" size="50" maxlength="50" placeholder="Calle" required="">
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese una Calle</div>
+                                    <label class="col-form-label" for="domicilioNumero"></label>(*) Numero: 
+                                     
+                                    <input class="form-control" type="number" name="domicilioNumero" id="domicilioNumero" placeholder="Numero" required=""> 
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese un Numero</div>
+                                    <br>
+                                    <label class="col-form-label" for="departamento"></label>(*) Departamento: 
+                                     
+                                    <input class="form-control" type="text" name="departamento" id="departamento" placeholder="Departamento" required=""> 
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese un Departamento</div>
+                                    <label class="col-form-label" for="localidad"></label>(*) Localidad:
+                                   
+                                    <input class="form-control" type="text" name="localidad" id="localidad" placeholder="Localidad" required="">
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese una Localidad</div>
+                                
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-9 col-lg-9 col-xl-10">
+                                        (*) Fecha de nacimiento:
+                                        <input class="form-control" type="date" name="fechaNacimiento" id="fechaNacimiento"  required="">       
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2">
+                                        <button class="btn btn-primary" id="botonVerificar" type="button" name="boton">Verificar</button>
+                                    </div>
+                                    </div>
+                                    <p id="verificar"></p> 
+                                    <div>
+                                        <label class="col-form-label" for="fechaIngresoRotiseria">(*) Fecha en la que ingreso a la rotiseria</label>
+                                        <input class="form-control" type="date" name="fechaIngresoRotiseria" id="fechaIngresoRotiseria" required="">
+                                        <div class="valid-feedback">El valor ingresado es valido</div>
+                                        <div class="invalid-feedback">Ingrese una Fecha</div>
+                                    </div>
+                                    <label class="col-form-label" for="fechaIngresoRotiseria"><strong>Tipo de empleado</strong></label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" checked onchange="displayEmpleados()">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            Empleado general
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" onchange="displayCadetes()">
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                            Cadete
+                                            </label>
+                                        </div>
+                                        <div id="guardarEmpleado">
+                                            <br>
+                                            <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
+                                            <input class="btn btn-success" type="submit" name="guarda" value="Guardar">  
+                                            <a href="../admin/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
+                                        </div>
+                                </div>
+                                
+                            </div>
+                        </fieldset>
+                        
+                        <br>
+                        <br>
+                        <fieldset class="card my-3 d-none" id="infoAdicionalCadete">
+                            <legend class="card-header text-white bg-success mb-3"><strong>Informacion adicional del cadete</strong></legend>
+                            <div class="card-body">
+                                <div>
+                                    <label class="col-form-label" for="vigenciaCarnet">Vigencia del Carnet</label>
+                                    <br>
+                                    <input class="form-control" type="date" name="vigenciaCarnet" id="vigenciaCarnet">
+                                </div>
+                                <div> <br>
+                                    <label class="col-form-label" for="patenteCadete">Datos de la patente</label> <br>
+                                    <input class="form-control" type="text" name="patenteCadete" id="patenteCadete" size="20" maxlength="20" placeholder="Patente">
+            
+                                </div>
+                                <div>
+                                    <br>
+                                    <label class="col-form-label" for="codigoZona">Codigo de la Zona</label> <br>
+                                    <input class="form-control" type="number" name="codigoZona" id="codigoZona" placeholder="Codigo de la zona">
+                                </div>
+                                <div>
+                                    <br>
+                                    <label class="col-form-label">Correo electronico</label> <br>
+                                    <input class="form-control" type="email" placeholder="Correo electronico" required>
+                                </div>
+                                <div>
+                                    <br>
+                                    <label class="col-form-label" for="codigoZona">Contraseña</label> <br>
+                                    <input class="form-control" type="password" placeholder="Contraseña" required>
+                                </div>
+                                <div>
+                                    <br>
+                                    <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
+                                    <input class="btn btn-success" type="submit" name="guarda" value="Guardar">  
+                                    <a href="../admin/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
+                                </div>  
+                            </div>
+                            
+                        </fieldset>
+                    </form>
+                          
+                
+                
+                
+            </section>
+    
+            
+        </div>
+        
+        <footer>
+            <br>
+            <div>
+                <nav class="menuEnlace">
+                    <ul class="breadcrumb" id="navFooter">
+                        <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
+                        <li><a class="navbar-brand" href="../index.html">Inicio</a></li>
+                        <li><a class="navbar-brand" href="../navegacion/sobreNosotros.html">Sobre nosotros</a></li>
+                        <li><a class="navbar-brand" href="../navegacion/contacto.html">Contacto</a></li>
+                        <li><a class="navbar-brand" href="../navegacion/ayuda.html">Ayuda</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="labelFooter">
+                <small>Rositeria EL MEJOR SABOR 2022</small> <br>
+                <small>Todos los derechos reservados</small>
+            </div>
+            <br>
+        </footer>
+    </body>
+    <script src="{% static 'js/validacionBootstrap.js' %}"></script>
+    <script src="{% static 'js/fechaNacimiento.js' %}"></script>
+    <script src="{% static 'js/displayInfoCadete.js' %}"></script>
+</html>

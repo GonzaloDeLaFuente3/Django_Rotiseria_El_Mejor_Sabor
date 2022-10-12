@@ -1,0 +1,45 @@
+body {
+    align-items: center;
+    justify-content: center;
+    background-color: #EDF6F9;
+    margin-top: 4.3rem;
+  }
+
+#titulo{
+    text-align: center;
+}
+
+/*HR AUXILIARES PARA ACOMODAR ELEMENTOS*/
+hr{
+  margin: auto;
+}
+
+/*LABEL ESTILOS*/
+#labelMenus{
+  font-size: 4rem;
+  font-family: thewestgate;
+  color: #006D77; 
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+
+/*PANEL MENUS*/
+.panelMenus{
+  margin: auto;
+  background-color: #83C5BE;
+  border-radius: 2rem;
+  margin-bottom: 7rem;
+}
+
+th{
+  cursor: pointer;
+  
+}
+th:hover{
+  background-color: #9fb6d9;
+}
+
+#info{
+  margin-left: 2rem;
+}

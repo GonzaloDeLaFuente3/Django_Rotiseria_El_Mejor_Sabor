@@ -1,0 +1,147 @@
+/*CSS PIE DE PAGINA*/
+
+
+footer{
+    background-color: rgb(33,37,41);
+  }
+  
+#navFooter{
+    margin-block: 2rem;
+}
+
+.linkFooter{
+    color: white;
+  }
+  
+.linkFooter:hover{
+    color: grey;
+  }
+  
+/*ICONO FOOTER*/
+#icono{
+    margin-inline: 1rem;
+    width: 40px;
+}
+
+/*LABEL ROTISERIA 2022, TODOS LOS DERECHOS RESERVADOS*/
+
+#labelFooter{
+    color: white;
+    text-align: center;
+}
+
+/*-------------------------------------*/
+
+body{
+    align-items: center;
+    justify-content: center;
+    margin-top: 3.3rem;
+    background-color: #EDF6F9;
+}
+textarea {
+    
+    resize:none;
+    
+
+}
+/* css para los checkbox*/
+.formulario .radio label {
+    display: inline-block;
+    cursor: pointer;
+    color: #0774d9;
+    position: relative;
+    padding: 5px 15px 5px 51px;
+    font-size: 1em;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+.formulario .radio label:hover {
+    background: rgba(54, 67, 255, 0.1); }
+.formulario .radio label:before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    border-radius: 50%;
+    background: none;
+    border: 3px solid #0774d9; }
+.formulario input[type="radio"] {
+    display: none; }
+.formulario input[type="radio"]:checked + label:before {
+    display: none; }
+.formulario input[type="radio"]:checked + label {
+    padding: 5px 15px;
+    background: #0774d9;
+    border-radius: 2px;
+    color: #fff; }
+.formulario .checkbox label:before {
+    border-radius: 3px; }
+.formulario .checkbox input[type="checkbox"] {
+    display: none; }
+.formulario .checkbox input[type="checkbox"]:checked + label:before {
+    display: none; }
+.formulario .checkbox input[type="checkbox"]:checked + label {
+    background: #0774d9;
+    color: #fff;
+    padding: 5px 15px; }
+
+h1,h4,h5{
+    border-radius: 10px;    }
+
+
+    
+    
+    h1{
+        text-align: center;
+        font-family: thewestgate;
+        font-size: 3.8rem;
+        user-select: none;
+        color: #006D77;
+        margin-block: 0.5rem;
+        padding-top: 0.5rem;
+    }
+    
+    #cajaMenu h1{
+        font-size: 2rem;
+    }
+
+    #cajaMenu{
+        margin: auto;
+        width: 15rem;
+        background-color: #83C5BE;
+        border-radius: 3rem;
+        margin-bottom: 3rem;
+    }
+    
+    @media (min-width: 768px){
+        #cajaMenu{
+            width: 26rem;
+        }
+
+        #cajaMenu h1{
+            font-size: 3.8rem;
+        }
+    }
+
+#titulo{
+    text-align: center;
+    
+}
+
+/*MENOR A 768*/
+#titulo img{
+    margin-top: 1rem;
+    width: 220px;
+}
+
+/*ANTES DE LLEGAR A 768*/
+@media (min-width: 768px){
+    #titulo img{
+        width: 500px;
+    }
+}
+

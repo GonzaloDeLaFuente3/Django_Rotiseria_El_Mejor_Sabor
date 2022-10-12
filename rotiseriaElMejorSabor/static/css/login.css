@@ -1,0 +1,10 @@
+
+body {
+    background: url(../Template/Resources/Navegacion/food.jpg)  no-repeat center center fixed;
+    background-size: cover;
+  }
+
+
+#filtroFondo{
+    backdrop-filter: blur(7px);
+  }

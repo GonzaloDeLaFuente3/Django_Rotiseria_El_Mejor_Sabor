@@ -1,0 +1,137 @@
+/*FUENTE DE LETRA DEL DISEÑO*/
+
+
+/*-----------------LABELS---------------*/
+/*LABEL INICIO*/
+
+  
+  body {
+    align-items: center;
+    justify-content: center;
+    background-color: #EDF6F9;
+    margin-top: 4.3rem;
+  }
+
+#titulo{
+    text-align: center;
+}
+
+/*HR AUXILIARES PARA ACOMODAR ELEMENTOS*/
+hr{
+  margin: auto;
+}
+
+/*LABEL ESTILOS*/
+#labelMenus{
+  font-size: 4rem;
+  font-family: thewestgate;
+  color: #006D77; 
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+
+
+#cajaMenu{
+  font-family: thewestgate;
+  font-size: 6rem;
+  margin: auto;
+  background-color: #83C5BE;
+  color: #006D77;
+  border-radius: 3rem;
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  user-select: none;
+}
+
+
+/*PANEL MENUS*/
+.panelMenus{
+  margin: auto;
+  background-color: #83C5BE;
+  border-radius: 2rem;
+  margin-bottom: 7rem;
+  
+}
+
+/*PROPIEDADES TARJETA*/
+.card,.card-img-top{
+  border-radius: 1rem;
+}
+
+/*COMPRAR Y AÑADIR CARRITO PADDING*/
+.p-4{
+  padding: 0.3rem!important;
+  height: 10.5rem;
+}
+
+.btn-outline {
+  color: #EDF6F9;
+  border-color: #EDF6F9;
+}
+
+.btn-outline-success{
+  margin-block: 0.7rem;
+}
+
+.btn-outline:hover{
+  transition: background-color .5s;
+  background-color: #EDF6F9;
+
+}
+
+
+.menusComprados{
+  border-radius: 0.5rem;
+  color: white;
+  background-color: #006D77;
+  height:330px;
+}
+
+#formulario{
+  margin-inline: 1rem;
+}
+
+#textAreaMenu{
+  height: 4rem;
+}
+
+.row{
+  align-items: center;
+}
+
+th{
+  cursor: pointer;
+  
+}
+th:hover{
+  color: #a1a1a1;
+  background-color: #000000;
+}
+
+#info{
+  margin-left: 2rem;
+}
+
+tr{
+  cursor: pointer;
+}
+
+#labelNotificaciones{
+  display: none;
+}
+
+@media (min-width: 1108px){
+  #labelNotificaciones{
+    display: inline;
+  }
+}
+
+
+@media (max-width: 992px){
+  #menuPedido{
+    margin-top: 1rem;
+    margin-inline: 2rem;
+  }
+}

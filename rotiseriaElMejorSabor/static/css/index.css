@@ -1,0 +1,347 @@
+.carousel{
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.circulo {
+  background-color: #006D77;
+  border-radius: 2rem;
+  width: 2.3rem;
+  height: 2.3rem;
+}
+
+/*PANEL PROMOCIONES*/
+#promociones{
+  background-color: #EDF6F9;
+  height: 13rem;
+}
+
+@media (min-width: 472px){
+  #promociones {
+    height: 23rem;
+  }
+}
+
+@media (min-width: 768px){
+  #promociones {
+    height: 33rem;
+  }
+}
+
+@media (min-width: 1040px){
+  #promociones {
+    height: 44rem;
+  }
+}
+
+
+@media (min-width: 768px){
+  .carousel{
+    margin-inline: 3rem;
+    padding-inline: 3rem;
+  }
+
+  .circulo{
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  p{
+    margin-bottom: 0;
+  }
+
+  .btn-group-lg>.btn, .btn-lg {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    border-radius: 0.3rem;
+  }
+
+  .carousel-control-next-icon, .carousel-control-prev-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/*CONTAINER RESPONSIVE*/
+.container, .container-lg, .container-md, .container-sm {
+  max-width: 240px;
+}
+
+@media (min-width: 472px){
+  .container, .container-lg, .container-md, .container-sm {
+      max-width: 431px;
+  }
+}
+
+@media (min-width: 768px){
+  .container, .container-lg, .container-md, .container-sm {
+      max-width: 720px;
+  }
+}
+
+@media (min-width: 1040px){
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: 960px;
+  }
+}
+/*--------------------------------------*/
+
+/*CAROUSEL ITEM RESPONSIVE*/
+.carousel-item {
+  height: 8.6rem;
+}
+
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 7.8rem;
+}
+
+
+@media (min-width: 472px){
+  .carousel-item {
+    height: 15rem;
+  }
+
+  .carousel-item > img {
+    height: 14.5rem;
+  }
+}
+
+@media (min-width: 768px){
+  .carousel-item {
+    height: 22rem;
+  }
+  .carousel-item > img {
+    height: 18rem;
+  }
+}
+
+@media (min-width: 1040px) {
+  .carousel-item {
+    height: 32rem;
+  }
+  
+  .carousel-item > img {
+    height: 26rem;
+  }
+}
+
+/*--------------------------------*/
+
+/*TITULO ROTISERIA EL MEJOR SABOR*/
+
+#titulo img{
+  width: 220px;
+}
+
+@media (min-width: 472px){
+  #titulo img{
+    width: 328px;
+  }
+}
+
+@media (min-width: 768px) {
+  #titulo img{
+    width: 500px;
+  }
+}
+
+@media (min-width: 1040px) {
+  #titulo img{
+    width: 581px;
+  }
+}
+
+/*-----------------------------*/
+
+/*-------BOTONES ENCABEZADO---------------*/
+.buscador{
+  margin-left: 1rem;
+}
+
+
+
+
+.carrito{
+  margin-inline: 0.5rem;
+}
+
+/*FUENTE DE LETRA DEL DISEÑO*/
+@font-face {
+  font-family: thewestgate;
+  src: url(../Template/Resources/The\ West\ Gate.ttf) format('truetype');
+}
+
+/*BLUR FONDO DE COMIDA*/
+#filtroFondo{
+  backdrop-filter: blur(10px);
+}
+
+/*DIMENSIONES DE LOS SWIPERS DE MENUS*/
+.swiper{
+  width: 730px;
+  height: 400px;
+}
+
+
+/*-----------------SWIPER---------------*/
+
+/*SWIPER NEX, PREV*/
+.swiper-button-next, .swiper-button-prev{
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+/*SWIPER NEXT, PREV, HOVER*/
+.swiper-button-next:hover, .swiper-button-prev:hover{
+  opacity: 1;
+  color: violet;
+}
+
+/*SWIPER BULLETS*/
+.swiper-pagination-bullet{
+  height: 7px;
+  width: 7px;
+  border-radius: 25px;
+}
+
+/*-------------------------------------*/
+
+/*PROPIEDADES TARJETA*/
+.card,.card-img-top{
+  border-radius: 1rem;
+}
+
+
+
+/*COMPRAR Y AÑADIR CARRITO PADDING*/
+.p-4{
+  padding: 0.3rem!important;
+  height: 10rem;
+}
+
+/*PANEL MENUS*/
+.panelMenus{
+  margin: auto;
+  text-align: center;
+  background-color: #83C5BE;
+  height: 540px;
+  width: 65%;
+  border-radius: 2rem;
+  margin-bottom: 7rem;
+  padding-bottom: 4rem;
+}
+
+/*LABEL TITULO ROTISERIA*/
+#titulo{
+  text-align: center;
+}
+
+
+
+/*HR AUXILIARES PARA ACOMODAR ELEMENTOS*/
+hr{
+  margin: auto;
+}
+
+/*NUESTROS MENUS*/
+
+#cajaMenu {
+    font-family: thewestgate;
+    font-size: 6rem;
+    margin: auto;
+    background-color: #83C5BE;
+    color: #006D77;
+    width: 11rem;
+    height: 2rem;
+    border-radius: 3rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    user-select: none;
+}
+
+@media (min-width: 472px){
+
+}
+
+@media (min-width: 768px){
+
+}
+
+@media (min-width: 1040px){
+  #cajaMenu{
+    width: 15rem;
+    height: 3rem;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/*LABEL ESTILOS*/
+#labelMenus{
+  font-size: 4rem;
+  font-family: thewestgate;
+  color: #006D77; 
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+
+
+/*----------------------------------------------*/
+
+
+
+/*----------------------------------------------*/
+
+/*-------BOTONES NEXT & PREVIOUS CARUSEL---------------*/
+
+
+
+.carousel-control-next-icon{
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+}
+
+.carousel-control-prev-icon{
+  margin-top: 0.5rem;
+  margin-right: 0.3rem;
+}
+
+/*----------------------------------------------*/
+
+/*----------------------------------------------*/
+/*COMPRAR Y AÑADIR AL CARRITO MARGEN*/
+
+.btn-outline-success{
+  margin-block: 0.7rem;
+}
+
+/*----------------------------------------------*/
+
+
+
+/*BODY BACKGROUND*/
+body {
+  background: url(../Template/Resources/Navegacion/food.jpg)  no-repeat center center fixed;
+  background-size: cover;
+}
+
+.panelNotificaciones{
+  max-width: 20%;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 20px;
+  box-shadow: 2px 6px 3px 3px black;
+}
+
+.pedidoCarrito{
+  background-color: #EDF6F9;
+  border-radius: 1rem;
+  align-items: center;
+}

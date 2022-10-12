@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir un pedido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="icon" href="{% static 'resources/Logos/iconRotiseria.png' %}"/>
+    
+    <link rel="stylesheet" href="{% static 'css/header-footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pedido.css' %}">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top col-primary">
+            <div class="container-fluid">
+                <a href="../admin/admin-login.html">
+                <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../admin/admin-login.html">Página Principal</a>
+                        </li>
+                    </ul>
+                    </form>
+                    <form class="d-flex notificaciones">
+                        <button class="btn btn-outline-light" type="submit">
+                            <i class="bi bi-bell-fill"></i>
+                            Notificaciones
+                            <span class="badge bg-danger text-light ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+    
+                    <ul class="navbar-nav micuenta">
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-light dropdown-toggle" id="navbarDropdown" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                            Administrador
+                        </button>   
+                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../index.html">Salir</a>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container my-5">
+        <div id="titulo">
+            <img src="{% static 'resources/Logos/titulo.png' %}" alt="titulo_rotiseria">
+        </div>
+        <div id="cajaMenu">
+            <h1>Añadir un Pedido</h1>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="card d-sm-block">
+            
+            <h3 class="card-header text-white bg-success mb-3">Informacion del pedido</h3>
+            <div class="card-body">
+                <small><strong>Nota:</strong> los campos que cuentan con el simbolo (*) son obligatorios</small>
+                <br><br>
+                
+                <form action="#" method="post" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate>
+                    <fieldset>
+                        
+                        <label class="col-form-label" for="codigoPedido">(*) Codigo del pedido</label>
+                        <br>
+                        <input class="form-control" type="number" name="codigoPedido" id="codigoPedido" placeholder="Ingrese el codigo del pedido" required>
+                        <div class="valid-feedback">
+                            El codigo  del menú es correcto
+                        </div>
+                        <div class="invalid-feedback">
+                            Debe ingresar un codigo
+
+                        </div>
+                        <br>
+
+                        <label class="col-form-label" for="fechaPedido">(*) Fecha del pedido </label>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-9 col-lg-9 col-xl-10">
+                                <input class="form-control" type="date" name="fehcaPedido" id="fechaPedido"  required="">
+                                
+                                <br>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2">
+                                <button class="btn btn-primary" id="botonVerificar" type="button" name="boton">Verificar</button>
+                            </div>
+                        </div>
+                        <br>
+                        <p id="verificar"></p>
+                        
+                        <br>
+
+                        <label class="col-form-label" for="clientePedido">(*) Cliente</label>
+                        <div class="row">
+                            <div class="col-1  text-center px-1">
+                                <button class="btn btn-outline-primary" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                            <div class="col-10 ">
+                                <select class="form-select" name="cliente" id="elegirCliente" required="">
+                                    <option selected>Seleccione una opcion </option>
+                                </select>
+                                <div class="valid-feedback" >
+                                    Debe seleccionar un cliente
+                                </div>
+                                <div class="invalid-feedback">
+                                    Debe seleccionar un cliente 
+        
+                                </div>
+                            </div>
+                            <div class="col-1  my-1 text-lg-start">
+                                <a href="../abm-cliente/altaCliente.html"><i class="bi bi-person-plus-fill"></i></a>
+                            </div>
+
+                        </div>
+                        <br>
+                        <small>En el campo de plato, se puede seleccionar mas de una opcion presecionando "ctrl" y seleccionado las opciones que desea</small> <br>
+                        <label class="col-form-label" for="plato">(*) Plato:</label>
+                        <select class="form-select " name="plato" id="plato" required multiple aria-describedby="validationServer04Feedback">
+                            <option selected  disabled value="">Seleccione una opcion </option>
+                            <option value="1">Locro</option>
+                            <option value="2">Empanada</option>
+                            <option value="3">Pizza</option>
+                        </select>
+
+                        
+
+                       
+
+                        
+                        <br>
+                        <label class="col-form-label" for="estadoPedido" >(*) Estado del pedido</label>
+                        <select class="form-select " name="estadoPedido" id="estadoPedido" aria-describedby="validationServer04Feedback" required onchange="desactivarYActivarComentario(this)" >
+                            <option selected  disabled value="">Seleccione una opcion </option>
+                            <option value="1">Pendiente</option>
+                            <option value="2">En preparación</option>
+                            <option value="3">En camino</option>
+                            <option value="4">Entregado</option>
+                            <option value="5">Devuelto</option>
+                            <option value="6">Cancelado</option>
+                        </select>
+                        
+                        
+                        <br>
+                        <label class="col-form-label" for="comentarioPedido" >Comentario:</label> <br>
+                        <textarea class="form-control" name="comentario" id="comentarioPedido" cols="30" rows="10" disabled></textarea>
+
+                        <br>
+                        <small>El siguiente campo es obligatorio: </small>
+                        <br>
+                        <div class="radio text-center">
+                            <input   type="radio" name="enviarORetirar" id="envioDomicilio" required="">
+                            <label  for="envioDomicilio">Enviar a domicilio</label>
+
+                            <input type="radio" name="enviarORetirar" id="retirarLocal" required="">
+                            <label  for="retirarLocal">Retirar en el local</label>
+                            <div class="valid-feedback">
+                                El calor ingresado es valido
+                            </div>
+                            <div class="invalid-feedback">
+                                debe seleccionar una opcion 
+    
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <label class="col-form-label" for="rangoHorario">(*) Tiempo de demora aprox. (minutos)</label>
+                        <input class="form-control" type="number" name="tiempoEstimado" id="tiempoEstimado" required="">
+                        
+                        <br> <br>
+                        <h5>Total a pagar del pedido es: </h5>
+
+                        <br>
+                        <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
+                        <input class="btn btn-success" type="submit" name="guarda" value="Añadir" >  
+                        <a href="../admin/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        
+        
+    </div>
+    <footer>
+        <br>
+            <div>
+                <nav class="menuEnlace">
+                    <ul class="breadcrumb" id="navFooter">
+                        <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
+                        <li><a class="navbar-brand linkFooter" href="../index.html">Inicio</a></li>
+                        <li><a class="navbar-brand linkFooter" href="../navegacion/sobreNosotros.html">Sobre nosotros</a></li>
+                        <li><a class="navbar-brand linkFooter" href="../navegacion/contacto.html">Contacto</a></li>
+                        <li><a class="navbar-brand linkFooter" href="../navegacion/ayuda.html">Ayuda</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="labelFooter">
+                <small>Rositeria EL MEJOR SABOR 2022</small> <br>
+                <small>Todos los derechos reservados</small>
+            </div>
+            <br>
+    </footer>
+
+</body>
+<script src="{% static 'js/pedido.js' %}"></script>
+<script src="{% static 'js/validacionBootstrap.js' %}"></script>
+</html>

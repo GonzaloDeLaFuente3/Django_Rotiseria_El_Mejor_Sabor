@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #006d77a8;
+    /* background-color: #83C5BE; */
+    font-family: 'Roboto', sans-serif;
+}
+h1{
+    text-align: center;
+    
+    
+    padding: 20px;
+    color: white;
+    margin: 20px;
+    font-size: 35px;
+   
+}
+#cajaCorreo{
+    width: 500px;
+    padding: 20px;
+    margin: auto;
+    background-color: #EDF6F9;
+    border-radius: 10px;
+    
+}
+.label{
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.correo{
+    width: 100%;
+    border: none;
+    background: none;
+    border-bottom: solid #000 2px;
+    padding: 10px;
+    outline: none;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+.correo:focus{
+    border-bottom: solid rgb(0, 0, 250) 2px;
+}
+
+.botones{
+    display: flex;
+    justify-content: space-between;
+}
+.salir{
+    text-decoration: none;
+    background-color: red;
+    padding: 5px 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+.salir:hover{
+    background-color: rgba(179, 2, 2, 0.821);
+}
+.enviar{
+    background-color: green;
+    padding: 5px 20px;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+
+}
+.enviar:hover{
+    background-color: rgba(1, 84, 0, 0.853);
+}

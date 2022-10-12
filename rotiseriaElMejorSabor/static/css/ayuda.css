@@ -1,0 +1,19 @@
+textarea{
+    resize:none;
+    height: 230px;
+}
+.formulario{
+    border-radius: 1.5rem;
+}
+
+#filtroFondo{
+    backdrop-filter: blur(10px);
+  }
+
+body {
+    background-image: url(../Template/Resources/Navegacion/food.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

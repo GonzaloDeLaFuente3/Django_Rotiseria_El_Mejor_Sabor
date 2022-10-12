@@ -1,0 +1,36 @@
+.iconos {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    
+}
+/* img {
+    width: 100px;
+} */
+
+#filtroFondo{
+    backdrop-filter: blur(10px);
+  }
+
+body {
+    background-image: url(../Template/Resources/Navegacion/food.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.formulario{
+    background: #EDF6F9;
+    border-radius: 2rem;
+}
+.logos {
+    margin-inline: 1rem;
+    width: 44px;
+}
+a:link{
+    color: blue;
+}
+a:link:hover{
+    color: rgb(129, 129, 255);
+}

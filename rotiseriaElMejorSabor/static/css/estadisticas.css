@@ -1,0 +1,114 @@
+
+
+h1, h2{
+    text-align: center;
+    font-family: thewestgate;
+    font-size: 3.8rem;
+    user-select: none;
+    color: #006D77;
+}
+
+h1{
+    margin-block: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+h2{
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 0.4rem;
+}
+
+#tablaListado{
+    margin-inline: 1.5rem;
+}
+
+/*CAJA ESTADISTICAS*/
+
+#cajaMenu{
+    margin: auto;
+    width: 20rem;
+    background-color: #83C5BE;
+    border-radius: 3rem;
+}
+
+/*CAJA LISTADO VENTAS DIARIAS, ETC*/
+
+
+#titulo{
+    text-align: center;
+}
+
+body{
+    background-color: #EDF6F9;
+    
+}
+
+#ventasDiarias, #pedidosCadetes{
+    margin-block: 1.5rem;
+    padding-block: 1.5rem;
+}
+
+
+/*PANEL MENUS*/
+.panelMenus{
+  margin: auto;
+  text-align: center;
+  background-color: #83C5BE;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+
+
+/*ANTES DE LLEGAR A 768*/
+@media (max-width: 400px){
+    .panelMenus h2{
+        width: 220;
+        text-align: center;
+        font-size: 2.5rem;
+        
+    }
+}
+h2 {
+    text-align: center;
+}
+.panelMenusHistorial{
+    margin: auto;
+    
+    background-color: #83C5BE;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1.5rem;
+  }
+
+
+
+th{
+    cursor: pointer;
+    
+}
+th:hover{
+    color: #a1a1a1;
+    background-color: #000000;
+}
+
+/* reponsivo */
+#titulo{
+    text-align: center;
+    
+    }
+    
+    /*MENOR A 768*/
+    #titulo img{
+        margin-top: 1rem;
+        width: 220px;
+    }
+    
+    /*ANTES DE LLEGAR A 768*/
+    @media (min-width: 768px){
+        #titulo img{
+            width: 500px;
+        }
+    }
