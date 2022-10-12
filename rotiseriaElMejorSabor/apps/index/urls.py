@@ -2,6 +2,6 @@ from django.urls import path
 
 from apps.index import views
 apps_name = 'index'
-urlpatterns = {
+urlpatterns = [
     path('', views.index, name='index'),
-}
+]
