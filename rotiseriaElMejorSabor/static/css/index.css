@@ -171,11 +171,6 @@
   margin-inline: 0.5rem;
 }
 
-/*FUENTE DE LETRA DEL DISEÑO*/
-@font-face {
-  font-family: thewestgate;
-  src: url(/static/resources/The\ West\ Gate.ttf) format('truetype');
-}
 
 /*BLUR FONDO DE COMIDA*/
 #filtroFondo{

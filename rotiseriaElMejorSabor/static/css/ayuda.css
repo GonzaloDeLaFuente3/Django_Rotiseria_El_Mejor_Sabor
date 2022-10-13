@@ -11,7 +11,7 @@ textarea{
   }
 
 body {
-    background-image: url(../Template/Resources/Navegacion/food.jpg);
+    background-image: url(/static/resources/Navegacion/food.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

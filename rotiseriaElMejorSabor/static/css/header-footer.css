@@ -1,6 +1,6 @@
 @font-face {
     font-family: thewestgate;
-    src: url(../Template/Resources/The\ West\ Gate.ttf) format('truetype');
+    src: url(/static/resources/The\ West\ Gate.ttf) format('truetype');
 }
 
 /*-----------------HEADER---------------*/
