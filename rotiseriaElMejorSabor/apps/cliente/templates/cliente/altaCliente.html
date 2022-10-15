@@ -1,60 +1,20 @@
+{% extends "base/baseHeaderFooter.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registrar un cliente</title>
-        <link rel="icon" href="{% static 'resources/Logos/iconRotiseria.png' %}"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <link rel="stylesheet" href="{% static 'css/cliente.css' %}">
-        <link rel="stylesheet" href="{% static 'css/header-footer.css' %}">
-    </head>
-    <body>
-        <header>
-            <!--<nav class="navbar navbar-expand-lg navbar-light fixed-top col-success">-->
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top col-primary">
-                <div class="container-fluid">
-                    <a href="/index/">
+{% block titulo %}Registrar un cliente{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/cliente.css' %}">{% endblock %}
+{% block logo %}
+<a href="/index/">
                     <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            <li class="nav-item">
+{% endblock %}
+{% block paginaPrincipal %}
+<li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/administrador/admin-login.html">Página Principal</a>
                             </li>
-                        </ul>
-                        </form>
-                        <form class="d-flex notificaciones">
-                            <button class="btn btn-outline-light" type="submit">
-                                <i class="bi bi-bell-fill"></i>
-                                Notificaciones
-                                <span class="badge bg-danger text-light ms-1 rounded-pill">0</span>
-                            </button>
-                        </form>
-        
-                        <ul class="navbar-nav micuenta">
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-light dropdown-toggle" id="navbarDropdown" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle"></i>
-                                Administrador
-                            </button>   
-                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/index/">Salir</a>
-                            </div>
-                        </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
+{% endblock %}
 
-        <div class="container-sm my-3">
+{% block contenido %}
+<div class="container-sm my-3">
             <div id="titulo">
                 <img src="{% static 'resources/Logos/titulo.png' %}" alt="titulo_rotiseria">
             </div>
@@ -64,13 +24,13 @@
             <section class="card">
                 <h2 class="card-header text-white bg-success mb-3">Registrarse</h2>
                 <div class="card-body">
-                    <small><strong>Nota:</strong> los campos que cuentan con el simbolo (*) son obligatorios</small> 
+                    <small><strong>Nota:</strong> los campos que cuentan con el simbolo (*) son obligatorios</small>
                 <br>
                 </div>
-                
+
             </section>
             <br><br>
-    
+
             <div>
                 <form action="#" method="post" autocomplete="on" class="needs-validation" novalidate>
                     <fieldset>
@@ -85,53 +45,53 @@
                                 <br>
                                 <section>
                                     <h4 class="card-header text-white bg-success mb-3"><strong>(*) Apellido y nombre</strong></h4>
-                                    <label class="col-form-label" for="nombre">Nombre:</label> 
-                                    
+                                    <label class="col-form-label" for="nombre">Nombre:</label>
+
                                     <input class="form-control" type="text" name="nombre" id="nombre" size="50" maxlength="50" placeholder="Nombre" required="">
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Ingrese un Nombre</div>
-                                    <label class="col-form-label" for="apellido">Apellido:</label> 
+                                    <label class="col-form-label" for="apellido">Apellido:</label>
                                     <input class="form-control" type="text" name="apellido" id="apellido" size="50" maxlength="50" placeholder="Apellido" required="">
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Ingrese un Apellido</div>
                                     <br>
                                 </section>
-                                
-                                <section> 
+
+                                <section>
                                     <h4 class="card-header text-white bg-success mb-3"><strong>Domicilio</strong></h4>
                                     <label class="col-form-label" for="calle"></label>(*) Calle:
-                                     
+
                                     <input class="form-control" type="text" name="calle" id="calle" size="50" maxlength="50" placeholder="Calle" required="">
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Ingrese una Calle</div>
                                     <br>
-                                    <label class="col-form-label" for="domicilioNumero"></label>(*) Numero: 
-                                     
-                                    <input class="form-control" type="number" name="domicilioNumero" id="domicilioNumero" placeholder="Numero" required=""> 
+                                    <label class="col-form-label" for="domicilioNumero"></label>(*) Numero:
+
+                                    <input class="form-control" type="number" name="domicilioNumero" id="domicilioNumero" placeholder="Numero" required="">
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Ingrese un Numero</div>
-                                    <br> 
-                                    <label class="col-form-label" for="domicilioBarrio"></label>(*) Barrio: 
-                                    <input class="form-control" type="text" name="domicilioBarrio" id="domicilioBarrio" placeholder="Barrio" required=""> 
+                                    <br>
+                                    <label class="col-form-label" for="domicilioBarrio"></label>(*) Barrio:
+                                    <input class="form-control" type="text" name="domicilioBarrio" id="domicilioBarrio" placeholder="Barrio" required="">
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Ingrese un Barrio</div>
                                      <br>
 
-            
+
                                     <label class="col-form-label" for="localidad"></label>(*) Localidad:
                                     <input class="form-control" type="text" name="localidad" id="localidad" placeholder="Localidad" required="">
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Ingrese una Localidad</div>
-            
-                                    <br> 
-                                    <label for="observacion">Observacion:</label> <br> 
+
+                                    <br>
+                                    <label for="observacion">Observacion:</label> <br>
                                     <textarea class="form-control" name="observacion" id="observacion" cols="30" rows="10" placeholder="Ingrese la observacion"></textarea>
-                                    
+
                                 </section>
-            
+
                                 <div>
                                     <br>
-                                    <label for="codigoZona">(*) Zona:</label> 
+                                    <label for="codigoZona">(*) Zona:</label>
                                     <select class="form-select" name="codigoZona" id="codigoZona" required>
                                         <option selected disabled value="">Seleccione una opcion </option>
                                         <option value="1">Norte</option>
@@ -142,11 +102,11 @@
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Seleccione una opcion</div>
                                 </div>
-            
+
                                 <section>
                                     <br>
                                     <h4 class="card-header text-white bg-success mb-3"><strong>(*) Telefono</strong></h4>
-                                    <label class="col-form-label" for="telefonoCliente">(*) Telefono:</label> 
+                                    <label class="col-form-label" for="telefonoCliente">(*) Telefono:</label>
                                     <input class="form-control" type="tel" name="telefonoCliente" id="telefonoCliente" placeholder="Telefono" required="">
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Ingrese un Telefono</div>
@@ -154,40 +114,20 @@
                                 <div>
                                     <br>
                                     <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
-                                    <input class="btn btn-success" type="submit" name="guarda" value="Guardar">  
+                                    <input class="btn btn-success" type="submit" name="guarda" value="Guardar">
                                     <a href="/administrador/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
                                 </div>
                             </fieldset>
-                            
-                            
-    
-                        
+
+
+
+
                 </form>
             </div>
-    
-            
-    
-        </div>
-        
-        <footer>
-            <br>
-            <div>
-                <nav class="menuEnlace">
-                    <ul class="breadcrumb" id="navFooter">
-                        <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
-                        <li><a class="navbar-brand" href="/index/">Inicio</a></li>
-                        <li><a class="navbar-brand" href="../navegacion/sobreNosotros.html">Sobre nosotros</a></li>
-                        <li><a class="navbar-brand" href="../navegacion/contacto.html">Contacto</a></li>
-                        <li><a class="navbar-brand" href="../navegacion/ayuda.html">Ayuda</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div id="labelFooter">
-                <small>Rositeria EL MEJOR SABOR 2022</small> <br>
-                <small>Todos los derechos reservados</small>
-            </div>
-            <br>
-        </footer>
-    </body>
-    <script src="{% static 'js/validacionBootstrap.js' %}"></script>
-</html>
+
+
+
+</div>
+{% endblock %}
+{% block js %}<script src="{% static 'js/validacionBootstrap.js' %}"></script>{% endblock %}
+
