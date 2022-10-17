@@ -82,10 +82,7 @@ WSGI_APPLICATION = 'rotiseriaElMejorSabor.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
 }
 
 
@@ -130,3 +127,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+try:
+    from .configuraciones_locales import *
+except ImportError:
+    raise Exception("El archivo de configuraciones locales es requerido para ejecutar este proyecto")
