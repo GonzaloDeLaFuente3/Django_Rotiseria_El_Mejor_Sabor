@@ -23,6 +23,8 @@
                 </div>
                 <div class="modal-body">
                     <div id="contenedorModificarMenu">
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -58,8 +60,22 @@
                                     <th scope="col">Acción</th>
                                 </tr>
                             </thead>
+                            {% for menu in menus %}
                             <tbody id="contenedorMenus">
+                                <td scope="row">{{ menu.id }}</th>
+                                <td>{{ menu.nombre }}</td>
+                                <td>{{ menu.descripcion }}</td>
+                                <td>{{ menu.tipoMenu }}</td>
+                                <td>{{ menu.tipoComida }}</td>
+                                <td>{{ menu.precio }}</td>
+                                <td>{{ menu.vigencia }}</td>
+                                <td>
+                                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarMenu" id="modificar{{ menu.id }}" href="modificarMenu/{{menu.id}}"><i class="bi bi-pencil-square"></i></a>
+                                    <a class="btn btn-danger mx-2" href="eliminarMenu/{{menu.id}}"><i class="bi bi-trash-fill"></i></a>
+
+                                </td>
                             </tbody>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
@@ -73,6 +89,6 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js' %}"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js' %}"></script>
     <script src="{% static 'js/buscar.js' %}"></script>
-    <script src="{% static 'js/listas/listaPlatos.js' %}"></script>
-    <script src="{% static 'js/listas/cargarMenus.js' %}"></script>
+<!--    <script src="{% static 'js/listas/listaPlatos.js' %}"></script>-->
+<!--    <script src="{% static 'js/listas/cargarMenus.js' %}"></script>-->
 {% endblock %}
