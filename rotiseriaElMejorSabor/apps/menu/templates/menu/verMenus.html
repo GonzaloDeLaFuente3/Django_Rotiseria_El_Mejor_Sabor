@@ -65,13 +65,34 @@
                                 <td scope="row">{{ menu.id }}</th>
                                 <td>{{ menu.nombre }}</td>
                                 <td>{{ menu.descripcion }}</td>
-                                <td>{{ menu.tipoMenu }}</td>
-                                <td>{{ menu.tipoComida }}</td>
+                                {% if menu.tipoMenu == 1 %}
+                                    <td>Entrada</td>
+                                {% elif menu.tipoMenu == 2 %}
+                                    <td>Plato principal</td>
+                                {% elif menu.tipoMenu == 3 %}
+                                    <td>Postre</td>
+                                {% endif %}
+
+                                {% if menu.tipoComida == 1 %}
+                                    <td>Normal</td>
+                                {% elif menu.tipoComida == 2 %}
+                                    <td>Vegetariano</td>
+                                {% elif menu.tipoComida == 3 %}
+                                    <td>Celiaco</td>
+                                {% elif menu.tipoComida == 4 %}
+                                    <td>Diabético</td>
+                                {% endif %}
+
                                 <td>{{ menu.precio }}</td>
-                                <td>{{ menu.vigencia }}</td>
+                                {% if menu.vigencia == True %}
+                                    <td>SI</td>
+                                {% elif menu.vigencia == False %}
+                                    <td>NO</td>
+                                {% endif %}
+
                                 <td>
                                     <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarMenu" id="modificar{{ menu.id }}" href="modificarMenu/{{menu.id}}"><i class="bi bi-pencil-square"></i></a>
-                                    <a class="btn btn-danger mx-2" href="eliminarMenu/{{menu.id}}"><i class="bi bi-trash-fill"></i></a>
+                                    <a class="btn btn-danger mx-2" href="/menu/eliminar/{{menu.id}}"><i class="bi bi-trash-fill"></i></a>
 
                                 </td>
                             </tbody>

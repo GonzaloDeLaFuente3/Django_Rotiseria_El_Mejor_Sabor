@@ -7,6 +7,6 @@ urlpatterns = {
     path('altaCliente.html', views.altaCliente, name='altaCliente'),
     path('bajaCliente.html', views.bajaCliente, name='bajaCliente'),
     path('modificarCliente.html', views.modificarCliente, name='modificarCliente'),
-    path('verClientes.html', views.verClientes, name='verClientes'),
+    path('verClientes.html', views.cargarClientes, name='cargarClientes'),
 
 }

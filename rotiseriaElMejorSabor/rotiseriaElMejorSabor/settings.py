@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.navegacion',
     'apps.empleado',
     'apps.cadete',
+    'apps.persona',
 ]
 
 MIDDLEWARE = [

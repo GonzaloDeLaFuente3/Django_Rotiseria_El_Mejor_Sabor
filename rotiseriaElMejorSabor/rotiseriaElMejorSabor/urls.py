@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('administrador/', include('apps.administrador.urls')),
     path('index/', include('apps.index.urls')),
-    path('menu/', include('apps.menu.urls')),
+    path('menu/', include('apps.menu.urls',namespace='menu')),
     path('cliente/', include('apps.cliente.urls')),
     path('navegacion/', include('apps.navegacion.urls')),
     path('empleado/', include('apps.empleado.urls')),

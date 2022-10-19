@@ -1,8 +1,8 @@
 
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import ListView
 # Create your views here.
-
 
 from apps.menu.models import Menu
 
@@ -20,10 +20,8 @@ def cargarMenu(request):
     return render(request, 'menu/verMenus.html',
                   {'menus': Menu.objects.all()})
 
-def eliminarMenu(request, id ):
+def eliminarMenu(request,id):
     # menu = Menu.objects.get(id=id)
     # menu.delete()
     #redireccion
-
-
-    return  redirect('/verMenu.html')
+    return redirect(reverse("menu:cargar"))

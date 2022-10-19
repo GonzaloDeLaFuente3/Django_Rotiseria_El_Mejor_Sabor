@@ -59,8 +59,28 @@
                                     <th scope="col" style="width: 18%;">Acción</th>
                                 </tr>
                             </thead>
+                            {% for cliente in clientes%}
                             <tbody id="contenedorClientes">
+
+
+                                    <td scope="row">{{ cliente.id }}</th>
+                                    <td>{{cliente.cuil}}</td>
+                                    <td>{{cliente.nombre}}</td>
+                                    <td>{{cliente.apellido}}</td>
+                                    <td>{{cliente.domicilio_barrio}}</td>
+                                    <td>{{cliente.domicilio_localidad}}</td>
+                                    <td>{{cliente.domicilio_zona}}</td>
+                                    <td>{{cliente.telefono}}</td>
+                                    <td>
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarCliente" id="modificar{{cliente.id}}"><i class="bi bi-pencil-square"></i></button>
+                                        <button class="btn btn-danger mx-2" id="eliminar{{cliente.id}}" ><i class="bi bi-trash-fill"></i></button>
+                                    </td>
+
+
+
+
                             </tbody>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
@@ -74,7 +94,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="{% static 'js/buscar.js' %}"></script>
-    <script src="{% static 'js/listas/listaClientes.js' %}"></script>
-    <script src="{% static 'js/listas/cargarClientes.js' %}"></script>
+<!--    <script src="{% static 'js/listas/listaClientes.js' %}"></script>-->
+<!--    <script src="{% static 'js/listas/cargarClientes.js' %}"></script>-->
 {% endblock %}
 
