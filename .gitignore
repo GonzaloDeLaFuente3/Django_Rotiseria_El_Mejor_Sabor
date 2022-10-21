@@ -1,2 +1,3 @@
 __pycache__
 configuraciones_locales.py
+*.cpython-310.pyc
