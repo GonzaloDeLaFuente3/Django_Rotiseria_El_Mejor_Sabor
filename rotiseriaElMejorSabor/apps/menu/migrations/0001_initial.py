@@ -21,6 +21,8 @@ class Migration(migrations.Migration):
                 ('precio', models.DecimalField(decimal_places=2, max_digits=7)),
                 ('vigencia', models.BooleanField(default=False)),
                 ('tipoComida', models.IntegerField(choices=[(1, 'Normal'), (2, 'Vegetariano'), (3, 'Celiaco'), (4, 'Diabetico')])),
+                ('imagen',models.URLField()),
+                ('cantidad', models.IntegerField())
             ],
         ),
     ]

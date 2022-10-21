@@ -212,6 +212,37 @@
                 <h2 id="labelMenus">Entradas de mesa</h2>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper content" id="entrada">
+                        {% for menu in menus%}
+
+                        const div = document.createElement('div');
+                        div.classList.add('swiper-slide');
+                        div.classList.add('card');
+                        div.classList.add('h-100');
+                        div.innerHTML = `
+                        <img class="card-img-top" src={{menu.img}} alt="comida"/>
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h5 class="fw-bolder">{{menu.nombre}}</h5>
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                                ${{menu.precio}}
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                            <a class="btn btn-outline-success mt-auto" type="button" href="/navegacion/comprar.html">Comprar</a>
+                            </div>
+                            <div class="text-center">
+                            <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{menu.id}}">Añadir al carrito</a>
+                            </div>
+                        </div>
+
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>

@@ -19,3 +19,6 @@ def estadisticas(request):
 
 def historial_pedidos(request):
     return  render(request, 'administrador/historial-pedidos.html')
+
+# def ver_empleados(request):
+#     return  render(request, 'administrador/verEmpleados.html')
