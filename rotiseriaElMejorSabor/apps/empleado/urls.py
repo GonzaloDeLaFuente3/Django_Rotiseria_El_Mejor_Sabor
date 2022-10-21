@@ -1,13 +1,13 @@
 from django.urls import path
 
 from apps.empleado import views
-apps_name = 'empleado'
-urlpatterns = {
+app_name = 'empleado'
+urlpatterns = [
 
-    path('altaEmpleado.html', views.altaEmpleado, name='altaEmpleado'),
-    path('bajaCadete.html', views.bajaCadete, name='bajaCadete'),
-    path('modificarCadete.html', views.modificarCadete, name='modificarCadete'),
-    path('verEmpleados.html', views.verEmpleados, name='verEmpleados'),
+    path('alta', views.altaEmpleado, name='alta'),
+    path('baja_cadete', views.bajaCadete, name='baja_cadete'),
+    path('modificar_cadete', views.modificarCadete, name='modificar_cadete'),
+    path('ver', views.verEmpleados, name='ver'),
 
 
-}
+]

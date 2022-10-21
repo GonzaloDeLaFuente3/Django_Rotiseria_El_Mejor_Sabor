@@ -1,15 +1,15 @@
 from django.urls import path
 
 from apps.navegacion import views
-apps_name = 'navegacion'
+app_name = 'navegacion'
 urlpatterns = [
-    path('ayuda.html', views.ayuda, name='ayuda'),
-    path('contacto.html', views.contacto, name='contacto'),
-    path('sobreNosotros.html', views.sobreNosotros, name='sobreNosotros'),
-    path('comprar.html', views.comprar, name='comprar'),
-    path('configuracion.html', views.configuracion, name='configuracion'),
-    path('login.html', views.login, name='login'),
-    path('recuperarContraseña.html', views.recuperarContraseña, name='recuperarContraseña'),
-    path('register.html', views.register, name='register'),
+    path('ayuda', views.ayuda, name='ayuda'),
+    path('contacto', views.contacto, name='contacto'),
+    path('sobre_nosotros', views.sobreNosotros, name='sobre_nosotros'),
+    path('comprar', views.comprar, name='comprar'),
+    path('configuracion', views.configuracion, name='configuracion'),
+    path('login', views.login, name='login'),
+    path('recuperar_contraseña.html', views.recuperarContraseña, name='recuperar_contraseña'),
+    path('register', views.register, name='register'),
 
 ]

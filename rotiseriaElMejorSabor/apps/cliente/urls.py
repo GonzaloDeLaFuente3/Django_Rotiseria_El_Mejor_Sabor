@@ -1,12 +1,12 @@
 from django.urls import path
 
 from apps.cliente import views
-apps_name = 'cliente'
-urlpatterns = {
+app_name = 'cliente'
+urlpatterns = [
 
-    path('altaCliente.html', views.altaCliente, name='altaCliente'),
-    path('bajaCliente.html', views.bajaCliente, name='bajaCliente'),
-    path('modificarCliente.html', views.modificarCliente, name='modificarCliente'),
-    path('verClientes.html', views.cargarClientes, name='cargarClientes'),
+    path('alta', views.altaCliente, name='alta'),
+    path('baja', views.bajaCliente, name='baja'),
+    path('modificar', views.modificarCliente, name='modificar'),
+    path('ver', views.cargarClientes, name='cargar'),
 
-}
+]

@@ -92,7 +92,7 @@
 
                                 <td>
                                     <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarMenu" id="modificar{{ menu.id }}" href="modificarMenu/{{menu.id}}"><i class="bi bi-pencil-square"></i></a>
-                                    <a class="btn btn-danger mx-2" href="/menu/eliminar/{{menu.id}}"><i class="bi bi-trash-fill"></i></a>
+                                    <a class="btn btn-danger mx-2 eliminar" href="{% url 'menu:eliminar' menu.id %}"><i class="bi bi-trash-fill"></i></a>
 
                                 </td>
                             </tbody>
@@ -112,4 +112,6 @@
     <script src="{% static 'js/buscar.js' %}"></script>
 <!--    <script src="{% static 'js/listas/listaPlatos.js' %}"></script>-->
 <!--    <script src="{% static 'js/listas/cargarMenus.js' %}"></script>-->
+    <script src="{% static 'js/alertaEliminar.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% endblock %}

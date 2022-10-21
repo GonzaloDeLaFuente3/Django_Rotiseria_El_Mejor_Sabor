@@ -21,7 +21,7 @@ def cargarMenu(request):
                   {'menus': Menu.objects.all()})
 
 def eliminarMenu(request,id):
-    # menu = Menu.objects.get(id=id)
-    # menu.delete()
+    menu = Menu.objects.get(id=id)
+    menu.delete()
     #redireccion
     return redirect(reverse("menu:cargar"))
