@@ -9,7 +9,7 @@
 {% endblock %}
 {% block paginaPrincipal %}
 <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/administrador/admin-login.html">Página Principal</a>
+                                <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Página Principal</a>
                             </li>
 {% endblock %}
 {% block contenido %}
@@ -60,43 +60,50 @@
                                     <th scope="col">Acción</th>
                                 </tr>
                             </thead>
-                            {% for menu in menus %}
-                            <tbody id="contenedorMenus">
-                                <td scope="row">{{ menu.id }}</th>
-                                <td>{{ menu.nombre }}</td>
-                                <td>{{ menu.descripcion }}</td>
-                                {% if menu.tipoMenu == 1 %}
-                                    <td>Entrada</td>
-                                {% elif menu.tipoMenu == 2 %}
-                                    <td>Plato principal</td>
-                                {% elif menu.tipoMenu == 3 %}
-                                    <td>Postre</td>
-                                {% endif %}
+                            {% if menus  %}
+                                {% for menu in menus %}
+                                <tbody id="contenedorMenus">
+                                    <td scope="row">{{ menu.id }}</th>
+                                    <td>{{ menu.nombre }}</td>
+                                    <td>{{ menu.descripcion }}</td>
+                                    {% if menu.tipoMenu == 1 %}
+                                        <td>Entrada</td>
+                                    {% elif menu.tipoMenu == 2 %}
+                                        <td>Plato principal</td>
+                                    {% elif menu.tipoMenu == 3 %}
+                                        <td>Postre</td>
+                                    {% endif %}
 
-                                {% if menu.tipoComida == 1 %}
-                                    <td>Normal</td>
-                                {% elif menu.tipoComida == 2 %}
-                                    <td>Vegetariano</td>
-                                {% elif menu.tipoComida == 3 %}
-                                    <td>Celiaco</td>
-                                {% elif menu.tipoComida == 4 %}
-                                    <td>Diabético</td>
-                                {% endif %}
+                                    {% if menu.tipoComida == 1 %}
+                                        <td>Normal</td>
+                                    {% elif menu.tipoComida == 2 %}
+                                        <td>Vegetariano</td>
+                                    {% elif menu.tipoComida == 3 %}
+                                        <td>Celiaco</td>
+                                    {% elif menu.tipoComida == 4 %}
+                                        <td>Diabético</td>
+                                    {% endif %}
 
-                                <td>{{ menu.precio }}</td>
-                                {% if menu.vigencia == True %}
-                                    <td>SI</td>
-                                {% elif menu.vigencia == False %}
-                                    <td>NO</td>
-                                {% endif %}
+                                    <td>{{ menu.precio }}</td>
+                                    {% if menu.vigencia == True %}
+                                        <td>SI</td>
+                                    {% elif menu.vigencia == False %}
+                                        <td>NO</td>
+                                    {% endif %}
 
-                                <td>
-                                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarMenu" id="modificar{{ menu.id }}" href="modificarMenu/{{menu.id}}"><i class="bi bi-pencil-square"></i></a>
-                                    <a class="btn btn-danger mx-2 eliminar" href="{% url 'menu:eliminar' menu.id %}"><i class="bi bi-trash-fill"></i></a>
+                                    <td>
+                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarMenu" id="modificar{{ menu.id }}" href="modificarMenu/{{menu.id}}"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-danger mx-2 eliminar" href="{% url 'menu:eliminar' menu.id %}"><i class="bi bi-trash-fill"></i></a>
 
-                                </td>
-                            </tbody>
-                            {% endfor %}
+                                    </td>
+                                </tbody>
+                                {% endfor %}
+                            {% else %}
+                                <div class="alert alert-danger" role="alert">
+                                    No hay elementos para mostrar
+                                </div>
+                            {% endif %}
+
                         </table>
                     </div>
                 </div>
@@ -106,9 +113,9 @@
 {% endblock %}
 {% block js %}
 <script src="{% static 'js/ordenarTabla.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js' %}"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js' %}"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="{% static 'js/buscar.js' %}"></script>
 <!--    <script src="{% static 'js/listas/listaPlatos.js' %}"></script>-->
 <!--    <script src="{% static 'js/listas/cargarMenus.js' %}"></script>-->

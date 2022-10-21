@@ -9,7 +9,7 @@
 {% endblock %}
 {% block paginaPrincipal %}
 <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/administrador/admin-login.html">Página Principal</a>
+                                <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Página Principal</a>
                             </li>
 {% endblock %}
 {% block contenido %}
@@ -20,23 +20,20 @@
             <div id="cajaMenu">
                 <h1>Alta de Menús</h1>
             </div>
-            <form action="#" method="post" autocomplete="on" class="needs-validation" novalidate>
+            <form action="{% url 'menu:registrar_menu' %}" method="POST" autocomplete="on" class="needs-validation" novalidate>
+                {% csrf_token %}
                 <fieldset>
                     <div class="card">
                         <legend class="card-header text-white bg-success mb-3"><strong>Datos del Menú</strong></legend>
                         <div class="card-body">
                             <small><strong>Nota:</strong> los campos que cuentan con el simbolo (*) son obligatorios</small>
                             <br>
-                            <div>
-                                <label class="col-form-label" for="codigoMenu">(*) Codigo del Menu:</label> <br>
-                                <input class="form-control" type="number" name="codigoMenu" id="codigoMenu" placeholder="Codigo..." required="" disabled>
 
-                            </div>
 
                             <div>
                                 <br>
                                 <label class="col-form-label" for="nombreMenu">(*) Nombre del menu:</label><br>
-                                <input class="form-control" type="text" name="nombreMenu" id="nombreMenu" size="30" maxlength="30" placeholder="Nombre"
+                                <input class="form-control" type="text" name="nombreMenu" id="nombreMenu" size="30" maxlength="400" placeholder="Nombre"
                                 required="">
                                 <div class="valid-feedback">El valor ingresado es valido</div>
                                 <div class="invalid-feedback">Ingrese un Nombre al menú</div>
@@ -72,7 +69,7 @@
                             <div class="form-check form-switch">
                                 <br>
                                 <label class="col-form-label noSaltoLinea" for="vigente">El menu esta vigente</label>
-                                <input class="form-check-input" type="checkbox" name="vigente" id="vigente">
+                                <input class="form-check-input" type="checkbox" name="vigente" id="vigente" value="True">
                             </div>
 
                             <div>
@@ -92,7 +89,7 @@
                                 <br>
                                 <small><strong>Recordar revisar todos los campos antes de guardar</strong></small> <br> <br>
                                 <input class="btn btn-success" type="submit" name="guardar" value="Guardar">  &nbsp;
-                                <a href="/administrador/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
+                                <a href="{% url 'administrador:admin_login' %}" type="button" class="btn btn-secondary">Cancelar</a>
                             </div>
                         </div>
                         <br><br>

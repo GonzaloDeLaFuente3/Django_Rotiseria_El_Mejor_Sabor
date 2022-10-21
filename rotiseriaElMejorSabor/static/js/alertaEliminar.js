@@ -1,5 +1,8 @@
 const botonEliminar = document.querySelectorAll('.eliminar');
 
+
+
+
 botonEliminar.forEach(boton => {
     boton.addEventListener('click', function(e){
         e.preventDefault();
