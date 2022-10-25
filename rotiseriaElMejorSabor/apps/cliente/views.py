@@ -7,9 +7,6 @@ from apps.cliente.models import Cliente
 def altaCliente(request):
     return  render(request, 'cliente/altaCliente.html')
 
-def bajaCliente(request):
-    return  render(request, 'cliente/bajaCliente.html')
-
 def modificarCliente(request):
     return  render(request, 'cliente/modificarCliente.html')
 

@@ -6,7 +6,6 @@ app_name = 'menu'
 urlpatterns = [
     # TemplateView.as_view(template_name='base/home.html')
     path('alta/', TemplateView.as_view(template_name='menu/altaMenu.html'), name='alta'),
-    path('baja/', views.bajaMenu, name='baja'),
     path('modificar/', views.modificarMenu, name='modificar'),
     path('ver/', views.cargarMenu, name='cargar'),
     path('eliminar/<int:id>', views.eliminarMenu, name='eliminar'),

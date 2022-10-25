@@ -5,13 +5,13 @@
 
 {% endblock %}
 {% block logo %}
-<a href="/index/">
+<a href="{% url 'administrador:admin_login' %}">
                     <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
                     </a>
 {% endblock %}
 {% block paginaPrincipal %}
 <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/administrador/admin-login.html">Página Principal</a>
+                                <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Página Principal</a>
                             </li>
 {% endblock %}
 {% block contenido %}

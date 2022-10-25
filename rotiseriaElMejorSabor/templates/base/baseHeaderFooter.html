@@ -61,9 +61,9 @@
                     <ul class="breadcrumb" id="navFooter">
                         <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
                         <li><a class="navbar-brand linkFooter" href="/index/">Inicio</a></li>
-                        <li><a class="navbar-brand linkFooter" href="../navegacion/sobreNosotros.html">Sobre nosotros</a></li>
-                        <li><a class="navbar-brand linkFooter" href="../navegacion/contacto.html">Contacto</a></li>
-                        <li><a class="navbar-brand linkFooter" href="../navegacion/ayuda.html">Ayuda</a></li>
+                        <li><a class="navbar-brand linkFooter" href="{% url 'navegacion:sobre_nosotros' %}">Sobre nosotros</a></li>
+                        <li><a class="navbar-brand linkFooter" href="{% url 'navegacion:contacto' %}">Contacto</a></li>
+                        <li><a class="navbar-brand linkFooter" href="{% url 'navegacion:ayuda' %}">Ayuda</a></li>
                     </ul>
                 </nav>
             </div>

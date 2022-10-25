@@ -45,7 +45,7 @@ listaPlatos.forEach((producto) => {
     </div>
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center">
-        <a class="btn btn-outline-success mt-auto" type="button" href="/navegacion/comprar.html">Comprar</a>
+        <a class="btn btn-outline-success mt-auto" type="button" href="/navegacion/comprar">Comprar</a>
         </div>
         <div class="text-center">
         <a class="btn btn-outline-primary mt-auto" type="button" id="agregar${producto.id}">Añadir al carrito</a>

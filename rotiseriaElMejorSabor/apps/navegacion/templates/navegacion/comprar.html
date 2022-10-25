@@ -59,10 +59,10 @@
                                 Mi Cuenta
                             </button>   
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="login.html">Ingresar</a>
-                                <a class="dropdown-item" href="/cliente/altaCliente.html">Registrarse</a>
+                                <a class="dropdown-item" href="{% url 'navegacion:login' %}">Ingresar</a>
+                                <a class="dropdown-item" href="{% url 'navegacion:register' %}">Registrarse</a>
                                 <hr class="dropdown-divider" />
-                                <a class="dropdown-item" href="#">Configuración</a>
+                                <a class="dropdown-item" href="{% url 'navegacion:configuracion' %}">Configuración</a>
                                 <a class="dropdown-item" href="/index/">Salir</a>
                             </div>
                         </li>

@@ -86,8 +86,8 @@
                     <ul class="breadcrumb" id="navFooter">
                         <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
                         <li><a class="navbar-brand" href="/index/">Inicio</a></li>
-                        <li><a class="navbar-brand" href="contacto.html">Contacto</a></li>
-                        <li><a class="navbar-brand" href="ayuda.html">Ayuda</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:contacto' %}">Contacto</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:ayuda' %}">Ayuda</a></li>
                     </ul>
                 </nav>
             </div>

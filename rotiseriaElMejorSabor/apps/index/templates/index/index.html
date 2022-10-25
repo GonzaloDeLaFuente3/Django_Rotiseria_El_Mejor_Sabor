@@ -35,7 +35,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" id="vaciarCarrito">Vaciar carrito</button>
-                        <a class="btn btn-success" id="comprarCarrito" type="button" href="/navegacion/comprar.html">Comprar</a>
+                        <a class="btn btn-success" id="comprarCarrito" type="button" href="{% url 'navegacion:comprar' %}">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -116,10 +116,10 @@
                                     Mi Cuenta
                                 </button>   
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/navegacion/login.html">Ingresar</a>
-                                    <a class="dropdown-item" href="/navegacion/register.html">Registrarse</a>
+                                    <a class="dropdown-item" href="{% url 'navegacion:login' %}">Ingresar</a>
+                                    <a class="dropdown-item" href="{% url 'navegacion:register' %}">Registrarse</a>
                                     <hr class="dropdown-divider" />
-                                    <a class="dropdown-item" href="#">Configuración</a>
+                                    <a class="dropdown-item" href="{% url 'navegacion:configuracion' %}">Configuración</a>
                                     <a class="dropdown-item" href="/index/">Salir</a>
                                 </div>
                             </li>
@@ -280,9 +280,9 @@
                     <ul class="breadcrumb" id="navFooter">
                         <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
                         <li><a class="navbar-brand" href="/index/">Inicio</a></li>
-                        <li><a class="navbar-brand" href="/navegacion/sobreNosotros.html">Sobre nosotros</a></li>
-                        <li><a class="navbar-brand" href="/navegacion/contacto.html">Contacto</a></li>
-                        <li><a class="navbar-brand" href="/navegacion/ayuda.html">Ayuda</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:sobre_nosotros' %}">Sobre nosotros</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:contacto' %}">Contacto</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:ayuda' %}">Ayuda</a></li>
                     </ul>
                 </nav>
             </div>
