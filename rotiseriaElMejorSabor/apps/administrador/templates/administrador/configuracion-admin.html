@@ -1,4 +1,4 @@
-{% extends "base/baseHeaderFooter.html" %}
+{% extends "base/baseFooter.html" %}
 {% load static %}
 {% block titulo %}Configuracion{% endblock %}
 {% block css %}
@@ -9,15 +9,10 @@
         }
     </style>
 {% endblock %}
-{% block logo %}
-<a href="{% url 'administrador:admin_login' %}">
-                <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
-                </a>
-{% endblock %}
 {% block paginaPrincipal %}
 <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Página Principal</a>
-                        </li>
+    <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Página Principal</a>
+</li>
 {% endblock %}
 {% block contenido %}
 <div class="container" id="ventasDiarias">

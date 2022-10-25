@@ -7,11 +7,6 @@
                     <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
                     </a>
 {% endblock %}
-{% block paginaPrincipal %}
-<li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Página Principal</a>
-                            </li>
-{% endblock %}
 {% block contenido %}
 <div class="modal fade" id="modalModificarMenu" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
         <div class="modal-dialog">

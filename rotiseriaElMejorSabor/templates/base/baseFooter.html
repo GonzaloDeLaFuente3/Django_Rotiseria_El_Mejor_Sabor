@@ -13,21 +13,23 @@
     <link rel="icon" href="{% static 'resources/Logos/iconRotiseria.png' %}"/>
     <link rel="stylesheet" href="{% static 'css/header-footer.css' %}">
     {% block css %}{% endblock %}
-    
+
 </head>
 <body>
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top col-primary">
             <div class="container-fluid">
-                {% block logo %}{% endblock %}
-                
+                <a href="{% url 'administrador:admin_login' %}">
+                    <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
+                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Página Principal</a>
-                        </li>
+                        {% %}
+                        {% block paginaPrincipal %}
+                        {% endblock %}
                     </ul>
                     </form>
                     <form class="d-flex notificaciones">
@@ -45,6 +47,7 @@
                             Administrador
                         </button>
                         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'administrador:administrador_configuracion' %}">Configuración</a>
                             <a class="dropdown-item" href="/index/">Salir</a>
                         </div>
                     </li>
@@ -57,22 +60,22 @@
 
     <footer>
         <br>
-            <div>
-                <nav class="menuEnlace">
-                    <ul class="breadcrumb" id="navFooter">
-                        <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
-                        <li><a class="navbar-brand linkFooter" href="/index/">Inicio</a></li>
-                        <li><a class="navbar-brand linkFooter" href="{% url 'navegacion:sobre_nosotros' %}">Sobre nosotros</a></li>
-                        <li><a class="navbar-brand linkFooter" href="{% url 'navegacion:contacto' %}">Contacto</a></li>
-                        <li><a class="navbar-brand linkFooter" href="{% url 'navegacion:ayuda' %}">Ayuda</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div id="labelFooter">
-                <small>Rositeria EL MEJOR SABOR 2022</small> <br>
-                <small>Todos los derechos reservados</small>
-            </div>
-            <br>
+        <div>
+            <nav class="menuEnlace">
+                <ul class="breadcrumb" id="navFooter">
+                    <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
+                    <li><a class="navbar-brand" href="/index/">Inicio</a></li>
+                    <li><a class="navbar-brand" href="{% url 'navegacion:sobre_nosotros' %}">Sobre nosotros</a></li>
+                    <li><a class="navbar-brand" href="{% url 'navegacion:contacto' %}">Contacto</a></li>
+                    <li><a class="navbar-brand" href="{% url 'navegacion:ayuda' %}">Ayuda</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="labelFooter">
+            <small>Rositeria EL MEJOR SABOR 2022</small> <br>
+            <small>Todos los derechos reservados</small>
+        </div>
+        <br>
     </footer>
 
 </body>
