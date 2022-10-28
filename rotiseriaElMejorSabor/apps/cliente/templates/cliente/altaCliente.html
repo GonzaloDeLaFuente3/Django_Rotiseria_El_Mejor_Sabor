@@ -27,14 +27,15 @@
             <br><br>
 
             <div>
-                <form action="#" method="post" autocomplete="on" class="needs-validation" novalidate>
+                <form action="{% url 'cliente:registrar_cliente' %}" method="post" autocomplete="on" class="needs-validation" novalidate>
+                    {% csrf_token %}
                     <fieldset>
                         <div class="card">
                                 <legend class="card-header text-white bg-success mb-3"><strong>Informacion del cliente</strong></legend>
                             <div class="card-body">
                                 <label class="col-form-label" for="cuilCadete">(*) Cuil</label>
                                 <br>
-                                <input class="form-control" type="number" name="cuilCadete" id="cuilCadete"  placeholder="Ingresar el cuil sin guiones" required="">
+                                <input class="form-control" type="number" name="cuilCliente" id="cuilCadete"  placeholder="Ingresar el cuil sin guiones" required="">
                                 <div class="valid-feedback">El valor ingresado es valido</div>
                                 <div class="invalid-feedback">Ingrese un Cuil</div>
                                 <br>
@@ -89,10 +90,10 @@
                                     <label for="codigoZona">(*) Zona:</label>
                                     <select class="form-select" name="codigoZona" id="codigoZona" required>
                                         <option selected disabled value="">Seleccione una opcion </option>
-                                        <option value="1">Norte</option>
-                                        <option value="2">Sur</option>
-                                        <option value="3">Este</option>
-                                        <option value="4">Oeste</option>
+                                        <option value="norte">Norte</option>
+                                        <option value="sur">Sur</option>
+                                        <option value="este">Este</option>
+                                        <option value="oeste">Oeste</option>
                                     </select>
                                     <div class="valid-feedback">El valor ingresado es valido</div>
                                     <div class="invalid-feedback">Seleccione una opcion</div>

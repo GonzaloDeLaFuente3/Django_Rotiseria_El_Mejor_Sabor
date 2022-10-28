@@ -1,0 +1,97 @@
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="bi bi-pencil-square mx-2"></i>
+                    <h5 class="modal-title" id="modal-title">Modificar Cliente</h5>
+                    <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="contenedorModificarCliente">
+                        <form action="{% url 'cliente:editar' %}" method="post" autocomplete="on" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <fieldset>
+                                <section class="card">
+
+                                    <legend class="card-header text-white bg-primary mb-3"><strong>Informacion del cliente a modificar</strong></legend>
+                                    <div class="card-body">
+
+                                        <div>
+                                            <label class="col-form-label" for="cuilCadete"><strong>Cuil</strong></label>
+                                            <br>
+                                            <input class="form-control" type="number" name="cuil"   placeholder="Ingresar el cuil sin guiones" disabled value="{{cliente.cuil}}">
+                                            <input class="form-control" type="number" name="cuilCliente" id="cuilCadete"  placeholder="Ingresar el cuil sin guiones" hidden value="{{cliente.cuil}}">
+                                            <br>
+                                        </div>
+
+                                        <section>
+                                            <h4 class="card-header text-white bg-primary mb-3" ><strong>Apellido y nombre</strong></h4>
+                                            <label class="col-form-label" for="nombre">Nombre:</label>
+
+                                            <input class="form-control" type="text" name="nombre" id="nombre" size="50" maxlength="50" placeholder="Nombre" value="{{cliente.nombre}}">
+                                            <label class="col-form-label" for="apellido">Apellido:</label>
+                                            <input class="form-control" type="text" name="apellido" id="apellido" size="50" maxlength="50" placeholder="Apellido" value="{{cliente.apellido}}">
+                                            <br>
+                                        </section>
+
+                                        <section>
+                                            <h4 class="card-header text-white bg-primary mb-3"><strong>Domicilio</strong></h4>
+                                            <label class="col-form-label" for="calle"></label>Calle: <br>
+
+                                            <input class="form-control" type="text" name="calle" id="calle" size="50" maxlength="50" placeholder="Calle" value="{{cliente.domicilio_calle}}">
+                                            <br>
+                                            <label class="col-form-label" for="domicilioNumero"></label>Numero:
+
+                                            <input class="form-control" type="number" name="domicilioNumero" id="domicilioNumero" placeholder="Numero" value="{{cliente.domicilio_numero}}"> <br>
+                                            <label class="col-form-label" for="domicilioBarrio"></label>Barrio:
+                                            <input class="form-control" type="text" name="domicilioBarrio" id="domicilioBarrio" placeholder="Barrio" value="{{cliente.domicilio_barrio}}">
+
+                                            <br>
+                                            <label class="col-form-label" for="localidad"></label>Localidad:
+                                            <input class="form-control" type="text" name="localidad" id="localidad" placeholder="Localidad" value="{{cliente.domicilio_localidad}}">
+
+                                            <br>
+                                            <label class="col-form-label" for="observacion">Observacion:</label> <br>
+                                            <textarea class="form-control" name="observacion" id="observacion" cols="30" rows="10" placeholder="Ingrese la observacion" >{{cliente.domicilio_observacion}}</textarea>
+
+                                        </section>
+
+                                        <div>
+                                            <br>
+                                            <label class="col-form-label" for="codigoZona">Zona:</label>
+                                            <select class="form-select" name="codigoZona" id="codigoZona" >
+
+                                                <option {% if cliente.domicilio_zona == "norte" %} selected {% endif %} value="norte">Norte</option>
+                                                <option {% if cliente.domicilio_zona == "sur" %} selected {% endif %} value="sur">Sur</option>
+                                                <option {% if cliente.domicilio_zona == "este" %} selected {% endif %} value="este">Este</option>
+                                                <option {% if cliente.domicilio_zona == "oeste" %} selected {% endif %} value="oeste">Oeste</option>
+                                            </select>
+                                            <br>
+                                        </div>
+
+                                        <section>
+                                            <h4 class="card-header text-white bg-primary mb-3" ><strong>Telefono</strong></h4>
+                                            <label class="col-form-label" for="telefonoCliente">Telefono:</label>
+                                            <input class="form-control" type="tel" name="telefonoCliente" id="telefonoCliente" placeholder="Telefono" value="{{cliente.telefono}}">
+                                            <br>
+                                        </section>
+
+
+                                        <div>
+                                            <br>
+                                            <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
+                                            <input class="btn btn-primary" type="submit" name="modificar" value="Modificar" >
+                                            <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
+                                        </div>
+                                    </div>
+                                </section>
+
+
+
+                            </fieldset>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>

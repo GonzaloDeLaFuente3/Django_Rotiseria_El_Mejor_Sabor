@@ -22,7 +22,7 @@ urlpatterns = [
     path('administrador/', include('apps.administrador.urls',namespace='administrador')),
     path('index/', include('apps.index.urls')),
     path('menu/', include('apps.menu.urls',namespace='menu')),
-    path('cliente/', include('apps.cliente.urls')),
+    path('cliente/', include('apps.cliente.urls',namespace='cliente')),
     path('navegacion/', include('apps.navegacion.urls')),
     path('empleado/', include('apps.empleado.urls')),
     path('cadete/', include('apps.cadete.urls')),

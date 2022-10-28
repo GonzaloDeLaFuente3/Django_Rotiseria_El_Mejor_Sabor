@@ -9,24 +9,8 @@
 {% endblock %}
 {% block contenido %}
 <div class="modal fade" id="modalModificarCliente" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="bi bi-pencil-square mx-2"></i>
-                    <h5 class="modal-title" id="modal-title">Modificar Cliente</h5>
-                    <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="contenedorModificarCliente">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-success" id="modificarCliente" type="button">Guardar cambios</a>
-                    <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+</div>
 
     <div class="container-fluid">
         <div id="titulo">
@@ -43,7 +27,7 @@
                         <table class="table table-primary table-hover table-striped text-center align-middle" id="tablaRegistro">
                             <thead>
                                 <tr>
-                                    <th scope="col" onclick="sortTable(0, 'str')">#</th>
+<!--                                    <th scope="col" onclick="sortTable(0, 'str')">#</th>-->
                                     <th scope="col" onclick="sortTable(1, 'str')" >Cuil</th>
                                     <th scope="col" onclick="sortTable(2, 'str')" >Nombre</th>
                                     <th scope="col" onclick="sortTable(3, 'str')" >Apellido</th>
@@ -51,6 +35,8 @@
                                     <th scope="col" onclick="sortTable(5, 'str')">Localidad</th>
                                     <th scope="col" onclick="sortTable(6, 'str')" >Zona</th>
                                     <th scope="col" onclick="sortTable(7, 'str')" >Telefono</th>
+                                    <th scope="col" onclick="sortTable(8, 'str')" >calle</th>
+                                    <th scope="col" onclick="sortTable(9, 'str')" >numero domicilio</th>
                                     <th scope="col" style="width: 18%;">Acción</th>
                                 </tr>
                             </thead>
@@ -58,7 +44,7 @@
                             <tbody id="contenedorClientes">
 
 
-                                    <td scope="row">{{ cliente.id }}</th>
+<!--                                    <td scope="row">{{cliente.id}}</th>-->
                                     <td>{{cliente.cuil}}</td>
                                     <td>{{cliente.nombre}}</td>
                                     <td>{{cliente.apellido}}</td>
@@ -66,9 +52,11 @@
                                     <td>{{cliente.domicilio_localidad}}</td>
                                     <td>{{cliente.domicilio_zona}}</td>
                                     <td>{{cliente.telefono}}</td>
+                                    <td>{{cliente.domicilio_calle}}</td>
+                                    <td>{{cliente.domicilio_numero}}</td>
                                     <td>
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarCliente" id="modificar{{cliente.id}}"><i class="bi bi-pencil-square"></i></button>
-                                        <button class="btn btn-danger mx-2" id="eliminar{{cliente.id}}" ><i class="bi bi-trash-fill"></i></button>
+                                        <button class="btn btn-primary" onclick="abrirModal('{% url 'cliente:modificar' cliente.cuil %}')"><i class="bi bi-pencil-square"></i></button>
+                                        <a class="btn btn-danger mx-2 eliminar" href="{% url 'cliente:eliminar' cliente.cuil %}"><i class="bi bi-trash-fill"></i></a>
                                     </td>
 
 
@@ -91,5 +79,15 @@
     <script src="{% static 'js/buscar.js' %}"></script>
 <!--    <script src="{% static 'js/listas/listaClientes.js' %}"></script>-->
 <!--    <script src="{% static 'js/listas/cargarClientes.js' %}"></script>-->
+    <script src="{% static 'js/alertaEliminar.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript" >
+    function abrirModal(url){
+        $('#modalModificarCliente').load(url, function(){
+            $(this).modal('show');
+        })
+    }
+</script>
 {% endblock %}
 
