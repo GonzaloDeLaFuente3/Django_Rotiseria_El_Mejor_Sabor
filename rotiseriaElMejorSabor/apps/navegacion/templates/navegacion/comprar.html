@@ -20,13 +20,13 @@
                     <div class="row">
                         <label class="col-form-label col-sm-2">Código del pedido:</label>
                         <div class="col-sm-3">
-                            <input type="number" name="" id="" class="form-control" value="6281" disabled>
+                            <input type="number" name="" id="" class="form-control" value="{{plato.id}}" disabled>
                         </div>
                     </div>
                     <div class="row my-3">
                         <label class="col-form-label col-sm-2">Fecha del pedido:</label>
                         <div class="col-sm-3">
-                            <input type="date" name="" id="" class="form-control" value="2022-09-22" disabled>
+                            <input type="date" name="" id="fechaPedido" class="form-control">
                         </div>
                     </div>
                     <div class="row">
@@ -41,14 +41,13 @@
                     <div class="row my-3">
                         <label class="col-form-label col-sm-2">Menú:</label>
                         <div class="col-sm-3">
-                            <input type="text" name="" id="" class="form-control" value="Tarta de choclo x3,
-                            Medallones de pescado x12" disabled>
+                            <input type="text" name="" id="" class="form-control" value="{{plato.nombre}}" disabled>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-form-label col-sm-2">Precio:</label>
                         <div class="col-sm-3">
-                            <input type="number" name="" class="form-control" value="1300" disabled>
+                            <input type="number" name="" class="form-control" value="{{plato.precio}}" disabled>
                         </div>
                     </div>
                     <div class="row my-3">
@@ -88,6 +87,10 @@
 {% endblock %}
 {% block js %}<script src="{% static 'js/verificarHoraLocal.js' %}"></script>
 <script>
+    const fechaPedido = document.getElementById("fechaPedido").value;
+
+    fechaPedido = new Date();
+
     let carrito = []
 
     document.addEventListener('DOMContentLoaded',() =>{
