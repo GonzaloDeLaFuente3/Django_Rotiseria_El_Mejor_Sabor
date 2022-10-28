@@ -19,4 +19,5 @@ class Menu(models.Model):
     precio = models.DecimalField(max_digits=7 , decimal_places=2)
     vigencia = models.BooleanField(default=False)
     tipoComida = models.IntegerField(null=False,blank=False, choices=TIPO_COMIDA)
+    imagen = models.CharField(max_length=600, unique=True)
     #agregar campo de url para imagen , fijate de no corromper la bd

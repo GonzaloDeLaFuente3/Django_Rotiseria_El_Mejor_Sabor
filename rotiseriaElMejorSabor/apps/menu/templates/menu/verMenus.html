@@ -9,26 +9,8 @@
 {% endblock %}
 {% block contenido %}
 <div class="modal fade" id="modalModificarMenu" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="bi bi-pencil-square mx-2"></i>
-                    <h5 class="modal-title" id="modal-title">Modificar Menú</h5>
-                    <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="contenedorModificarMenu">
 
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-success" id="modificarMenu" type="button">Guardar cambios</a>
-                    <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
     <div class="container-fluid">
         <div id="titulo">
@@ -52,6 +34,7 @@
                                     <th scope="col" onclick="sortTable(4, 'str')" style="width: 12%;">Tipo de comida</th>
                                     <th scope="col" onclick="sortTable(5, 'float')">Precio</th>
                                     <th scope="col" onclick="sortTable(6, 'str')" style="width: 12%;">Stock/Vigencia</th>
+<!--                                    <th scope="col" onclick="sortTable(7, 'str')" style="width: 15%;">Imagen</th>-->
                                     <th scope="col">Acción</th>
                                 </tr>
                             </thead>
@@ -85,9 +68,9 @@
                                     {% elif menu.vigencia == False %}
                                         <td>NO</td>
                                     {% endif %}
-
+<!--                                    <td>{{ menu.imagen }}</td>-->
                                     <td>
-                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalModificarMenu" id="modificar{{ menu.id }}" href="modificarMenu/{{menu.id}}"><i class="bi bi-pencil-square"></i></a>
+                                        <button class="btn btn-primary" onclick="abrirModal('{% url 'menu:modificar' menu.id %}')"><i class="bi bi-pencil-square"></i></button>
                                         <a class="btn btn-danger mx-2 eliminar" href="{% url 'menu:eliminar' menu.id %}"><i class="bi bi-trash-fill"></i></a>
 
                                     </td>
@@ -116,4 +99,13 @@
 <!--    <script src="{% static 'js/listas/cargarMenus.js' %}"></script>-->
     <script src="{% static 'js/alertaEliminar.js' %}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+    function abrirModal(url){
+        $('#modalModificarMenu').load(url, function(){
+            $(this).modal('show');
+        })
+    }
+</script>
+
 {% endblock %}

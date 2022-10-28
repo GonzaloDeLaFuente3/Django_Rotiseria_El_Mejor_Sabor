@@ -1,0 +1,105 @@
+<div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="bi bi-pencil-square mx-2"></i>
+                    <h5 class="modal-title" id="modal-title">Modificar Menú</h5>
+                    <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="contenedorModificarMenu">
+                        <form action="{% url 'menu:editar' %}" method="post" autocomplete="on">
+                            {% csrf_token %}
+                            <fieldset>
+                                <div class="card">
+
+
+                                    <legend class="card-header text-white bg-primary mb-3"><strong>Datos del Menú</strong></legend>
+                                    <div class="card-body">
+
+                                        <div>
+                                            <label class="col-form-label" for="codigoMenu"> Codigo del Menu:</label> <br>
+                                            <input class="form-control" type="number" name="codigoMenuDesconectado"  value="{{ menu.id }}" disabled>
+                                            <input class="form-control" type="number" name="codigoMenu" id="codigoMenu" placeholder="Codigo" value="{{ menu.id }}" hidden>
+                                        </div>
+
+                                        <div>
+                                            <br>
+                                            <label class="col-form-label" for="nombreMenu"> Nombre del menu:</label><br>
+                                            <input class="form-control" type="text" name="nombreMenu" id="nombreMenu" size="30" maxlength="400" value="{{ menu.nombre }}" placeholder="Nombre"
+                                             >
+                                        </div>
+
+                                        <div>
+                                            <br>
+                                            <label class="col-form-label" for="descripcionMenu">Descripcion del menu:</label> <br>
+                                            <textarea class="form-control" name="descripcionMenu" id="descripcionMenu" cols="30" rows="10"  placeholder="Ingrese la Descripcion del menu" >{{ menu.descripcion }}</textarea>
+                                        </div>
+
+                                        <div>
+                                            <br>
+                                            <label class="col-form-label" for="tipoMenu"> Tipo de Menu:</label>
+                                            <select class="form-select" name="tipoMenu" id="tipoMenu" >
+
+                                                <option {% if menu.tipoMenu == 1 %} selected {% endif %} value="1">Entrada</option>
+                                                <option {% if menu.tipoMenu == 2 %} selected {% endif %} value="2">Plato principal</option>
+                                                <option {% if menu.tipoMenu == 3 %} selected {% endif %} value="3">Postre</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <br>
+                                            <label class="col-form-label" for="precioMenu"> Precio del menu</label>
+                                            <input class="form-control" type="number" min="1" name="precioMenu" id="precioMenu" value="{{ menu.precio }}" placeholder="Ejemplo: 5000" >
+                                        </div>
+
+                                        <div class="form-check form-switch">
+                                            <br>
+                                            <label class="col-form-label noSaltoLinea" for="vigente">El menu esta vigente</label>
+                                            <input class="form-check-input" type="checkbox" name="vigente" id="vigente" {% if menu.vigencia == True %} checked {% endif %}  >
+                                        </div>
+
+                                        <div>
+                                            <br>
+                                            <label class="col-form-label" for="tipoComida"> Tipo de comida: </label>
+                                            <select class="form-select" name="tipoComida" id="tipoComida"  >
+
+                                                <option {% if menu.tipoComida == 1 %} selected {% endif %} value="1">Normal</option>
+                                                <option {% if menu.tipoComida == 2 %} selected {% endif %} value="2">Vegetariano</option>
+                                                <option {% if menu.tipoComida == 3 %} selected {% endif %} value="3">Celiaco</option>
+                                                <option {% if menu.tipoComida == 4 %} selected {% endif %} value="4">Diabetico</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="col-form-label" for="imagen">(*) Link Imagen: </label>
+                                            <input class="form-control" type="text" name="imagen" id="imagen"  maxlength="600" value="{{ menu.imagen }}"
+                                            required="">
+                                        </div>
+
+
+                                        <br>
+
+
+
+                                        <div>
+                                            <br>
+                                            <small><strong>Recordar revisar todos los campos antes de guardar</strong></small> <br> <br>
+<!--                                            <input class="btn btn-primary" type="submit" name="modificar" value="Modificar" >  &nbsp;-->
+<!--                                            <a href="{% url 'menu:cargar' %}" type="button" class="btn btn-secondary">Cancelar</a>-->
+                                            <div class="modal-footer">
+<!--                                                <a class="btn btn-success" id="modificarMenu" type="button" href="{% url 'menu:editar' %}">Guardar cambios</a>-->
+                                                <input class="btn btn-success" id="modificarMenu" type="submit" name="editar" value="Guardar cambios">
+                                                <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
+                                              </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+</div>
