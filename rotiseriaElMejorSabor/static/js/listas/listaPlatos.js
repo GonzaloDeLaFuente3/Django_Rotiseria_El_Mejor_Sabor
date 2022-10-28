@@ -12,3 +12,5 @@ let listaPlatos = [
     {id: 11, nombre: "Pizza Calabresa", tipo_menu: "plato principal", tipo_comida: "Normal", descripcion: "calabresa, prepizza, salsa de tomate, oregano, queso", precio: 1500.00, img: 'https://as2.ftcdn.net/v2/jpg/02/96/96/71/1000_F_296967135_DAjY06XgRvqzYr3WYzHvmQp4C66QxM00.jpg',cantidad: 1, vigencia: "NO"},
     {id: 12, nombre: "Fideos con salsa", tipo_menu: "plato principal", tipo_comida: "Diabético", descripcion: "fideos, salsa", precio: 1800.00, img: 'https://t1.rg.ltmcdn.com/es/posts/9/5/6/fideos_con_salsa_de_tomate_41659_600.jpg',cantidad: 1, vigencia: "SI"}
 ];
+
+
