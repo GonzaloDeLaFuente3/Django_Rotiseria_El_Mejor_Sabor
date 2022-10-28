@@ -1,71 +1,33 @@
-{% extends "base/baseIndexComprar.html" %}
+{% extends "base/baseUsuarioCliente.html" %}
 {% load static %}
 {% block titulo %}Rotiseria El Mejor Sabor{% endblock %}
 {% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="{% static 'js/listas/listaPlatos.js' %}"></script>
+    <script>
+<!--    Agregar platos de la base de datos a la pagina index-->
+
+        {% for plato in platos%}
+            listaPlatos.push({id: {{plato.id}}, nombre: "{{plato.nombre}}",
+            tipo_menu: {% if plato.tipoMenu == 1 %}"entrada"
+            {% elif plato.tipoMenu == 2 %} "plato principal"
+            {% elif plato.tipoMenu == 3 %} "postre"
+            {% endif %}
+            , tipo_comida:
+            {% if plato.tipoComida == 1 %} "Normal"
+            {% elif plato.tipoComida == 2 %} "Vegetariano"
+            {% elif plato.tipoComida == 3 %} "Celiaco"
+            {% elif plato.tipoComida == 4 %} "Diabético"
+            {% endif %}
+            , descripcion: "{{plato.descripcion}}", precio: {{plato.precio}}, img: '{{plato.imagen}}',cantidad: 1, vigencia: "{{plato.vigencia}}"})
+        {% endfor %}
+
+    </script>
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
-{% endblock %}
-{% block elementos %}
-    <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menús</a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#entrada">Todos los menús</a></li>
-                                        <li><hr class="dropdown-divider" /></li>
-                                        <li><a class="dropdown-item" href="#labelMenus">Entrada de mesa</a></li>
-                                        <li><a class="dropdown-item" href="#platoprincipal">Plato Principal</a></li>
-                                        <li><a class="dropdown-item" href="#postre">Postre</a></li>
-                                    </ul>
-                            </li>
-    <form class="d-flex buscador">
-                                <input class="form-control me-2" type="search" placeholder="Buscar un menú" aria-label="Search">
-                                <button class="btn btn-outline-light" type="submit">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </form>
+
 {% endblock %}
 {% block contenido %}
-        <div class="modal fade" id="miModal" tabindex="-1" area-hidden="true" aria-labelledby="modalTitle">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <i class="bi-cart-fill me-1"></i>
-                        <h5 class="modal-title" id="modal-title">Carrito</h5>
-                        <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="contenedorCarrito">
-                        </div>
-                        <h5 class="text-secondary text-center" style="user-select: none;" id="labelCarritoVacio">El carrito está vacío.</h5>
-                        <div class="mt-4">
-                            <strong>Precio total: $<span id="precioTotal">0</span></strong>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" id="vaciarCarrito">Vaciar carrito</button>
-                        <a class="btn btn-success" id="comprarCarrito" type="button" href="{% url 'navegacion:comprar' %}">Comprar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="modalNotificaciones" tabindex="-1" area-hidden="true" aria-labelledby="modalNotificaciones">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <i class="bi-cart-fill me-1"></i>
-                        <h5 class="modal-title" id="modal-title">Notificaciones</h5>
-                        <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="contenedorNotificaciones">
-                        </div>
-                        <h5 class="text-secondary text-center" style="user-select: none;" id="labelNotificacionesVacias">No tienes notificaciones.</h5>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Aceptar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!--PROMOCIONES-->
         <div class="container-fluid" id="promociones">
             <div class="container">
@@ -138,7 +100,7 @@
         <div class="container-fluid" id="filtroFondo">
             <br>
             <div id="cajaMenu">
-                <h1>Nuestros Menús</h1>
+                <h1 >Nuestros Menús</h1>
             </div>
 
             <section class="panelMenus swiper mySwiper" >
@@ -146,36 +108,33 @@
                 <h2 id="labelMenus">Entradas de mesa</h2>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper content" id="entrada">
-                        {% for menu in menus%}
-
-                        const div = document.createElement('div');
-                        div.classList.add('swiper-slide');
-                        div.classList.add('card');
-                        div.classList.add('h-100');
-                        div.innerHTML = `
-                        <img class="card-img-top" src={{menu.img}} alt="comida"/>
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <h5 class="fw-bolder">{{menu.nombre}}</h5>
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
+                        {% for plato in platos%}
+                            {% if plato.tipoMenu == 1 %}
+                                <div class="swiper-slide card h-100">
+                                    <img class="card-img-top" src={{plato.imagen}} alt="comida"/>
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                        <h5 class="fw-bolder">{{plato.nombre}}</h5>
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        ${{plato.precio}}
+                                    </div>
+                                    </div>
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center">
+                                            <a class="btn btn-outline-success mt-auto" type="button" href="{% url 'navegacion:comprar' plato.id %}">Comprar</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}">Añadir al carrito</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                ${{menu.precio}}
-                            </div>
-                        </div>
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                            <a class="btn btn-outline-success mt-auto" type="button" href="/navegacion/comprar.html">Comprar</a>
-                            </div>
-                            <div class="text-center">
-                            <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{menu.id}}">Añadir al carrito</a>
-                            </div>
-                        </div>
-
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -183,38 +142,97 @@
                 <div class="swiper-button-prev"></div>
             </section>
 
+            <br >
+            <br>
+            <br>
+            <br>
             <section class="panelMenus swiper mySwiper">
-                <br>
-                <h2 id="labelMenus">Platos principales</h2>
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper content" id="platoprincipal">
+                    <br>
+                    <h2 id="labelMenus">Platos principales</h2>
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper content" id="platoprincipal">
+                            {% for plato in platos%}
+                                {% if plato.tipoMenu == 2%}
+                                    <div class="swiper-slide card h-100">
+                                        <img class="card-img-top" src={{plato.imagen}} alt="comida"/>
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                            <h5 class="fw-bolder">{{plato.nombre}}</h5>
+                                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                            </div>
+                                            ${{plato.precio}}
+                                        </div>
+                                        </div>
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <a class="btn btn-outline-success mt-auto" type="button" href="{% url 'navegacion:comprar' plato.id %}">Comprar</a>
+                                            </div>
+                                            <div class="text-center">
+                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}">Añadir al carrito</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </section>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </section>
 
+            <br >
+            <br>
+            <br>
+            <br>
             <section class="panelMenus swiper mySwiper">
-                <br>
-                <h2 id="labelMenus">Postres</h2>
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper content" id="postre">
+                    <br>
+                    <h2 id="labelMenus">Postres</h2>
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper content" id="postre">
+                            {% for plato in platos%}
+                                {% if plato.tipoMenu == 3 %}
+                                    <div class="swiper-slide card h-100">
+                                        <img class="card-img-top" src={{plato.imagen}} alt="comida"/>
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                            <h5 class="fw-bolder">{{plato.nombre}}</h5>
+                                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                            </div>
+                                            ${{plato.precio}}
+                                        </div>
+                                        </div>
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center">
+                                                <a class="btn btn-outline-success mt-auto" type="button" href="{% url 'navegacion:comprar' plato.id %}">Comprar</a>
+                                            </div>
+                                            <div class="text-center">
+                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}">Añadir al carrito</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </section>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </section>
+
+
             <br>
         </div>
 {% endblock %}
 
-{% block enlaces %}
-    <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
-    <li><a class="navbar-brand" href="/index/">Inicio</a></li>
-    <li><a class="navbar-brand" href="{% url 'navegacion:sobre_nosotros' %}">Sobre nosotros</a></li>
-    <li><a class="navbar-brand" href="{% url 'navegacion:contacto' %}">Contacto</a></li>
-    <li><a class="navbar-brand" href="{% url 'navegacion:ayuda' %}">Ayuda</a></li>
-{% endblock %}
 
 {% block js %}
         <script src="{% static 'js/carrito.js' %}"></script>
