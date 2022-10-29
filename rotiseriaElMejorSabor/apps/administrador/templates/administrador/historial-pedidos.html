@@ -70,8 +70,41 @@
                                 <th scope="col" onclick="sortTable(8, 'str')"><i class="bi bi-ui-checks-grid"></i> Estado</th>
                             </tr>
                         </thead>
+                        {% for pedido in pedidos %}
                         <tbody id="contenedorPedidos">
+                            <td scope="row">{{ pedido.id }}</th>
+                            <td>{{ pedido.fechaPedido }}</td>
+                            <td>${pedido.hora}</td>
+                            <td>${pedido.menu}</td>
+                            <td>$ {{ pedido.total }}</td>
+                            <td>{{ pedido.cliente_id }}</td>
+                            <td>${pedido.domicilio}</td>
+                            {% if pedido.envioDomicilio == True %}
+                                <td>Domicilio</td>
+                            {% else %}
+                                <td>Retira</td>
+
+                            {% endif %}
+
+                                    {% if pedido.estadoPedido == 1 %}
+                                        <td>Pendiente</td>
+                                    {% elif pedido.estadoPedido == 2 %}
+                                        <td>En preparación</td>
+                                    {% elif pedido.estadoPedido == 3 %}
+                                        <td>En camino</td>
+                                    {% elif pedido.estadoPedido == 4 %}
+                                        <td>Entregado</td>
+                                    {% elif pedido.estadoPedido == 5 %}
+                                        <td>Devuelto</td>
+                                    {% elif pedido.estadoPedido == 6 %}
+                                        <td>Cancelado</td>
+                                    {% endif %}
+
+
+
+
                         </tbody>
+                        {% endfor %}
                     </table>
                 </div>
             </div>
@@ -87,5 +120,5 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="{% static 'js/buscar.js' %}"></script>
-<script src="{% static 'js/listas/listaPedidosHistoricos.js' %}"></script>
+<!--<script src="{% static 'js/listas/listaPedidosHistoricos.js' %}"></script>-->
 {% endblock %}

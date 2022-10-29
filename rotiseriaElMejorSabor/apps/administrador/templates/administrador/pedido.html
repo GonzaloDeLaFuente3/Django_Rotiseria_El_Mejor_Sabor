@@ -1,5 +1,8 @@
 {% extends "base/baseHeaderFooter.html" %}
 {% load static %}
+
+{% load crispy_forms_tags %}
+
 {% block titulo %}Añadir un pedido{% endblock %}
 {% block css %}<link rel="stylesheet" href="{% static 'css/pedido.css' %}">{% endblock %}
 {% block logo %}
@@ -25,124 +28,15 @@
                 <small><strong>Nota:</strong> los campos que cuentan con el simbolo (*) son obligatorios</small>
                 <br><br>
 
-                <form action="#" method="post" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate>
-                    <fieldset>
+                <form action="" method="post" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate>
+                    {% csrf_token %}
+                    {{ form | crispy }}
 
-                        <label class="col-form-label" for="codigoPedido">(*) Codigo del pedido</label>
-                        <br>
-                        <input class="form-control" type="number" name="codigoPedido" id="codigoPedido" placeholder="Ingrese el codigo del pedido" required>
-                        <div class="valid-feedback">
-                            El codigo  del menú es correcto
-                        </div>
-                        <div class="invalid-feedback">
-                            Debe ingresar un codigo
-
-                        </div>
-                        <br>
-
-                        <label class="col-form-label" for="fechaPedido">(*) Fecha del pedido </label>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-9 col-lg-9 col-xl-10">
-                                <input class="form-control" type="date" name="fehcaPedido" id="fechaPedido"  required="">
-
-                                <br>
-                            </div>
-                            <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2">
-                                <button class="btn btn-primary" id="botonVerificar" type="button" name="boton">Verificar</button>
-                            </div>
-                        </div>
-                        <br>
-                        <p id="verificar"></p>
-
-                        <br>
-
-                        <label class="col-form-label" for="clientePedido">(*) Cliente</label>
-                        <div class="row">
-                            <div class="col-1  text-center px-1">
-                                <button class="btn btn-outline-primary" type="submit">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </div>
-                            <div class="col-10 ">
-                                <select class="form-select" name="cliente" id="elegirCliente" required="">
-                                    <option selected>Seleccione una opcion </option>
-                                </select>
-                                <div class="valid-feedback" >
-                                    Debe seleccionar un cliente
-                                </div>
-                                <div class="invalid-feedback">
-                                    Debe seleccionar un cliente
-
-                                </div>
-                            </div>
-                            <div class="col-1  my-1 text-lg-start">
-                                <a href="../cliente/altaCliente.html"><i class="bi bi-person-plus-fill"></i></a>
-                            </div>
-
-                        </div>
-                        <br>
-                        <small>En el campo de plato, se puede seleccionar mas de una opcion presecionando "ctrl" y seleccionado las opciones que desea</small> <br>
-                        <label class="col-form-label" for="plato">(*) Plato:</label>
-                        <select class="form-select " name="plato" id="plato" required multiple aria-describedby="validationServer04Feedback">
-                            <option selected  disabled value="">Seleccione una opcion </option>
-                            <option value="1">Locro</option>
-                            <option value="2">Empanada</option>
-                            <option value="3">Pizza</option>
-                        </select>
-
-
-
-
-
-
-                        <br>
-                        <label class="col-form-label" for="estadoPedido" >(*) Estado del pedido</label>
-                        <select class="form-select " name="estadoPedido" id="estadoPedido" aria-describedby="validationServer04Feedback" required onchange="desactivarYActivarComentario(this)" >
-                            <option selected  disabled value="">Seleccione una opcion </option>
-                            <option value="1">Pendiente</option>
-                            <option value="2">En preparación</option>
-                            <option value="3">En camino</option>
-                            <option value="4">Entregado</option>
-                            <option value="5">Devuelto</option>
-                            <option value="6">Cancelado</option>
-                        </select>
-
-
-                        <br>
-                        <label class="col-form-label" for="comentarioPedido" >Comentario:</label> <br>
-                        <textarea class="form-control" name="comentario" id="comentarioPedido" cols="30" rows="10" disabled></textarea>
-
-                        <br>
-                        <small>El siguiente campo es obligatorio: </small>
-                        <br>
-                        <div class="radio text-center">
-                            <input   type="radio" name="enviarORetirar" id="envioDomicilio" required="">
-                            <label  for="envioDomicilio">Enviar a domicilio</label>
-
-                            <input type="radio" name="enviarORetirar" id="retirarLocal" required="">
-                            <label  for="retirarLocal">Retirar en el local</label>
-                            <div class="valid-feedback">
-                                El calor ingresado es valido
-                            </div>
-                            <div class="invalid-feedback">
-                                debe seleccionar una opcion
-
-                            </div>
-                        </div>
-
-                        <br>
-                        <label class="col-form-label" for="rangoHorario">(*) Tiempo de demora aprox. (minutos)</label>
-                        <input class="form-control" type="number" name="tiempoEstimado" id="tiempoEstimado" required="">
-
-                        <br> <br>
-                        <h5>Total a pagar del pedido es: </h5>
-
-                        <br>
                         <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
+                        <hr>
                         <input class="btn btn-success" type="submit" name="guarda" value="Añadir" >
                         <a href="../admin/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
 
-                    </fieldset>
                 </form>
             </div>
         </div>
