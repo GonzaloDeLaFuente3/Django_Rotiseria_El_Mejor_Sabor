@@ -108,4 +108,15 @@
     }
 </script>
 
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                "title": "La operacion se realizo correctamente",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+        </script>
+    {% endfor %}
+{% endif %}
 {% endblock %}

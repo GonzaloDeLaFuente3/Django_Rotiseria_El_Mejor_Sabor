@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.template.defaultfilters import upper
 from django.urls import reverse
 from django.views.generic import ListView
+from django.contrib import messages
 # Create your views here.
 
 from apps.menu.models import Menu
@@ -28,6 +29,7 @@ def registrar_menu(request):
 
 
     menu = Menu.objects.create(nombre=nombre,descripcion=descripcion,tipoMenu=tipo_menu,precio=precio,vigencia=vigencia,tipoComida=tipo_comida, imagen=imagen)
+    messages.success(request,"se registro el menu correctamente")
     return redirect(reverse("menu:cargar"))
 
 def modificarMenu(request, id):
@@ -42,6 +44,7 @@ def eliminarMenu(request,id):
     menu = Menu.objects.get(id=id)
     menu.delete()
     #redireccion
+    messages.success(request, "se elimino el menu correctamente")
     return redirect(reverse("menu:cargar"))
 
 def editarMenu(request):
@@ -74,4 +77,5 @@ def editarMenu(request):
     menu.imagen=imagen
     print(nombre)
     menu.save()
+    messages.success(request, "se modifico el menu correctamente")
     return redirect(reverse("menu:cargar"))

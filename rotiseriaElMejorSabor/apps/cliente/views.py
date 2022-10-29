@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.template.defaultfilters import lower
 from django.urls import reverse
 from apps.cliente.models import Cliente
+from django.contrib import messages
 
 
 def altaCliente(request):
@@ -21,7 +22,7 @@ def altaCliente(request):
 
     cliente = Cliente.objects.create(cuil=cuil, nombre=nombre, apellido=apellido, domicilio_localidad=domicilio_localidad, domicilio_barrio= domicilio_barrio,
                                      domicilio_observacion = observacion, domicilio_zona=zona, telefono=telefono, domicilio_calle=domicilio_calle, domicilio_numero=domicilio_numero )
-
+    messages.success(request, "se registro el cliente correctamente")
     return redirect(reverse("cliente:cargar"))
 
 def modificarCliente(request):
@@ -37,6 +38,7 @@ def eliminarCliente(request,cuil):
     cliente = Cliente.objects.get(cuil=cuil)
     cliente.delete()
     #redireccion
+    messages.success(request, "se elimino el cliente correctamente")
     return redirect(reverse("cliente:cargar"))
 
 def modificarCliente(request, cuil):
@@ -69,4 +71,5 @@ def editarCliente(request):
 
 
     cliente.save()
+    messages.success(request, "se modifico el cliente correctamente")
     return redirect(reverse("cliente:cargar"))
