@@ -13,12 +13,13 @@ del vehículo y código de zona de entregas asignada.-->
                     </a>
 {% endblock %}
 {% block contenido %}
-<div class="container my-5">
+            <div class="container my-5">
             <div id="titulo">
                 <img src="{% static 'resources/Logos/titulo.png' %}" alt="titulo_rotiseria">
             </div>
+
             <div id="cajaMenu">
-                <h1>Registro de Empleados</h1>
+                <h1>Registro de Cadetes</h1>
             </div>
             <section>
                 <div class="card">
@@ -30,8 +31,120 @@ del vehículo y código de zona de entregas asignada.-->
 
                 </div>
                 <br><br>
+                <form action="#" method="post" autocomplete="on" class="needs-validation" onsubmit="return validacion()" novalidate>
+                    <fieldset>
+                        <div class="card">
+                            <legend class="card-header text-white bg-success mb-3"><strong>Informacion para completar el registro</strong></legend>
+                            <div class="card-body">
+                            <div>
+                                <label class="col-form-label"><strong>(*) Cuil</strong></label>
+                                <br>
+                                <input class="form-control" type="number" placeholder="Ingresar el cuil sin guiones" required="">
+                                <div class="valid-feedback">El valor ingresado es valido</div>
+                                <div class="invalid-feedback">Ingrese un Cuil</div>
+                            </div>
+                            <div>
+                                <br>
+                                <h4 class="card-header text-white bg-success mb-3"><strong>(*) Apellido y nombre</strong></h4>
+                                <label class="col-form-label" for="nombre">Nombre:</label>
 
-                    <form action="#" method="post" autocomplete="on" class="needs-validation" onsubmit="return validacion()" novalidate>
+                                <input class="form-control" type="text" name="nombre" id="nombre" size="50" maxlength="50" placeholder="Nombre" required="">
+                                <div class="valid-feedback">El valor ingresado es valido</div>
+                                <div class="invalid-feedback">Ingrese un Nombre</div>
+                                <label class="col-form-label" for="apellido">Apellido:</label>
+                                <input class="form-control" type="text" name="apellido" id="apellido" size="50" maxlength="50" placeholder="Apellido" required="">
+                                <div class="valid-feedback">El valor ingresado es valido</div>
+                                <div class="invalid-feedback">Ingrese un Apellido</div>
+                            </div>
+                            <div>
+                                <br>
+                                <h4 class="card-header text-white bg-success mb-3"><strong>Numeros de Telefonos</strong></h4>
+                                <label class="col-form-label" for="telefonoFijo"> Telefono fijo:</label>
+
+                                <input class="form-control" type="tel" name="telefonoFijo" id="telefonoFijo" placeholder="Telefono fijo">
+                                <label class="col-form-label" for="telefonoCelular">(*) Telefono celular:</label>
+                                <input class="form-control" type="tel" name="telefonoCelular" id="telefonoCelular" placeholder="Telefono celular" required="">
+
+                            </div>
+                            <div>
+                                <br>
+                                <h4 class="card-header text-white bg-success mb-3"><strong>Domicilio</strong></h4>
+                                <label class="col-form-label" for="calle"></label>(*) Calle:
+
+                                <input class="form-control" type="text" name="calle" id="calle" size="50" maxlength="50" placeholder="Calle" required="">
+                                <div class="valid-feedback">El valor ingresado es valido</div>
+                                <div class="invalid-feedback">Ingrese una Calle</div>
+                                <label class="col-form-label" for="domicilioNumero"></label>(*) Numero:
+
+                                <input class="form-control" type="number" name="domicilioNumero" id="domicilioNumero" placeholder="Numero" required="">
+                                <div class="valid-feedback">El valor ingresado es valido</div>
+                                <div class="invalid-feedback">Ingrese un Numero</div>
+                                <br>
+                                <label class="col-form-label" for="departamento"></label>(*) Departamento:
+
+                                <input class="form-control" type="text" name="departamento" id="departamento" placeholder="Departamento" required="">
+                                <div class="valid-feedback">El valor ingresado es valido</div>
+                                <div class="invalid-feedback">Ingrese un Departamento</div>
+                                <label class="col-form-label" for="localidad"></label>(*) Localidad:
+
+                                <input class="form-control" type="text" name="localidad" id="localidad" placeholder="Localidad" required="">
+                                <div class="valid-feedback">El valor ingresado es valido</div>
+                                <div class="invalid-feedback">Ingrese una Localidad</div>
+
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-9 col-lg-9 col-xl-10">
+                                    (*) Fecha de nacimiento:
+                                    <input class="form-control" type="date" name="fechaNacimiento" id="fechaNacimiento"  required="">
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2">
+                                    <button class="btn btn-primary" id="botonVerificar" type="button" name="boton">Verificar</button>
+                                </div>
+                                </div>
+                                <p id="verificar"></p>
+                                <div>
+                                    <label class="col-form-label" for="fechaIngresoRotiseria">(*) Fecha en la que ingreso a la rotiseria</label>
+                                    <input class="form-control" type="date" name="fechaIngresoRotiseria" id="fechaIngresoRotiseria" required="">
+                                    <div class="valid-feedback">El valor ingresado es valido</div>
+                                    <div class="invalid-feedback">Ingrese una Fecha</div>
+                                </div>
+                                <div>
+                                        <label class="col-form-label" for="vigenciaCarnet">Vigencia del Carnet</label>
+                                        <br>
+                                        <input class="form-control" type="date" name="vigenciaCarnet" id="vigenciaCarnet">
+                                    </div>
+                                    <div> <br>
+                                        <label class="col-form-label" for="patenteCadete">Datos de la patente</label> <br>
+                                        <input class="form-control" type="text" name="patenteCadete" id="patenteCadete" size="20" maxlength="20" placeholder="Patente">
+
+                                    </div>
+                                    <div>
+                                        <br>
+                                        <label class="col-form-label" for="codigoZona">Codigo de la Zona</label> <br>
+                                        <input class="form-control" type="number" name="codigoZona" id="codigoZona" placeholder="Codigo de la zona">
+                                    </div>
+                                    <div>
+                                        <br>
+                                        <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
+                                        <input class="btn btn-success" type="submit" name="guarda" value="Guardar">
+                                        <a href="/administrador/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </section>
+                </form>
+
+
+                <br>
+                <br>
+
+                <div id="cajaMenu">
+                    <h1>Registro de Empleados</h1>
+                </div>
+
+                <form action="#" method="post" autocomplete="on" class="needs-validation" onsubmit="return validacion()" novalidate>
                         <fieldset>
                             <div class="card">
                                 <legend class="card-header text-white bg-success mb-3"><strong>Informacion para completar el registro</strong></legend>
@@ -109,75 +222,20 @@ del vehículo y código de zona de entregas asignada.-->
                                         <div class="valid-feedback">El valor ingresado es valido</div>
                                         <div class="invalid-feedback">Ingrese una Fecha</div>
                                     </div>
-                                    <label class="col-form-label" for="fechaIngresoRotiseria"><strong>Tipo de empleado</strong></label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" checked onchange="displayEmpleados()">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                            Empleado general
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" onchange="displayCadetes()">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                            Cadete
-                                            </label>
-                                        </div>
-                                        <div id="guardarEmpleado">
-                                            <br>
-                                            <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
-                                            <input class="btn btn-success" type="submit" name="guarda" value="Guardar">
-                                            <a href="/administrador/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
-                                        </div>
+                                    <div id="guardarEmpleado">
+                                        <br>
+                                        <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
+                                        <input class="btn btn-success" type="submit" name="guarda" value="Guardar">
+                                        <a href="/administrador/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
+                                    </div>
                                 </div>
-
                             </div>
                         </fieldset>
 
-                        <br>
-                        <br>
-                        <fieldset class="card my-3 d-none" id="infoAdicionalCadete">
-                            <legend class="card-header text-white bg-success mb-3"><strong>Informacion adicional del cadete</strong></legend>
-                            <div class="card-body">
-                                <div>
-                                    <label class="col-form-label" for="vigenciaCarnet">Vigencia del Carnet</label>
-                                    <br>
-                                    <input class="form-control" type="date" name="vigenciaCarnet" id="vigenciaCarnet">
-                                </div>
-                                <div> <br>
-                                    <label class="col-form-label" for="patenteCadete">Datos de la patente</label> <br>
-                                    <input class="form-control" type="text" name="patenteCadete" id="patenteCadete" size="20" maxlength="20" placeholder="Patente">
 
-                                </div>
-                                <div>
-                                    <br>
-                                    <label class="col-form-label" for="codigoZona">Codigo de la Zona</label> <br>
-                                    <input class="form-control" type="number" name="codigoZona" id="codigoZona" placeholder="Codigo de la zona">
-                                </div>
-                                <div>
-                                    <br>
-                                    <label class="col-form-label">Correo electronico</label> <br>
-                                    <input class="form-control" type="email" placeholder="Correo electronico" required>
-                                </div>
-                                <div>
-                                    <br>
-                                    <label class="col-form-label" for="codigoZona">Contraseña</label> <br>
-                                    <input class="form-control" type="password" placeholder="Contraseña" required>
-                                </div>
-                                <div>
-                                    <br>
-                                    <small>Recordar revisar todos los campos antes de guardar</small> <br> <br>
-                                    <input class="btn btn-success" type="submit" name="guarda" value="Guardar">
-                                    <a href="/administrador/admin-login.html" type="button" class="btn btn-secondary">Cancelar</a>
-                                </div>
-                            </div>
-
-                        </fieldset>
                     </form>
 
 
-
-
-            </section>
 
 
         </div>

@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Cliente',
+            name='Empleado',
             fields=[
                 ('cuil', models.CharField(max_length=11, primary_key=True, serialize=False, unique=True)),
                 ('nombre', models.CharField(max_length=200)),
@@ -20,10 +20,11 @@ class Migration(migrations.Migration):
                 ('domicilio_localidad', models.CharField(max_length=250)),
                 ('domicilio_calle', models.CharField(max_length=250)),
                 ('domicilio_numero', models.IntegerField()),
-                ('domicilio_barrio', models.CharField(max_length=200)),
-                ('domicilio_observacion', models.TextField(blank=True)),
-                ('domicilio_zona', models.CharField(choices=[('norte', 'Norte'), ('sur', 'Sur'), ('este', 'Este'), ('oeste', 'Oeste')], max_length=5)),
-                ('telefono', models.CharField(max_length=100)),
+                ('telefonoFijo', models.IntegerField(null=True)),
+                ('telefonoCelular', models.IntegerField()),
+                ('domicilio_departamento', models.CharField(max_length=300)),
+                ('fechaNacimiento', models.DateField()),
+                ('fechaIngreso', models.DateField()),
             ],
             options={
                 'abstract': False,

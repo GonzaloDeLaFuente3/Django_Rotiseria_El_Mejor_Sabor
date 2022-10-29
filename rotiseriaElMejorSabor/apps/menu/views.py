@@ -27,7 +27,6 @@ def registrar_menu(request):
     tipo_comida = request.POST['tipoComida']
     imagen = request.POST['imagen']
 
-
     menu = Menu.objects.create(nombre=nombre,descripcion=descripcion,tipoMenu=tipo_menu,precio=precio,vigencia=vigencia,tipoComida=tipo_comida, imagen=imagen)
     messages.success(request,"se registro el menu correctamente")
     return redirect(reverse("menu:cargar"))
