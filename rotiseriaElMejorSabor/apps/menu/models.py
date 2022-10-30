@@ -21,3 +21,6 @@ class Menu(models.Model):
     tipoComida = models.IntegerField(null=False,blank=False, choices=TIPO_COMIDA)
     imagen = models.CharField(max_length=600, unique=True)
     #agregar campo de url para imagen , fijate de no corromper la bd
+
+    def __str__(self):
+        return self.nombre

@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import DateInput
+from django.forms import DateInput, TimeInput
 
 from apps.administrador.models import Pedido
 
@@ -11,5 +11,6 @@ class PedidoForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'fechaPedido': DateInput(format='%y-%m-%d', attrs={'type':'date'})
+            'fechaPedido': DateInput(format='%y-%m-%d', attrs={'type':'date'}),
+            'fecha_hora': TimeInput(format='%h-%m', attrs={'type': 'time'})
         }

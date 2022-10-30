@@ -15,6 +15,7 @@ class Pedido(models.Model):
         (6, 'Cancelado')
     ]
     fechaPedido = models.DateField()
+    fecha_hora = models.TimeField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     menu = models.ManyToManyField(Menu)
     estadoPedido = models.IntegerField(null=False,blank=False, choices=ESTADO_OPCIONES)

@@ -16,3 +16,5 @@ class Cliente(Persona):
     domicilio_zona = models.CharField(max_length=5, choices=ZONA_OPCIONES)
     telefono = models.CharField(max_length=100)
 
+
+
