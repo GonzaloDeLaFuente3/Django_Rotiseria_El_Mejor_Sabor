@@ -42,25 +42,7 @@
 
 {% block contenido %}
     <div class="modal fade" id="modalInformacion" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="bi bi-info-circle-fill mx-3"></i>
-                    <h5 class="modal-title" id="modal-title">Información del pedido</h5>
-                    <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="contenedorInformacion">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-success" id="aceptarPedido" type="button">Aceptar pedido</a>
-                    <a class="btn btn-warning" id="pedidoenCamino" type="button">Pedido en camino</a>
-                    <a class="btn btn-primary" id="pedidoEntregado" type="button">Pedido entregado</a>
-                    <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <div class="container-fluid">
@@ -85,8 +67,11 @@
                                     <th scope="col" onclick="sortTable(3, 'str')" style="width: 20%;"><i class="bi bi-box-seam"></i> Menú</th>
                                     <th scope="col" onclick="sortTable(4, 'float')">$Precio</th>
                                     <th scope="col" onclick="sortTable(5, 'str')"><i class="bi bi-person-badge-fill"></i> Cliente</th>
-                                    <th scope="col" onclick="sortTable(6, 'str')"><i class="bi bi-geo-alt-fill"></i> Domicilio</th>
-                                    <th scope="col" onclick="sortTable(7, 'str')" style="width: 15%;">
+                                    <th scope="col" onclick="sortTable(6, 'str')"><i class="bi bi-geo-alt-fill"></i> Calle</th>
+                                    <th scope="col" onclick="sortTable(7, 'str')"><i class="bi bi-geo-alt-fill"></i> Numero</th>
+                                    <th scope="col" onclick="sortTable(8, 'str')"><i class="bi bi-geo-alt-fill"></i> Barrio</th>
+                                    <th scope="col" onclick="sortTable(9, 'str')"><i class="bi bi-geo-alt-fill"></i> Zona</th>
+                                    <th scope="col" onclick="sortTable(10, 'str')" style="width: 15%;">
                                         <div class="d-block">
                                             <i class="bi bi-truck"></i>
                                             Tipo Entrega
@@ -95,8 +80,49 @@
                                     <th scope="col" onclick="sortTable(8, 'str')"><i class="bi bi-ui-checks-grid"></i> Estado</th>
                                 </tr>
                             </thead>
+
                             <tbody id="contenedorPedidos">
+                            {% for pedido in pedidos %}
+                                {% if pedido.estadoPedido == 1 or pedido.estadoPedido == 2 or estado.pedido == 3 %}
+                                <tr onclick="abrirModal('{% url 'administrador:modificar' pedido.id %}')">
+
+                                    <td scope="row">{{ pedido.id }}</th>
+                                    <td>{{ pedido.fechaPedido }}</td>
+                                    <td>{{ pedido.fecha_hora }}</td>
+                                    <td>
+                                        <ul>
+                                            {% for m in pedido.menu.all %}
+                                            <li>{{ m }}</li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </td>
+                                    <td>$ {{ pedido.total }}</td>
+                                    <td>{{ pedido.cliente }}</td>
+                                    <td>{{ pedido.cliente.domicilio_calle }}</td>
+                                    <td>{{ pedido.cliente.domicilio_numero }}</td>
+                                    <td>{{ pedido.cliente.domicilio_barrio }}</td>
+                                    <td>{{ pedido.cliente.domicilio_zona }}</td>
+                                    {% if pedido.envioDomicilio == True %}
+                                        <td>Domicilio</td>
+                                    {% else %}
+                                        <td>Retira</td>
+
+                                    {% endif %}
+
+                                            {% if pedido.estadoPedido == 1 %}
+                                                <td>Pendiente</td>
+                                            {% elif pedido.estadoPedido == 2 %}
+                                                <td>En preparación</td>
+                                            {% elif pedido.estadoPedido == 3 %}
+                                                <td>En camino</td>
+                                            {% endif %}
+
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -112,7 +138,16 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="{% static 'js/buscar.js' %}"></script>
-    <script src="{% static 'js/listas/listaPedidos.js' %}"></script>
+<!--    <script src="{% static 'js/listas/listaPedidos.js' %}"></script>-->
     <script src="{% static 'js/controlarHora.js' %}"></script>
+
+<script type="text/javascript" >
+    function abrirModal(url){
+        $('#modalInformacion').load(url, function(){
+            $(this).modal('show');
+        })
+    }
+</script>
+
 {% endblock %}
 
