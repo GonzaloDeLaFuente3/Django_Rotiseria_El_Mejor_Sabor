@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib import messages
 
 from .forms import PedidoForm
 # # Create your views here.
@@ -45,7 +46,7 @@ def registrar_pedido(request):
         formulario = PedidoForm(data=request.POST)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "guardado correctamente"
+            messages.success(request, "Se Agrego un pedido nuevo correctamente")
         else:
             data["form"] = formulario
 
@@ -66,6 +67,7 @@ def modificar_pedido(request, id):
         if formulario.is_valid():
             formulario.save()
             print("se guardo")
+            messages.success(request, "Se modifico correctamente")
             return redirect(reverse("administrador:admin_login"))
         data["form"] = formulario
     return render(request, 'administrador/modificarPedido.html', data )

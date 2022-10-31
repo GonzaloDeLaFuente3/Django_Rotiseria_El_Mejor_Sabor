@@ -131,7 +131,6 @@
     </div>
 {% endblock %}
 
-
 {% block js %}
     <script src="{% static 'js/ordenarTabla.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -140,6 +139,7 @@
     <script src="{% static 'js/buscar.js' %}"></script>
 <!--    <script src="{% static 'js/listas/listaPedidos.js' %}"></script>-->
     <script src="{% static 'js/controlarHora.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="text/javascript" >
     function abrirModal(url){
@@ -148,6 +148,18 @@
         })
     }
 </script>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                "title": "La operacion se realizo correctamente",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+        </script>
+    {% endfor %}
+{% endif %}
 
 {% endblock %}
 
