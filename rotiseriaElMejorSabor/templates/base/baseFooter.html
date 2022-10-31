@@ -44,7 +44,12 @@
                     <li class="nav-item dropdown">
                         <button class="btn btn-light dropdown-toggle" id="navbarDropdown" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i>
-                            Administrador
+                            {% if user.is_authenticated %}
+                                        {{ user.username }}
+                            {% else %}
+                                        Administrador
+                            {% endif %}
+
                         </button>
                         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'administrador:administrador_configuracion' %}">Configuración</a>

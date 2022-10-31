@@ -11,6 +11,6 @@ class PedidoForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'fechaPedido': DateInput(format='%y-%m-%d', attrs={'type':'date'}),
-            'fecha_hora': TimeInput(format='%h-%m', attrs={'type': 'time'})
+            'fechaPedido': DateInput(format='%Y-%m-%d', attrs={'type':'date'}),
+            'fecha_hora': TimeInput(format='%H:%M', attrs={'type': 'time'})
         }

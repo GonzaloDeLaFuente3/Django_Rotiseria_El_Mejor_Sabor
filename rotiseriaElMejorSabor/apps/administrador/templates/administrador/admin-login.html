@@ -7,24 +7,39 @@
 <li class="nav-item dropdown" id="menuPedido">
     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pedidos</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if perms.administrador.add_pedido %}
+                <li><a class="dropdown-item" href="{% url 'administrador:pedido' %}">Agregar</a></li>
+            {% endif %}
 
-            <li><a class="dropdown-item" href="{% url 'administrador:pedido' %}">Agregar</a></li>
             <li><a class="dropdown-item" href="{% url 'administrador:estadisticas' %}">Estadisticas</a></li>
-            <li><a class="dropdown-item" href="{% url 'administrador:historial_pedidos' %}">Historial</a></li>
+            {% if perms.administrador.view_pedido %}
+                <li><a class="dropdown-item" href="{% url 'administrador:historial_pedidos' %}">Historial</a></li>
+            {% endif %}
+
         </ul>
 </li>
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar Menús</a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="{% url 'menu:alta' %}">Registrar un menú</a></li>
-        <li><a class="dropdown-item" href="{% url 'menu:cargar' %}">Ver menús</a></li>
+        {% if perms.administrador.add_menu %}
+                <li><a class="dropdown-item" href="{% url 'menu:alta' %}">Registrar un menú</a></li>
+        {% endif %}
+        {% if perms.administrador.view_menu %}
+                <li><a class="dropdown-item" href="{% url 'menu:cargar' %}">Ver menús</a></li>
+        {% endif %}
+
     </ul>
 </li>
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar Empleados</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'empleado:alta' %}">Registrar un empleado</a></li>
-            <li><a class="dropdown-item" href="{% url 'empleado:ver' %}">Ver empleados</a></li>
+            {% if perms.administrador.add_empleado %}
+                <li><a class="dropdown-item" href="{% url 'empleado:alta' %}">Registrar un empleado</a></li>
+            {% endif %}
+            {% if perms.administrador.view_empleado %}
+                <li><a class="dropdown-item" href="{% url 'empleado:ver' %}">Ver empleados</a></li>
+            {% endif %}
+
             <!-- <li><a class="dropdown-item" href="../abm-cadete/modificarCadete.html">Modificar un cadete</a></li>
             <li><a class="dropdown-item" href="../abm-cadete/bajaCadete.html">Eliminar un cadete</a></li> -->
         </ul>
@@ -32,10 +47,14 @@
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar Clientes</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'cliente:alta' %}">Registrar un cliente</a></li>
-            <li><a class="dropdown-item" href="{% url 'cliente:cargar' %}">Ver clientes</a></li>
-            <!-- <li><a class="dropdown-item" href="../abm-cliente/modificarCliente.html">Modificar un cliente</a></li>
-            <li><a class="dropdown-item" href="../abm-cliente/bajaCliente.html">Eliminar un cliente</a></li> -->
+            {% if perms.administrador.add_cliente %}
+                <li><a class="dropdown-item" href="{% url 'cliente:alta' %}">Registrar un cliente</a></li>
+            {% endif %}
+            {% if perms.administrador.view_cliente %}
+                <li><a class="dropdown-item" href="{% url 'cliente:cargar' %}">Ver clientes</a></li>
+            {% endif %}
+
+
         </ul>
 </li>
 {% endblock %}
