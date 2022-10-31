@@ -7,14 +7,13 @@ from apps.empleado.models import Empleado
 from .forms import EmpleadoForm
 from django.contrib import messages
 
-def altaEmpleado(request):
-    return render(request,'empleado/altaEmpleado.html')
 
-def bajaCadete(request):
-    return  render(request, 'empleado/bajaCadete.html')
 
-def modificarCadete(request):
-    return  render(request, 'empleado/modificarCadete.html')
+# def bajaCadete(request):
+#     return  render(request, 'empleado/bajaCadete.html')
+#
+# def modificarCadete(request):
+#     return  render(request, 'empleado/modificarCadete.html')
 
 def verEmpleados(request):
     return  render(request, 'empleado/verEmpleados.html')
@@ -31,4 +30,4 @@ def registrar_empleado(request):
         else:
             data["form"] = formulario
 
-    return render(request, 'empleado/altaEmpleados.html', data)
+    return render(request, 'empleado/altaEmpleado.html', data)
