@@ -6,14 +6,13 @@ from apps.administrador.models import Pedido
 class adminPedido(admin.ModelAdmin):
     # campos
     list_display = ["id", "fechaPedido", "cliente", "estadoPedido", "comentario","envioDomicilio", "tiempoDemora", "cadete","total"]
-    # # campos que se pueden modificar
-    # list_editable = ["nombre", "tipoMenu", "precio", "vigencia", "tipoComida"]
-    # # porque campos se puede buscar
-    # search_fields = ["nombre"]
-    # # filtros
-    # list_filter = ["tipoMenu", "vigencia", "tipoComida"]
+     # campos que se pueden modificar
+    list_editable = ["fechaPedido", "cliente", "estadoPedido","envioDomicilio", "tiempoDemora", "cadete","total"]
 
-    list_per_page = 10
+    # filtros
+    list_filter = ["estadoPedido", "envioDomicilio"]
+
+    list_per_page = 20
 
 admin.site.register(Pedido, adminPedido)
 

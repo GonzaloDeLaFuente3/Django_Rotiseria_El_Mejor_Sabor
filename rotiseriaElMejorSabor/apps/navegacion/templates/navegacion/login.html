@@ -16,14 +16,15 @@
             <div class="container text-center">
                 <div class="signin-form">
                     <h2 class="form-title mt-5">Ingresar</h2>
-                    <form method="POST" class="register-form" id="login-form">
+                    <form action="" method="POST" class="register-form" id="login-form">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-sm-3 mt-1">
-                                <span>Email</span>
+                                <span>Usuario</span>
                             </div>
                             <div class="form-group col-sm-9">
-                                <label for="email"><i class="bi bi-envelope-fill"></i></label>
-                                <input type="email" placeholder="Ingrese su correo electrónico"/>
+                                <label for="usuario"><i class="bi bi-person-fill"></i></label>
+                                <input type="text" placeholder="Ingrese su correo electrónico" id="usuario" name="usuario"/>
                             </div>
                         </div>
                         <div class="row">
@@ -32,7 +33,7 @@
                             </div>
                             <div class="form-group col-sm-9">
                                 <label for="pass"><i class="bi bi-key-fill"></i></label>
-                                <input type="password" placeholder="Ingrese su contraseña"/>
+                                <input type="password" placeholder="Ingrese su contraseña" name="contraseña"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,4 +61,19 @@
           <br>
         </section>
 {% endblock %}
-{% block js %}{% endblock %}
+{% block js %}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if msj %}
+
+        <script>
+            Swal.fire({
+                "title": "La operacion no se pudo realizar",
+                "text": "{{msj}}",
+                "icon": "error"
+            })
+        </script>
+
+{% endif %}
+
+{% endblock %}

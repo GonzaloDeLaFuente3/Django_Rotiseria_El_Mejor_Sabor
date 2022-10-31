@@ -239,4 +239,18 @@
         <script src="{% static 'js/notificaciones.js' %}"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="{% static 'js/sliderMenu.js' %}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                "title": "La operacion se realizo correctamente",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+        </script>
+    {% endfor %}
+{% endif %}
 {% endblock %}

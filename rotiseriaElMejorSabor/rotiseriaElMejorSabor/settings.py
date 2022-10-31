@@ -30,6 +30,10 @@ ALLOWED_HOSTS = []
 
 MESSAGE_STORAGE="django.contrib.messages.storage.cookie.CookieStorage"
 
+#direccion a donde se envia luego de hacer el login y cerrar sesion para cuando uso con django y no views
+# LOGIN_REDIRECT_URL = '/index/'
+# LOGOUT_REDIRECT_URL = '/index/'
+
 # Application definition
 
 INSTALLED_APPS = [

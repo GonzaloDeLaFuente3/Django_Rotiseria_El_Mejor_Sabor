@@ -1,5 +1,6 @@
 {% extends "base/baseLogin.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block titulo %}Registrarse{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -16,105 +17,9 @@
                     <div class="signup-content">
                         <div class="signup-form">
                             <h2 class="form-title text-center">Registrarse</h2>
-                            <form method="POST" class="register-form" id="register-form">
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>CUIL</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label><i class="bi bi-card-heading"></i></label>
-                                        <input type="number" placeholder="Ingrese su cuil"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Nombre</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label><i class="bi bi-person-fill"></i></label>
-                                        <input type="text" placeholder="Ingrese su nombre"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Apellido</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label><i class="bi bi-person-fill"></i></label>
-                                        <input type="text" placeholder="Ingrese su apellido"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Calle</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label><i class="bi bi-geo-alt-fill"></i></label>
-                                        <input type="text" placeholder="Ingrese su calle"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Localidad</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label><i class="bi bi-geo-alt-fill"></i></label>
-                                        <input type="text" placeholder="Ingrese su localidad"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Zona</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label><i class="bi bi-geo-alt-fill"></i></label>
-                                        <!-- <select class="form-select form-select-sm" aria-label="Default select example">
-                                            <option selected>Seleccione una zona</option>
-                                            <option value="1">Norte</option>
-                                            <option value="2">Sur</option>
-                                            <option value="3">Este</option>
-                                            <option value="4">Oste</option>
-                                          </select> -->
-                                          <input type="text" placeholder="Ingrese su zona de domicilio"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Teléfono</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label><i class="bi bi-telephone-fill"></i></label>
-
-                                        <input type="se" placeholder="Ingrese su teléfono de contacto"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Email</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label for="email"><i class="bi bi-envelope-fill"></i></label>
-                                        <input type="email" placeholder="Ingrese su correo electrónico"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Clave</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label for="pass"><i class="bi bi-key-fill"></i></label>
-                                        <input type="password" placeholder="Ingrese una contraseña"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3 mt-1">
-                                        <span>Clave</span>
-                                    </div>
-                                    <div class="form-group col-sm-9">
-                                        <label for="re-pass"><i class="bi bi-key"></i></label>
-                                        <input type="password" placeholder="Repita su contraseña"/>
-                                    </div>
-                                </div>
+                            <form action="" method="POST" class="register-form" id="register-form">
+                                {% csrf_token %}
+                                {{ form | crispy }}
                                 <div class="form-group form-button text-center">
                                     <input type="submit" name="signup" id="signup" class="form-submit" value="Crear cuenta"/>
                                 </div>
