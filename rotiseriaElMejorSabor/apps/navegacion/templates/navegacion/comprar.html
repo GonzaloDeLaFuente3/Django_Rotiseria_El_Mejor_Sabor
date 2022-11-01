@@ -13,10 +13,18 @@
             <br>
             <br>
 
-            <form action="{% url 'navegacion:comprar_form_submission' %}" class="form-control row" method="POST">
+
+            <form action="" class="form-control row" method="POST">
                 {% csrf_token %}
                 <div class="row text-center my-3">
                     <h3>Información del pedido</h3>
+                    {% for cliente in clientes %}
+                        {% if user.username.value != cliente.usuario %}
+                            {{user.username}}
+                            {{cliente.nombre}}
+                            <h5>Hola</h5>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <fieldset class="row mx-3">
                     <div class="row my-3">

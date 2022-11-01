@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import Formulario_registrar
@@ -9,6 +10,9 @@ from django.urls import reverse
 
 from apps.menu.models import Menu
 from apps.administrador.models import Pedido
+
+from ..cliente.models import Cliente
+
 
 def ayuda(request):
     return  render(request, 'navegacion/ayuda.html')
@@ -21,26 +25,11 @@ def sobreNosotros(request):
 
 def comprar(request, id):
     plato = Menu.objects.get(id=id)
+    clientes = Cliente.objects.all()
     return  render(request,
                    'navegacion/comprar.html',
-                   {'plato':plato})
+                   {'plato':plato, 'clientes':clientes})
 
-def comprar_form_submission(request):
-
-    fechaPedido = request.POST['fechaPedido']
-    horaPedido = request.POST['horaPedido']
-    nombreMenu = lower(request.POST['nombreMenu'])
-    precioMenu = request.POST['precioMenu']
-    cliente = request.POST['cliente']
-    domicilio = request.POST['domicilio']
-    tipoEntrega = request.POST['tipoEntrega']
-    estado = request.POST['estadoPedido']
-
-    pedido = Pedido.objects.create(fechaPedido=fechaPedido, menu=nombreMenu, total=precioMenu, clienteo=cliente,
-                               vigencia=vigencia, tipoComida=tipo_comida, imagen=imagen)
-    messages.success(request, "se registro el menu correctamente")
-    return redirect(reverse('index/index.html',
-                  {'platos':platos}))
 
 def configuracion(request):
     return  render(request, 'navegacion/configuracion.html')

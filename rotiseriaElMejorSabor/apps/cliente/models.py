@@ -1,5 +1,6 @@
-from django.contrib.auth.models import AbstractUser
+
 from django.db import models
+from  django.contrib.auth.models import User
 
 # Create your models here.
 from apps.persona.models import Persona
@@ -16,6 +17,7 @@ class Cliente(Persona):
     domicilio_observacion = models.TextField(blank=True)
     domicilio_zona = models.CharField(max_length=5, choices=ZONA_OPCIONES)
     telefono = models.CharField(max_length=100)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
 
 
