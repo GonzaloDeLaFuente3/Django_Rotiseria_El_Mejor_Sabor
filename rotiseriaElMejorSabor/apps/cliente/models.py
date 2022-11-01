@@ -1,4 +1,3 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -18,10 +17,4 @@ class Cliente(Persona):
     telefono = models.CharField(max_length=100)
 
 
-class UsuarioCliente(AbstractUser):
-    pass
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,blank=True,null=True)
-
-    def _str_(self):
-        return self.username
 
