@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'colorfield',
     'crispy_forms',
     'crispy_bootstrap5',
+
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -147,3 +148,4 @@ try:
     from .configuraciones_locales import *
 except ImportError:
     raise Exception("El archivo de configuraciones locales es requerido para ejecutar este proyecto")
+

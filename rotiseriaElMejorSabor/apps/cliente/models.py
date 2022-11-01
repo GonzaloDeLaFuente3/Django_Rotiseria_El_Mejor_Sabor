@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -15,6 +16,8 @@ class Cliente(Persona):
     domicilio_observacion = models.TextField(blank=True)
     domicilio_zona = models.CharField(max_length=5, choices=ZONA_OPCIONES)
     telefono = models.CharField(max_length=100)
+
+
 
 
 

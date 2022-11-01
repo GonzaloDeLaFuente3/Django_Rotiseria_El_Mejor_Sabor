@@ -12,7 +12,7 @@ class Persona(models.Model):
     class Meta:
         abstract = True
     def nombre_completo(self):
-        return "{} {}.".format(self.apellido, self.nombre)
+        return "{} {}".format(self.apellido, self.nombre)
 
     def __str__(self):
         return self.nombre_completo()
