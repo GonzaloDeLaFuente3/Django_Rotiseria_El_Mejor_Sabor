@@ -55,12 +55,17 @@ INSTALLED_APPS = [
     'colorfield',
     'crispy_forms',
     'crispy_bootstrap5',
+    #
+
+    'core.user',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -147,3 +152,5 @@ try:
     from .configuraciones_locales import *
 except ImportError:
     raise Exception("El archivo de configuraciones locales es requerido para ejecutar este proyecto")
+
+AUTH_USER_MODEL = 'cliente.UsuarioCliente'
