@@ -35,7 +35,7 @@
                             <label for="id_fechaPedido" class="form-label requiredField">Fecha Pedido
                                 <span class="asteriskField">*</span>
                             </label>
-                            <input type="date" name="fechaPedido" class="dateinput form-control" required="" id="id_fechaPedido">
+                            <input type="date" name="fechaPedido" class="dateinput form-control" required="" id="id_fechaPedido" >
                         </div>
                         <div id="div_id_fecha_hora" class="mb-3">
                             <label for="id_fecha_hora" class="form-label requiredField">Hora
@@ -43,18 +43,20 @@
                             </label>
                             <input type="time" name="fecha_hora" class="timeinput form-control" required="" id="id_fecha_hora">
                         </div>
+
                         <div id="div_id_cliente" class="mb-3">
                             <label for="id_cliente" class="form-label requiredField">Cliente</label>
-                            <input type="text"  id="" value="hola" hidden>
-                            <textarea name="comentario">hola amigo</textarea>
-                            <select name="" class="select form-select" required="" id="id_cliente" disabled>
-                                <option value="" selected="">{{cliente.apellido}} {{cliente.nombre}}</option>
+
+
+                            <select name="cliente" class="select form-select" required="" id="id_cliente" disabled>
+                                <option value="{{cliente.cuil}}" selected="">{{cliente.apellido}} {{cliente.nombre}}</option>
                             </select>
                         </div>
+
                         <div id="div_id_menu" class="mb-3">
                         <label for="id_menu" class="form-label requiredField">Plato/s</label>
                             <select name="menu" class="selectmultiple form-select" required="" id="id_menu" multiple="">
-                                <option>{{plato.nombre}}</option>
+                                <option selected>{{plato.nombre}}</option>
                             </select>
                         </div>
                         <div id="div_id_estadoPedido" class="mb-3">
@@ -71,9 +73,12 @@
                         </div>
                         <div class="mb-3">
                             <div id="div_id_envioDomicilio" class="mb-3 form-check">
-                                <input type="number" name="tiempoDemora" id="" value="12321">
+
                                 <input type="checkbox" name="envioDomicilio" class="checkboxinput form-check-input" id="id_envioDomicilio">
                                 <label for="id_envioDomicilio" class="form-check-label">Envio a domicilio</label>
+                                <br><br>
+                                <label for="id_tiempoDemora" class="form-label">TiempoDemora</label>
+                                <input type="number" name="tiempoDemora" class="numberinput form-control" id="id_tiempoDemora" value="12321">
                             </div>
                         </div>
                         <div id="div_id_total" class="mb-3">
@@ -89,6 +94,37 @@
         </div>
 {% endblock %}
 {% block js %}<script src="{% static 'js/verificarHoraLocal.js' %}"></script>
+
+<script >
+    //fecha y hora actual 
+    let hoy = new Date();
+
+    let dia= hoy.getDate();
+    let mes= hoy.getMonth() + 1 ;
+    let anio = hoy.getFullYear();
+
+    dia = ('0' + dia).slice(-2);
+    mes = ('0' + mes).slice(-2);
+
+    let formato = `${anio}-${mes}-${dia}`
+    console.log(formato)
+    let fechaPedido = document.getElementById("id_fechaPedido");
+    fechaPedido.setAttribute("value",formato)
+
+    //////////////////////////////////////
+    let hora = new Date();
+
+    hs = hora.getHours();
+    min = hora.getMinutes();
+
+    formatoHora = `${hs}:${min}`
+    console.log(formatoHora);
+
+    let hsPedido = document.getElementById("id_fecha_hora");
+    hsPedido.setAttribute("value",formatoHora);
+
+</script>
+
 <script>
     const fechaPedido = document.getElementById("fechaPedido").value;
 

@@ -48,10 +48,11 @@ def comprar(request, id, clienteTemp=None):
 def altaPedidoCliente(request):
     fechaPedido = request.POST['fechaPedido']
     fecha_hora = request.POST['fecha_hora']
+    cliente = request.POST['cliente']
     tiempoDemora = request.POST['tiempoDemora']
     cadete = request.POST['cadete']
     total = request.POST['total']
-    cliente = request.POST['cliente']
+
     menu = request.POST['menu']
     estadoPedido = request.POST['estadoPedido']
     comentario = lower(request.POST['comentario'])
@@ -79,7 +80,9 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, "index/index.html", {"msj":"la sesion de cerro correctamente"})
+    messages.success(request, "Se cerro la sesion correctamente")
+    return redirect(reverse("index:index"))
+    # return render(request, "navegacion/login.html", {"msj":"la sesion de cerro correctamente"})
 
 def recuperarContraseña(request):
     return  render(request, 'navegacion/recuperarContraseña.html')
