@@ -1,6 +1,6 @@
 //validar fecha, para que no pueda ser menor a la fecha actual
 function compararFecha(){
-    let fechaNacimiento=document.getElementById("fechaNacimiento").value;
+    let fechaNacimiento=document.getElementById("id_fechaNacimiento").value;
     let fechaActual = new Date();
     let mes = (fechaActual.getMonth()+1).toString()
     let devolver = false;
@@ -33,8 +33,8 @@ function verificarFechaBoton(){
 }
 
 //validar fecha
-let boton = document.getElementById("botonVerificar");
-boton.addEventListener("click",verificarFechaBoton);
+// let boton = document.getElementById("botonVerificar");
+// boton.addEventListener("click",verificarFechaBoton);
 /////////
 function validacion(){
     retornar = false;
