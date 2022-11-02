@@ -21,8 +21,8 @@ class Pedido(models.Model):
     estadoPedido = models.IntegerField(null=False,blank=False, choices=ESTADO_OPCIONES)
     comentario = models.TextField(blank=True)
     envioDomicilio = models.BooleanField(default=False)
-    tiempoDemora = models.IntegerField()
-    cadete = models.ForeignKey(Cadete, on_delete=models.CASCADE)
+    tiempoDemora = models.IntegerField(blank=True)
+    cadete = models.ForeignKey(Cadete, on_delete=models.CASCADE, blank=True)
     total = models.IntegerField()
 
 

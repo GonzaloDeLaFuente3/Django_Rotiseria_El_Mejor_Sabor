@@ -8,6 +8,7 @@ urlpatterns = [
     path('sobre_nosotros', views.sobreNosotros, name='sobre_nosotros'),
     path('comprar/<int:id>', views.comprar, name='comprar'),
     path('configuracion', views.configuracion, name='configuracion'),
+    path('comprar_pedido/', views.altaPedidoCliente, name='comprar_pedido'),
     path('login', views.login_view, name='login'),
     path('logout', views.logout_view, name='logout'),
     path('recuperar_contraseña.html', views.recuperarContraseña, name='recuperar_contraseña'),

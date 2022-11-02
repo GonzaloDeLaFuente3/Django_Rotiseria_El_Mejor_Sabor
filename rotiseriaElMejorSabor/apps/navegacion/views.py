@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.template.defaultfilters import lower
+
 from .forms import Formulario_registrar
 from django.contrib import messages
 
@@ -11,6 +13,7 @@ from django.urls import reverse
 from apps.menu.models import Menu
 from apps.administrador.models import Pedido
 
+from ..administrador.forms import PedidoForm
 from ..cliente.models import Cliente
 
 
@@ -23,23 +26,41 @@ def contacto(request):
 def sobreNosotros(request):
     return  render(request, 'navegacion/sobreNosotros.html')
 
-def comprar(request, id):
+def comprar(request, id, clienteTemp=None):
     if request.user.is_authenticated:
         clientes = Cliente.objects.all()
-        usuario_baseDatos = User.objects.get(username=request.user.username)
-        for cliente in clientes:
-            if cliente.usuario == usuario_baseDatos:
-                plato = Menu.objects.get(id=id)
+        usuario = User.objects.get(username=request.user.username)
+        plato = Menu.objects.get(id=id)
+        clienteTemp
 
-                return render(request,
-                              'navegacion/comprar.html',
-                              {'plato': plato, 'clientes': clientes})
-            else:
-                return redirect(reverse("cliente:registrar_cliente"))
+        for cliente in clientes:
+            if cliente.usuario == usuario:
+                clienteTemp = cliente
+
+        if clienteTemp != None:
+            return render(request, 'navegacion/comprar.html', {'plato': plato, 'cliente': cliente})
+        else:
+            return redirect(reverse("cliente:registrar_cliente"))
     else:
         return redirect(reverse("navegacion:login"))
 
 
+def altaPedidoCliente(request):
+    fechaPedido = request.POST['fechaPedido']
+    fecha_hora = request.POST['fecha_hora']
+    tiempoDemora = request.POST['tiempoDemora']
+    cadete = request.POST['cadete']
+    total = request.POST['total']
+    cliente = request.POST['cliente']
+    menu = request.POST['menu']
+    estadoPedido = request.POST['estadoPedido']
+    comentario = lower(request.POST['comentario'])
+    envioDomicilio = request.POST['envioDomicilio']
+
+    pedido = Pedido.objects.create(fechaPedido=fechaPedido, estadoPedido= estadoPedido, comentario = comentario, envioDomicilio=envioDomicilio,
+    tiempoDemora=tiempoDemora, total=total, cadete_id=cadete,cliente_id=cliente,fecha_hora=fecha_hora)
+    messages.success(request, "se registro el pedido correctamente")
+    return redirect(reverse("index:index"))
 
 def configuracion(request):
     return  render(request, 'navegacion/configuracion.html')
