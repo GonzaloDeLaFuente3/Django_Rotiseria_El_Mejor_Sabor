@@ -25,11 +25,17 @@ def sobreNosotros(request):
 
 def comprar(request, id):
     if request.user.is_authenticated:
-        plato = Menu.objects.get(id=id)
         clientes = Cliente.objects.all()
-        return render(request,
-                      'navegacion/comprar.html',
-                      {'plato': plato, 'clientes': clientes})
+        usuario_baseDatos = User.objects.get(username=request.user.username)
+        for cliente in clientes:
+            if cliente.usuario == usuario_baseDatos:
+                plato = Menu.objects.get(id=id)
+
+                return render(request,
+                              'navegacion/comprar.html',
+                              {'plato': plato, 'clientes': clientes})
+            else:
+                return redirect(reverse("cliente:registrar_cliente"))
     else:
         return redirect(reverse("navegacion:login"))
 
@@ -68,7 +74,7 @@ def register(request):
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
             login(request, user)
             messages.success(request, "Usted se registro correctamente")
-            return redirect(reverse("index:index"))
+            return redirect(reverse("cliente:registrar_cliente"))
         data['form']= formulario
 
     return  render(request, 'navegacion/register.html', data)

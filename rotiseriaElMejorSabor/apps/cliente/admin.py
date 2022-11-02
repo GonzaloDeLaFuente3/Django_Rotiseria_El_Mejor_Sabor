@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Cliente
 class adminCliente(admin.ModelAdmin):
     #campos
-    list_display = ["cuil", "nombre", "apellido","domicilio_localidad", "domicilio_barrio", "domicilio_observacion","domicilio_zona","telefono","domicilio_calle","domicilio_numero"]
+    list_display = ["cuil", "nombre", "apellido","domicilio_localidad", "domicilio_barrio", "domicilio_observacion","domicilio_zona","telefono","domicilio_calle","domicilio_numero", "usuario"]
     #campos que se pueden modificar
     list_editable = ["nombre", "apellido","domicilio_localidad", "domicilio_barrio","domicilio_zona","telefono","domicilio_calle","domicilio_numero"]
     #porque campos se puede buscar
