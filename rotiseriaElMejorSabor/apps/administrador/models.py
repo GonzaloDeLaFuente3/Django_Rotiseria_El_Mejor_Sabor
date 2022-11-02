@@ -22,7 +22,7 @@ class Pedido(models.Model):
     comentario = models.TextField(blank=True)
     envioDomicilio = models.BooleanField(default=False)
     tiempoDemora = models.IntegerField(blank=True)
-    cadete = models.ForeignKey(Cadete, on_delete=models.CASCADE, blank=True)
+    cadete = models.ForeignKey(Cadete, on_delete=models.CASCADE, blank=True, null=True)
     total = models.IntegerField()
 
 

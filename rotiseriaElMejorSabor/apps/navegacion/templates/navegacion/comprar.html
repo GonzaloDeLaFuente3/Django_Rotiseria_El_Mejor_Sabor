@@ -32,36 +32,46 @@
 <!--                        {% endif %}-->
 
                         <div id="div_id_fechaPedido" class="mb-3">
-                            <label for="id_fechaPedido" class="form-label requiredField">Fecha Pedido
-                                <span class="asteriskField">*</span>
-                            </label>
-                            <input type="date" name="fechaPedido" class="dateinput form-control" required="" id="id_fechaPedido" >
+<!--                            <label for="id_fechaPedido" class="form-label requiredField">Fecha Pedido-->
+<!--                                <span class="asteriskField">*</span>-->
+<!--                            </label>-->
+                            <input type="date" name="fechaPedido" class="dateinput form-control" required="" id="id_fechaPedido" hidden>
                         </div>
                         <div id="div_id_fecha_hora" class="mb-3">
-                            <label for="id_fecha_hora" class="form-label requiredField">Hora
-                                <span class="asteriskField">*</span>
-                            </label>
-                            <input type="time" name="fecha_hora" class="timeinput form-control" required="" id="id_fecha_hora">
+<!--                            <label for="id_fecha_hora" class="form-label requiredField">Hora-->
+<!--                                <span class="asteriskField">*</span>-->
+<!--                            </label>-->
+                            <input type="time" name="fecha_hora" class="timeinput form-control" required="" id="id_fecha_hora" hidden>
                         </div>
 
                         <div id="div_id_cliente" class="mb-3">
+
                             <label for="id_cliente" class="form-label requiredField">Cliente</label>
 
 
-                            <select name="cliente" class="select form-select" required="" id="id_cliente" disabled>
+                            <select name="cliente" class="select form-select" required="" id="id_cliente"  hidden>
                                 <option value="{{cliente.cuil}}" selected="">{{cliente.apellido}} {{cliente.nombre}}</option>
                             </select>
+
+                            <select name="clienteMostrar" class="select form-select" required="" id="cliente" disabled>
+                                <option value="" selected="">{{cliente.apellido}} {{cliente.nombre}}</option>
+                            </select>
+
                         </div>
 
                         <div id="div_id_menu" class="mb-3">
                         <label for="id_menu" class="form-label requiredField">Plato/s</label>
-                            <select name="menu" class="selectmultiple form-select" required="" id="id_menu" multiple="">
-                                <option selected>{{plato.nombre}}</option>
+                            <select name="menu" class="selectmultiple form-select" required="" id="id_menu" multiple="" hidden>
+                                <option value="{{plato.id}}" selected>{{plato.nombre}}</option>
+                            </select>
+
+                            <select name="menuMostrar" class="selectmultiple form-select" required="" id="menu" multiple="" disabled>
+                                <option value="" selected>{{plato.nombre}}</option>
                             </select>
                         </div>
                         <div id="div_id_estadoPedido" class="mb-3">
-                            <label for="id_estadoPedido" class="form-label requiredField">Estado Pedido</label>
-                            <select name="estadoPedido" class="select form-select" required="" id="id_estadoPedido" disabled>
+<!--                            <label for="id_estadoPedido" class="form-label requiredField">Estado Pedido</label>-->
+                            <select name="estadoPedido" class="select form-select" required="" id="id_estadoPedido" hidden>
                                 <option value="1" selected="">Pendiente</option>
                                 <option value="">---------</option>
                                 <option value="2">En preparación</option>
@@ -70,20 +80,24 @@
                                 <option value="5">Devuelto</option>
                                 <option value="6">Cancelado</option>
                             </select>
+
+
+
                         </div>
                         <div class="mb-3">
                             <div id="div_id_envioDomicilio" class="mb-3 form-check">
 
-                                <input type="checkbox" name="envioDomicilio" class="checkboxinput form-check-input" id="id_envioDomicilio">
+                                <input type="checkbox" name="envioDomicilio" class="checkboxinput form-check-input" id="id_envioDomicilio" value="True">
                                 <label for="id_envioDomicilio" class="form-check-label">Envio a domicilio</label>
                                 <br><br>
-                                <label for="id_tiempoDemora" class="form-label">TiempoDemora</label>
-                                <input type="number" name="tiempoDemora" class="numberinput form-control" id="id_tiempoDemora" value="12321">
+<!--                                <label for="id_tiempoDemora" class="form-label">TiempoDemora</label>-->
+                                <input type="number" name="tiempoDemora" class="numberinput form-control" id="id_tiempoDemora" value="0" hidden>
                             </div>
                         </div>
                         <div id="div_id_total" class="mb-3">
                             <label for="id_total" class="form-label requiredField">Precio Total</label>
-                            <input type="number" name="total" class="numberinput form-control" required="" id="id_total" value="{{plato.precio}}" disabled>
+                            <input type="number" name="total" class="numberinput form-control" required="" id="id_total" value="{{plato.precio}}" hidden>
+                            <input type="number" name="mostrarTotal" class="numberinput form-control" required="" id="total" value="{{plato.precio}}" disabled>
                         </div>
                         <hr>
                         <input class="btn btn-success" type="submit" name="guarda" value="Comprar">
@@ -114,14 +128,14 @@
     //////////////////////////////////////
     let hora = new Date();
 
-    hs = hora.getHours();
-    min = hora.getMinutes();
+    hs = ((hora.getHours() < 10) ? "0":"") + hora.getHours();
+    min = ((hora.getMinutes() < 10) ? "0":"") + hora.getMinutes();
 
     formatoHora = `${hs}:${min}`
     console.log(formatoHora);
 
     let hsPedido = document.getElementById("id_fecha_hora");
-    hsPedido.setAttribute("value",formatoHora);
+    hsPedido.setAttribute("value",formatoHora + ":00");
 
 </script>
 

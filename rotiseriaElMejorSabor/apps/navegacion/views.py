@@ -38,7 +38,7 @@ def comprar(request, id, clienteTemp=None):
                 clienteTemp = cliente
 
         if clienteTemp != None:
-            return render(request, 'navegacion/comprar.html', {'plato': plato, 'cliente': cliente})
+            return render(request, 'navegacion/comprar.html', {'plato': plato, 'cliente': clienteTemp})
         else:
             return redirect(reverse("cliente:registrar_cliente"))
     else:
@@ -48,19 +48,33 @@ def comprar(request, id, clienteTemp=None):
 def altaPedidoCliente(request):
     fechaPedido = request.POST['fechaPedido']
     fecha_hora = request.POST['fecha_hora']
-    cliente = request.POST['cliente']
+
+    clienteCuil = request.POST['cliente']
+    cliente = Cliente.objects.get(cuil=clienteCuil)
+
+    menuId = request.POST['menu']
+    menu= Menu.objects.get(id=menuId)
+
+
+    revisado = request.POST.get('envioDomicilio')
+    print(revisado)
+    if (revisado == None):
+        envioDomicilio = False
+    else:
+        envioDomicilio = True
+
+
     tiempoDemora = request.POST['tiempoDemora']
-    cadete = request.POST['cadete']
-    total = request.POST['total']
-
-    menu = request.POST['menu']
+    # cadete = request.POST['cadete']
+    total = float(request.POST['total'])
     estadoPedido = request.POST['estadoPedido']
-    comentario = lower(request.POST['comentario'])
-    envioDomicilio = request.POST['envioDomicilio']
 
-    pedido = Pedido.objects.create(fechaPedido=fechaPedido, estadoPedido= estadoPedido, comentario = comentario, envioDomicilio=envioDomicilio,
-    tiempoDemora=tiempoDemora, total=total, cadete_id=cadete,cliente_id=cliente,fecha_hora=fecha_hora)
-    messages.success(request, "se registro el pedido correctamente")
+    pedido = Pedido(fechaPedido=fechaPedido, estadoPedido= estadoPedido, envioDomicilio=envioDomicilio, tiempoDemora=tiempoDemora,
+                                   total=total, cliente=cliente, fecha_hora=fecha_hora)
+    pedido.save()
+    pedido.menu.add(menu)
+    pedido.save()
+    messages.success(request, "Su compra fue realizada con exito !")
     return redirect(reverse("index:index"))
 
 def configuracion(request):
