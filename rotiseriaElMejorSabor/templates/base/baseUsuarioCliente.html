@@ -119,6 +119,7 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                     {% if user.is_authenticated %}
+                                        <a class="dropdown-item" href="#">Registrarse como cliente</a>
                                         <a class="dropdown-item" href="{% url 'navegacion:configuracion' %}">Configuración</a>
                                         <a class="dropdown-item" href="{% url 'navegacion:logout' %}">Cerrar sesion</a>
                                     {% else %}

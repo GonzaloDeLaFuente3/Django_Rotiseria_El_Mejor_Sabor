@@ -24,11 +24,15 @@ def sobreNosotros(request):
     return  render(request, 'navegacion/sobreNosotros.html')
 
 def comprar(request, id):
-    plato = Menu.objects.get(id=id)
-    clientes = Cliente.objects.all()
-    return  render(request,
-                   'navegacion/comprar.html',
-                   {'plato':plato, 'clientes':clientes})
+    if request.user.is_authenticated:
+        plato = Menu.objects.get(id=id)
+        clientes = Cliente.objects.all()
+        return render(request,
+                      'navegacion/comprar.html',
+                      {'plato': plato, 'clientes': clientes})
+    else:
+        return redirect(reverse("navegacion:login"))
+
 
 
 def configuracion(request):
