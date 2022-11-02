@@ -28,7 +28,7 @@
                 <small><strong>Nota:</strong> los campos que cuentan con el simbolo (*) son obligatorios</small>
                 <br><br>
 
-                <form action="" method="post" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate>
+                <form action="" method="post"  id="form" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate>
                     {% csrf_token %}
                     {{ form | crispy }}
 
