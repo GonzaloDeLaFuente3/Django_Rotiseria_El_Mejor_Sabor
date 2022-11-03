@@ -1,4 +1,5 @@
 
+
 const horaDesde = document.getElementById('horaDesde');
 const horaHasta = document.getElementById('horaHasta');
 
@@ -14,7 +15,7 @@ if(date.getHours().toString().length == 1){
     date.value = "0"+date.getHours();
 }
 
-horaPedido.value = date.getHours()+":"+date.getMinutes();
+//horaPedido.value = date.getHours()+":"+date.getMinutes();
 
 function cambiarFecha(){
     horaPedido.removeAttribute("disabled");

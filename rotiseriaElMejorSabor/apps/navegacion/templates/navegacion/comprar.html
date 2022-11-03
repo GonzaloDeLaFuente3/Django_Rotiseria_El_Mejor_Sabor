@@ -1,6 +1,7 @@
 {% extends "base/baseUsuarioCliente.html" %}
 {% load static %}
 {% block titulo %}Compra{% endblock %}
+
 {% block css %}
     <style>
             body{
@@ -8,14 +9,11 @@
             }
         </style>
 {% endblock %}
+
 {% block contenido %}
         <div class="container my-5 px-5">
             <br>
             <br>
-<!--            {{plato.nombre}}-->
-
-
-
 
             <div class="card d-sm-block">
                 <h3 class="card-header text-white bg-success mb-3">Informacion del pedido</h3>
@@ -25,11 +23,6 @@
 
                     <form action="{% url 'navegacion:comprar_pedido' %}" method="post" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate="">
                         {% csrf_token %}
-<!--                        {% if user.username.value != cliente.usuario %}-->
-<!--                            {{user.username}}-->
-<!--                            {{cliente.nombre}}-->
-<!--                            <h5>Hola a</h5>-->
-<!--                        {% endif %}-->
 
                         <div id="div_id_fechaPedido" class="mb-3">
 <!--                            <label for="id_fechaPedido" class="form-label requiredField">Fecha Pedido-->
@@ -58,16 +51,50 @@
                             </select>
 
                         </div>
-
                         <div id="div_id_menu" class="mb-3">
-                        <label for="id_menu" class="form-label requiredField">Plato/s</label>
-                            <select name="menu" class="selectmultiple form-select" required="" id="id_menu" multiple="" hidden>
-                                <option value="{{plato.id}}" selected>{{plato.nombre}}</option>
+                        <label for="menuSelect" class="form-label requiredField">Plato/s</label>
+
+                            <select name="menu" class="form-select" id="menuSelect" multiple hidden>
+                                {% if request.resolver_match.url_name == 'comprar_carrito' %}
+                                    <script>
+                                        const selectMenu = document.getElementById("menuSelect");
+
+                                        document.addEventListener('DOMContentLoaded',() =>{
+                                            if(localStorage.getItem('carrito')){
+                                                carrito = JSON.parse(localStorage.getItem('carrito'));
+                                            }
+                                            carrito.forEach((prod) => {
+                                                const option = document.createElement('option');
+                                                option.setAttribute('selected',"")
+                                                option.innerHTML = `${prod.id}`
+                                                selectMenu.appendChild(option);
+                                            })
+                                        })
+                                    </script>
+                                {% else %}
+                                    <option value="{{plato.id}}" selected>{{plato.nombre}}</option>
+                                {% endif %}
                             </select>
 
-                            <select name="menuMostrar" class="selectmultiple form-select" required="" id="menu" multiple="" disabled>
-                                <option value="" selected>{{plato.nombre}}</option>
+                            <select name="menuMostrar" class="form-select" id="menuSelect2" multiple disabled>
+                                {% if request.resolver_match.url_name == 'comprar_carrito' %}
+                                    <script>
+                                        const selectMenu2 = document.getElementById("menuSelect2");
+
+                                        document.addEventListener('DOMContentLoaded',() =>{
+                                            carrito.forEach((prod) => {
+                                                const option = document.createElement('option');
+                                                option.setAttribute('selected',"")
+                                                option.innerHTML = `${prod.nombre}`
+                                                selectMenu2.appendChild(option);
+                                            })
+                                        })
+                                    </script>
+                                {% else %}
+                                    <option value="{{plato.id}}" selected>{{plato.nombre}}</option>
+                                {% endif %}
                             </select>
+
                         </div>
                         <div id="div_id_estadoPedido" class="mb-3">
 <!--                            <label for="id_estadoPedido" class="form-label requiredField">Estado Pedido</label>-->
@@ -81,8 +108,6 @@
                                 <option value="6">Cancelado</option>
                             </select>
 
-
-
                         </div>
                         <div class="mb-3">
                             <div id="div_id_envioDomicilio" class="mb-3 form-check">
@@ -95,9 +120,25 @@
                             </div>
                         </div>
                         <div id="div_id_total" class="mb-3">
-                            <label for="id_total" class="form-label requiredField">Precio Total</label>
-                            <input type="number" name="total" class="numberinput form-control" required="" id="id_total" value="{{plato.precio}}" hidden>
-                            <input type="number" name="mostrarTotal" class="numberinput form-control" required="" id="total" value="{{plato.precio}}" disabled>
+                            <label class="form-label requiredField">Precio Total</label>
+
+                            {% if request.resolver_match.url_name == 'comprar_carrito' %}
+                                <input type="number" name="total" class="numberinput form-control" required="" id="precioFinal" hidden>
+                                <input type="number" name="precioTotal2" class="numberinput form-control" required="" id="precioFinal2" disabled>
+                                <script>
+                                    const precioFinal = document.getElementById("precioFinal");
+                                    const precioFinal2 = document.getElementById("precioFinal2");
+
+                                    document.addEventListener('DOMContentLoaded',() =>{
+                                        precioFinal.value = carrito.reduce((acc,prod) => acc + prod.precio*prod.cantidad, 0)
+                                        precioFinal2.value = carrito.reduce((acc,prod) => acc + prod.precio*prod.cantidad, 0)
+                                    })
+                                </script>
+                            {% else %}
+                                <input type="number" name="total" class="numberinput form-control" required="" id="total" value="{{plato.precio}}" hidden>
+                                <input type="number" name="mostrarTotal" class="numberinput form-control" required="" id="" value="{{plato.precio}}" disabled>
+                            {% endif %}
+
                         </div>
                         <hr>
                         <input class="btn btn-success" type="submit" name="guarda" value="Comprar">
@@ -107,8 +148,11 @@
 
         </div>
 {% endblock %}
-{% block js %}<script src="{% static 'js/verificarHoraLocal.js' %}"></script>
 
+
+{% block js %}
+
+<script src="{% static 'js/verificarHoraLocal.js' %}"></script>
 <script >
     //fecha y hora actual 
     let hoy = new Date();
@@ -121,7 +165,6 @@
     mes = ('0' + mes).slice(-2);
 
     let formato = `${anio}-${mes}-${dia}`
-    console.log(formato)
     let fechaPedido = document.getElementById("id_fechaPedido");
     fechaPedido.setAttribute("value",formato)
 
@@ -132,58 +175,11 @@
     min = ((hora.getMinutes() < 10) ? "0":"") + hora.getMinutes();
 
     formatoHora = `${hs}:${min}`
-    console.log(formatoHora);
 
     let hsPedido = document.getElementById("id_fecha_hora");
     hsPedido.setAttribute("value",formatoHora + ":00");
 
 </script>
 
-<script>
-    const fechaPedido = document.getElementById("fechaPedido").value;
-
-
-
-    let carrito = []
-
-    document.addEventListener('DOMContentLoaded',() =>{
-    if(localStorage.getItem('carrito')){
-        carrito = JSON.parse(localStorage.getItem('carrito'));
-        actualizarCarrito();
-    }
-    })
-
-const actualizarCarrito = () => {
-    contenedorCarrito.innerHTML = ""
-
-    //INFORMACION A MOSTRAR EN EL MODAL
-    carrito.forEach((prod) => {
-        const div = document.createElement('div');
-        div.classList.add('pedidoCarrito');
-        div.classList.add('row');
-        div.classList.add('mx-2');
-        div.classList.add('my-2');
-        div.innerHTML = `
-        <p class="col-sm-4 col-form-label">${prod.nombre}</p>
-        <p class="col-sm-4 col-form-label">Precio: $${prod.precio}</p>
-        <p class="col-sm-3 col-form-label" id="cantidad">Cantidad: ${prod.cantidad}</p>
-        <div class="col-sm-1">
-            <button class="btn btn-danger" onClick = "eliminarDelCarrito(${prod.id})"><i class="bi bi-trash-fill"></i></button>
-        </div>`
-
-        contenedorCarrito.appendChild(div);
-    })
-    localStorage.setItem('carrito',JSON.stringify(carrito));
-    contadorCarrito.innerText = carrito.length;
-    if(contadorCarrito.textContent == "0"){
-        labelCarritoVacio.classList.remove('d-none');
-        contadorCarrito.classList.add('d-none');
-    }else{
-        labelCarritoVacio.classList.add('d-none');
-        contadorCarrito.classList.remove('d-none');
-    }
-    precioTotal.innerText = carrito.reduce((acc,prod) => acc + prod.precio*prod.cantidad, 0);
-}
-
-</script>
 {% endblock %}
+
