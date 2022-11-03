@@ -18,7 +18,7 @@
         </div>
         <div class="container panelMenus">
             <h2>Listado de ventas diarias</h2>
-            <form action="" method="post">
+            <form action="{% url 'administrador:consulta_fecha' %}" method="post">
                 {% csrf_token %}
 
                 <br>
@@ -27,7 +27,7 @@
 
                             </div>
                             <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9">
-                                <input class="form-control" type="number" name="fehcaPedido" id="fechaPedido"  required="" placeholder="Ingrese una fecha">
+                                <input class="dateinput form-control" type="date" name="fechaPedido" id="fechaPedido"  required="" placeholder="Ingrese una fecha">
 
                                 <br>
                             </div>
@@ -56,20 +56,27 @@
                         </thead>
 
                         <tbody>
-
+                            {% for fecha in pedidosFechas %}
                             <tr>
-                                <th scope="row"></th>
+                                <th scope="row">{{ fecha.id }}</th>
                                 <td>
+                                    <ul>
+                                    {% for m in fecha.menu.all %}
+                                    <li>{{ m }}</li>
+                                    {% endfor %}
 
+                                    </ul>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>${{ fecha.total }}</td>
+                                <td>{{ fecha.fecha_hora }}</td>
+                                <td>{{ fecha.cliente }}</td>
+                                <td>{{ fecha.cliente.domicilio_calle }}</td>
+                                <td>{{ fecha.cliente.domicilio_numero }}</td>
+                                <td>{{ fecha.cliente.domicilio_barrio }}</td>
+                                <td>{{ fecha.cliente.domicilio_zona }}</td>
+
                             </tr>
+                            {% endfor %}
 
                         </tbody>
                     </table>
@@ -159,5 +166,19 @@
 {% block js %}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{% static 'js/sliderMenu.js' %}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                "title": "La operacion se realizo correctamente",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+        </script>
+    {% endfor %}
+{% endif %}
 {% endblock %}
 

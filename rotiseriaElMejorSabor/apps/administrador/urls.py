@@ -15,4 +15,5 @@ urlpatterns = [
     path('modificar_pedido/<int:id>', views.modificar_pedido, name='modificar'),
     # path('editar_pedido/', views.editar_pedido, name='editar_pedido'),
     path('consulta_cadete/', views.estadisticas, name='consulta_cadete'),
+    path('consulta_fecha/', views.consulta_fecha, name='consulta_fecha'),
 ]

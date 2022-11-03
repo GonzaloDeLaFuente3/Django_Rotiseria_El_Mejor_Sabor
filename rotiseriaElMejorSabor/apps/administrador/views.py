@@ -40,13 +40,23 @@ def estadisticas(request):
         'cadeteOpciones': cadetes
     }
 
-    if cadete:
-        return  render(request, 'administrador/estadisticas.html', data)
-    else:
-        messages.error(request, "Se Agrego un pedido nuevo correctamente")
-        return render(request, 'administrador/estadisticas.html', data)
+    messages.success(request, "se mostrara los pedidos enviados por el cadete seleccionado")
+    return  render(request, 'administrador/estadisticas.html', data)
 
 
+
+
+def consulta_fecha(request):
+    fechaConsulta = request.POST['fechaPedido']
+    print(fechaConsulta)
+    pedidoConsultaFecha = Pedido.objects.filter(fechaPedido = fechaConsulta)
+    cadetes = Cadete.objects.all()
+    data = {
+        'cadeteOpciones': cadetes,
+        'pedidosFechas': pedidoConsultaFecha
+    }
+    messages.success(request, "se mostrara los pedido con la fecha ingresada")
+    return render(request, 'administrador/estadisticas.html', data)
 
 def historial_pedidos(request):
     pedidos = Pedido.objects.all()
