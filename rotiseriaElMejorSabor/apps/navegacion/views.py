@@ -45,6 +45,26 @@ def comprar(request, id, clienteTemp=None):
         return redirect(reverse("navegacion:login"))
 
 
+def comprarCarrito(request, clienteTemp=None):
+    if request.user.is_authenticated:
+        clientes = Cliente.objects.all()
+        usuario = User.objects.get(username=request.user.username)
+        clienteTemp
+
+        # if request.resolver_match.url_name == 'comprar_carrito':
+        #     print("1 2 3 ...")
+
+        for cliente in clientes:
+            if cliente.usuario == usuario:
+                clienteTemp = cliente
+
+        if clienteTemp != None:
+            return render(request, 'navegacion/comprar.html', {'cliente': clienteTemp})
+        else:
+            return redirect(reverse("cliente:registrar_cliente"))
+    else:
+        return redirect(reverse("navegacion:login"))
+
 def altaPedidoCliente(request):
     fechaPedido = request.POST['fechaPedido']
     fecha_hora = request.POST['fecha_hora']
@@ -52,12 +72,9 @@ def altaPedidoCliente(request):
     clienteCuil = request.POST['cliente']
     cliente = Cliente.objects.get(cuil=clienteCuil)
 
-    menuId = request.POST['menu']
-    menu= Menu.objects.get(id=menuId)
-
+    menuId = request.POST.getlist('menu')
 
     revisado = request.POST.get('envioDomicilio')
-    print(revisado)
     if (revisado == None):
         envioDomicilio = False
     else:
@@ -65,14 +82,16 @@ def altaPedidoCliente(request):
 
 
     tiempoDemora = request.POST['tiempoDemora']
-    # cadete = request.POST['cadete']
     total = float(request.POST['total'])
     estadoPedido = request.POST['estadoPedido']
 
     pedido = Pedido(fechaPedido=fechaPedido, estadoPedido= estadoPedido, envioDomicilio=envioDomicilio, tiempoDemora=tiempoDemora,
                                    total=total, cliente=cliente, fecha_hora=fecha_hora)
     pedido.save()
-    pedido.menu.add(menu)
+
+    for plato in menuId:
+        pedido.menu.add(Menu.objects.get(id=int('0' + plato)))
+
     pedido.save()
     messages.success(request, "Su compra fue realizada con exito !")
     return redirect(reverse("index:index"))

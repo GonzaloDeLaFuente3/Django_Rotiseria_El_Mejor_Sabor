@@ -1,4 +1,3 @@
-let carrito = []
 
 const contenedorEntrada = document.getElementById('entrada');
 const contenedorPrincipal = document.getElementById('platoprincipal');
