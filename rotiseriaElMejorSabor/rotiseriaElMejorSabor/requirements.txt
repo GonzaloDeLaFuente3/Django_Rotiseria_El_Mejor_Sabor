@@ -9,3 +9,5 @@ psycopg2-binary==2.9.4
 django-admin-interface
 #crispy
 crispy_bootstrap5
+#facebook
+social-auth-app-django

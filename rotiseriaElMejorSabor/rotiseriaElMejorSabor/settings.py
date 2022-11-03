@@ -31,8 +31,13 @@ ALLOWED_HOSTS = []
 MESSAGE_STORAGE="django.contrib.messages.storage.cookie.CookieStorage"
 
 #direccion a donde se envia luego de hacer el login y cerrar sesion para cuando uso con django y no views
-# LOGIN_REDIRECT_URL = '/index/'
-# LOGOUT_REDIRECT_URL = '/index/'
+LOGIN_REDIRECT_URL = '/index/'
+LOGOUT_REDIRECT_URL = '/index/'
+
+#facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '2035226950003043'
+SOCIAL_AUTH_FACEBOOK_SECRET = '08cf6384155283b59d7aaca3755ed0ca'
+
 
 # Application definition
 
@@ -55,6 +60,7 @@ INSTALLED_APPS = [
     'colorfield',
     'crispy_forms',
     'crispy_bootstrap5',
+    'social_django',
 
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -71,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'rotiseriaElMejorSabor.urls'
@@ -86,6 +93,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
             ],
         },
     },
@@ -149,3 +159,7 @@ try:
 except ImportError:
     raise Exception("El archivo de configuraciones locales es requerido para ejecutar este proyecto")
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
