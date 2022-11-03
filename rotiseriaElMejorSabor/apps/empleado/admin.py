@@ -2,6 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Empleado
+from ..cadete.models import Cadete
+
+
 class adminEmpleado(admin.ModelAdmin):
     #campos
     list_display = ["cuil", "nombre", "apellido","telefonoFijo","telefonoCelular","domicilio_calle","domicilio_numero","domicilio_departamento", "domicilio_localidad", "fechaIngreso"]

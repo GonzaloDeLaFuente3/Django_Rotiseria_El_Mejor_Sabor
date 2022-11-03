@@ -8,18 +8,20 @@
 <!--    Agregar platos de la base de datos a la pagina index-->
 
         {% for plato in platos%}
-            listaPlatos.push({id: {{plato.id}}, nombre: "{{plato.nombre}}",
-            tipo_menu: {% if plato.tipoMenu == 1 %}"entrada"
-            {% elif plato.tipoMenu == 2 %} "plato principal"
-            {% elif plato.tipoMenu == 3 %} "postre"
+            {% if plato.vigencia %}
+                listaPlatos.push({id: {{plato.id}}, nombre: "{{plato.nombre}}",
+                tipo_menu: {% if plato.tipoMenu == 1 %}"entrada"
+                {% elif plato.tipoMenu == 2 %} "plato principal"
+                {% elif plato.tipoMenu == 3 %} "postre"
+                {% endif %}
+                , tipo_comida:
+                {% if plato.tipoComida == 1 %} "Normal"
+                {% elif plato.tipoComida == 2 %} "Vegetariano"
+                {% elif plato.tipoComida == 3 %} "Celiaco"
+                {% elif plato.tipoComida == 4 %} "Diabético"
+                {% endif %}
+                , descripcion: "{{plato.descripcion}}", precio: {{plato.precio}}, img: '{{plato.imagen}}',cantidad: 1, vigencia: "{{plato.vigencia}}"})
             {% endif %}
-            , tipo_comida:
-            {% if plato.tipoComida == 1 %} "Normal"
-            {% elif plato.tipoComida == 2 %} "Vegetariano"
-            {% elif plato.tipoComida == 3 %} "Celiaco"
-            {% elif plato.tipoComida == 4 %} "Diabético"
-            {% endif %}
-            , descripcion: "{{plato.descripcion}}", precio: {{plato.precio}}, img: '{{plato.imagen}}',cantidad: 1, vigencia: "{{plato.vigencia}}"})
         {% endfor %}
 
     </script>
@@ -110,7 +112,7 @@
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper content" id="entrada">
                         {% for plato in platos%}
-                            {% if plato.tipoMenu == 1 %}
+                            {% if plato.tipoMenu == 1 and plato.vigencia %}
                                 <div class="swiper-slide card h-100">
                                     <img class="card-img-top" src={{plato.imagen}} alt="comida"/>
                                     <div class="card-body p-4">
@@ -131,7 +133,7 @@
                                             <a class="btn btn-outline-success mt-auto" type="button" href="{% url 'navegacion:comprar' plato.id %}">Comprar </a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}">Añadir al carrito</a>
+                                            <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}" onclick="agregarCarrito({{plato.id}})">Añadir al carrito</a>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +155,7 @@
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper content" id="platoprincipal">
                             {% for plato in platos%}
-                                {% if plato.tipoMenu == 2%}
+                                {% if plato.tipoMenu == 2 and plato.vigencia %}
                                     <div class="swiper-slide card h-100">
                                         <img class="card-img-top" src={{plato.imagen}} alt="comida"/>
                                         <div class="card-body p-4">
@@ -174,7 +176,7 @@
                                                 <a class="btn btn-outline-success mt-auto" type="button" href="{% url 'navegacion:comprar' plato.id %}">Comprar</a>
                                             </div>
                                             <div class="text-center">
-                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}">Añadir al carrito</a>
+                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}" onclick="agregarCarrito({{plato.id}})">Añadir al carrito</a>
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +198,7 @@
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper content" id="postre">
                             {% for plato in platos%}
-                                {% if plato.tipoMenu == 3 %}
+                                {% if plato.tipoMenu == 3 and plato.vigencia %}
                                     <div class="swiper-slide card h-100">
                                         <img class="card-img-top" src={{plato.imagen}} alt="comida"/>
                                         <div class="card-body p-4">
@@ -217,7 +219,7 @@
                                                 <a class="btn btn-outline-success mt-auto" type="button" href="{% url 'navegacion:comprar' plato.id %}">Comprar</a>
                                             </div>
                                             <div class="text-center">
-                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}">Añadir al carrito</a>
+                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}" onclick="agregarCarrito({{plato.id}})">Añadir al carrito</a>
                                             </div>
                                         </div>
                                     </div>

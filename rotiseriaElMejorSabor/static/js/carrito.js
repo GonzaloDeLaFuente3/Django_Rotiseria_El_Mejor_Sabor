@@ -1,7 +1,4 @@
 
-const contenedorEntrada = document.getElementById('entrada');
-const contenedorPrincipal = document.getElementById('platoprincipal');
-const contenedorPostre = document.getElementById('postre');
 const contenedorCarrito = document.getElementById('contenedorCarrito');
 const contadorCarrito = document.getElementById('contadorCarrito');
 const precioTotal = document.getElementById('precioTotal');
@@ -20,49 +17,6 @@ document.addEventListener('DOMContentLoaded',() =>{
 botonVaciar.addEventListener('click', () =>{
     carrito.length = 0;
     actualizarCarrito();
-})
-
-listaPlatos.forEach((producto) => {
-    const div = document.createElement('div');
-    div.classList.add('swiper-slide');
-    div.classList.add('card');
-    div.classList.add('h-100');
-    div.innerHTML = `
-    <img class="card-img-top" src=${producto.img} alt="comida"/>
-    <div class="card-body p-4">
-        <div class="text-center">
-            <h5 class="fw-bolder">${producto.nombre}</h5>
-            <div class="d-flex justify-content-center small text-warning mb-2">
-                <div class="bi-star-fill"></div>
-                <div class="bi-star-fill"></div>
-                <div class="bi-star-fill"></div>
-                <div class="bi-star-fill"></div>
-                <div class="bi-star-fill"></div>
-            </div>
-            $${producto.precio}
-        </div>
-    </div>
-    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center">
-        <a class="btn btn-outline-success mt-auto" type="button" href="{% url 'navegacion:comprar' ${producto.id} %}">Comprar</a>
-        </div>
-        <div class="text-center">
-        <a class="btn btn-outline-primary mt-auto" type="button" id="agregar${producto.id}">Añadir al carrito</a>
-        </div>
-    </div>`
-
-    if(producto.tipo_menu == "entrada"){
-        contenedorEntrada.appendChild(div);
-    }else if(producto.tipo_menu == "postre"){
-        contenedorPostre.appendChild(div);
-    }else{
-        contenedorPrincipal.appendChild(div);
-    }
-    
-    const boton = document.getElementById(`agregar${producto.id}`);
-    boton.addEventListener('click', () =>{
-        agregarCarrito(producto.id);
-    })
 })
 
 const agregarCarrito = (prodId) => {

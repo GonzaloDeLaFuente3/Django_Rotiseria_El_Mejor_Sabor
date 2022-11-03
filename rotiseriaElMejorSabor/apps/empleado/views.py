@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.template.defaultfilters import lower
 from django.urls import reverse
 from apps.empleado.models import Empleado
-from .forms import EmpleadoForm
+from .forms import EmpleadoForm, CadeteForm
 from django.contrib import messages
 
 
@@ -20,14 +20,25 @@ def verEmpleados(request):
 
 def registrar_empleado(request):
     data = {
-        'form': EmpleadoForm()
+        'form_empleado': EmpleadoForm(),
+        'form_cadete': CadeteForm()
     }
     if request.method == 'POST':
-        formulario = EmpleadoForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
+        formularioEmpleado = EmpleadoForm(data=request.POST)
+        formularioCadete = CadeteForm(data=request.POST)
+
+        if formularioEmpleado.is_valid():
+            formularioEmpleado.save()
             data["mensaje"] = "guardado correctamente"
+            return render(request, 'empleado/altaEmpleado.html', data)
         else:
-            data["form"] = formulario
+            data["form_empleado"] = formularioEmpleado
+
+        if formularioCadete.is_valid():
+            formularioCadete.save()
+            data["mensaje"] = "guardado correctamente"
+            return render(request, 'empleado/altaEmpleado.html', data)
+        else:
+            data["form_cadete"] = formularioCadete
 
     return render(request, 'empleado/altaEmpleado.html', data)

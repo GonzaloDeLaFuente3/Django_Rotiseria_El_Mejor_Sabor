@@ -10,7 +10,7 @@ from apps.menu.models import Menu
 
 @permission_required('menu.add_menu', login_url="navegacion:login")
 def registrar_menu(request):
-    nombre = upper(request.POST['nombreMenu'])
+    nombre = request.POST['nombreMenu']
     print(nombre)
     descripcion = request.POST['descripcionMenu']
     tipo_menu = request.POST['tipoMenu']
