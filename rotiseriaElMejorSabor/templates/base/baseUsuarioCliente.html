@@ -93,6 +93,10 @@
                                 {% endif %}
                             </li>
 
+                            {% if perms.administrador.change_pedido %}
+                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'administrador:estado_pedido' %}">Delivery</a></li>
+                            {% endif %}
+
                             <form class="d-flex buscador {% if request.resolver_match.url_name != 'index' %}d-none{% endif %}">
                                 <input class="form-control me-2" type="search" placeholder="Buscar un menú" aria-label="Search">
                                 <button class="btn btn-outline-light" type="submit">

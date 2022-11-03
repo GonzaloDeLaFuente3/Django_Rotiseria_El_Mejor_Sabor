@@ -1,0 +1,137 @@
+
+{% extends "base/baseHeaderNav.html" %}
+{% load static %}
+{% block titulo %}Historial Pedidos{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/estadisticas.css' %}">
+{% endblock %}
+{% block logo %}
+<a href="{% url 'administrador:admin_login' %}">
+                    <img src="{% static 'resources/Logos/rotiseria.png' %}" alt="icono principal" id="logo"/>
+                    </a>
+{% endblock %}
+
+{% block contenido %}
+<div class="modal fade" id="modalModificarEstadoPedido" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
+
+    </div>
+
+    <div class="container-fluid">
+        <div id="titulo">
+            <img src="{% static 'resources/Logos/titulo.png' %}" alt="titulo_rotiseria">
+        </div>
+        <div class="container-fluid">
+            <section class="panelMenus swiper mySwiper" id="entrada">
+                <br>
+                <h2 id="labelMenus" class="text-center">Pedidos Pendientes</h2>
+                <p id="info"><strong>Nota:</strong> para ordenar los pedidos según un campo determinado, presione en la columna correspondiente.
+                <br>La búsqueda se puede realizar por cualquier campo de las columnas.
+                <br>Para cambiar el estado del pedido, presione en su fila correspondiente.</p>
+                <div class="row mx-3">
+                    <div class="col">
+                        <table class="table table-dark table-hover table-striped align-middle text-center" id="tablaRegistro">
+                            <thead>
+                                <tr>
+                                    <th scope="col" onclick="sortTable(0, 'str')">#Código</th>
+                                    <th scope="col" onclick="sortTable(1, 'date')" style="width: 10%;"><i class="bi bi-calendar-date-fill"></i> Fecha</th>
+                                    <th scope="col" onclick="sortTable(2, 'str')" style="width: 8%;"><i class="bi bi-clock-fill"></i> Hora</th>
+                                    <th scope="col" onclick="sortTable(3, 'str')" style="width: 20%;"><i class="bi bi-box-seam"></i> Menú</th>
+                                    <th scope="col" onclick="sortTable(4, 'float')">$Precio</th>
+                                    <th scope="col" onclick="sortTable(5, 'str')"><i class="bi bi-person-badge-fill"></i> Cliente</th>
+                                    <th scope="col" onclick="sortTable(6, 'str')"><i class="bi bi-geo-alt-fill"></i> Calle</th>
+                                    <th scope="col" onclick="sortTable(7, 'str')"><i class="bi bi-geo-alt-fill"></i> Numero</th>
+                                    <th scope="col" onclick="sortTable(8, 'str')"><i class="bi bi-geo-alt-fill"></i> Barrio</th>
+                                    <th scope="col" onclick="sortTable(9, 'str')"><i class="bi bi-geo-alt-fill"></i> Zona</th>
+                                    <th scope="col" onclick="sortTable(10, 'str')"><i class="bi bi-ui-checks-grid"></i> Estado</th>
+                                    <th scope="col" onclick="sortTable(11, 'str')"><i class="bi bi-geo-alt-fill"></i> Cadete</th>
+
+
+                                </tr>
+                            </thead>
+
+                            <tbody id="contenedorPedidos">
+
+                            {% for pedido in pedidos %}
+                                {% if pedido.estadoPedido == 3 and pedido.cadete != None%}
+
+                                <tr onclick="abrirModal('{% url 'administrador:editar_estado_pedido' pedido.id %}')">
+
+                                    <td scope="row">{{ pedido.id }}</th>
+                                    <td>{{ pedido.fechaPedido }}</td>
+                                    <td>{{ pedido.fecha_hora }}</td>
+                                    <td>
+                                        <ul>
+                                            {% for m in pedido.menu.all %}
+                                            <li>{{ m }}</li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </td>
+                                    <td>$ {{ pedido.total }}</td>
+                                    <td>{{ pedido.cliente }}</td>
+                                    <td>{{ pedido.cliente.domicilio_calle }}</td>
+                                    <td>{{ pedido.cliente.domicilio_numero }}</td>
+                                    <td>{{ pedido.cliente.domicilio_barrio }}</td>
+                                    <td>{{ pedido.cliente.domicilio_zona }}</td>
+
+
+                                            {% if pedido.estadoPedido == 1 %}
+                                                <td>Pendiente</td>
+                                            {% elif pedido.estadoPedido == 2 %}
+                                                <td>En preparación</td>
+                                            {% elif pedido.estadoPedido == 3 %}
+                                                <td>En camino</td>
+                                            {% endif %}
+                                    <td>{{ pedido.cadete }}</td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block enlaces %}
+                        <li><img src="{% static 'resources/Logos/iconRotiseria.png' %}" alt="icono" id="icono"></li>
+                        <li><a class="navbar-brand" href="/index/">Inicio</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:sobre_nosotros' %}">Sobre nosotros</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:contacto' %}">Contacto</a></li>
+                        <li><a class="navbar-brand" href="{% url 'navegacion:ayuda' %}">Ayuda</a></li>
+{%endblock %}
+
+{% block js %}
+<script src="{% static 'js/ordenarTabla.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="{% static 'js/buscar.js' %}"></script>
+<!--<script src="{% static 'js/listas/listaPedidosHistoricos.js' %}"></script>-->
+<script type="text/javascript" >
+    function abrirModal(url){
+        $('#modalModificarEstadoPedido').load(url, function(){
+            $(this).modal('show');
+        })
+    }
+</script>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                "title": "La operacion se realizo correctamente",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+        </script>
+    {% endfor %}
+{% endif %}
+
+
+{% endblock %}

@@ -16,4 +16,7 @@ urlpatterns = [
     # path('editar_pedido/', views.editar_pedido, name='editar_pedido'),
     path('consulta_cadete/', views.estadisticas, name='consulta_cadete'),
     path('consulta_fecha/', views.consulta_fecha, name='consulta_fecha'),
+    path('estado_pedido_delivery/', views.estado_pedido, name='estado_pedido'),
+    path('editar_estado_pedido_delivery/<int:id>', views.editar_estado_pedido, name='editar_estado_pedido'),
+
 ]

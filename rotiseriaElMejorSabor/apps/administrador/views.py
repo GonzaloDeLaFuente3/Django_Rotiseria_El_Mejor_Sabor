@@ -22,6 +22,32 @@ def admin_login(request):
     return  render(request, 'administrador/admin-login.html', data)
 
 @permission_required('administrador.view_pedido', login_url="navegacion:login")
+def estado_pedido(request):
+    pedidos = Pedido.objects.all()
+    data = {
+        'pedidos': pedidos
+    }
+    return render(request, 'administrador/modificarEstadoPedido.html', data)
+
+
+@permission_required('administrador.change_pedido', login_url="navegacion:login")
+def editar_estado_pedido(request, id):
+    print(id)
+    pedido = Pedido.objects.get(id=id)
+
+    data={
+        'pedido': pedido
+    }
+    if request.method == 'POST':
+        estadoPedido = request.POST['estadoPedido']
+        pedido.estadoPedido = estadoPedido
+        pedido.save()
+        print("guardado")
+        return redirect(reverse("administrador:estado_pedido"))
+    return render(request, 'administrador/editarEstadoPedido.html', data )
+
+
+@permission_required('administrador.view_pedido', login_url="navegacion:login")
 def administrador_configuracion(request):
     return  render(request, 'administrador/configuracion-admin.html')
 
