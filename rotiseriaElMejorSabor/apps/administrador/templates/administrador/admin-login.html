@@ -21,10 +21,10 @@
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar Menús</a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        {% if perms.administrador.add_menu %}
+        {% if perms.menu.add_menu %}
                 <li><a class="dropdown-item" href="{% url 'menu:alta' %}">Registrar un menú</a></li>
         {% endif %}
-        {% if perms.administrador.view_menu %}
+        {% if perms.menu.view_menu %}
                 <li><a class="dropdown-item" href="{% url 'menu:cargar' %}">Ver menús</a></li>
         {% endif %}
 
@@ -33,10 +33,10 @@
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar Empleados</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% if perms.administrador.add_empleado %}
+            {% if perms.empleado.add_empleado %}
                 <li><a class="dropdown-item" href="{% url 'empleado:alta' %}">Registrar un empleado</a></li>
             {% endif %}
-            {% if perms.administrador.view_empleado %}
+            {% if perms.empleado.view_empleado %}
                 <li><a class="dropdown-item" href="{% url 'empleado:ver' %}">Ver empleados</a></li>
             {% endif %}
 
@@ -47,10 +47,10 @@
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar Clientes</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% if perms.administrador.add_cliente %}
+            {% if perms.cliente.add_cliente %}
                 <li><a class="dropdown-item" href="{% url 'cliente:alta' %}">Registrar un cliente</a></li>
             {% endif %}
-            {% if perms.administrador.view_cliente %}
+            {% if perms.cliente.view_cliente %}
                 <li><a class="dropdown-item" href="{% url 'cliente:cargar' %}">Ver clientes</a></li>
             {% endif %}
 

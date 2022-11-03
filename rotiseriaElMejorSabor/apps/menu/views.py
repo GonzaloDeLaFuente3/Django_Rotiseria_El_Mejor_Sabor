@@ -1,4 +1,4 @@
-
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import upper
 from django.urls import reverse
@@ -8,7 +8,7 @@ from django.contrib import messages
 
 from apps.menu.models import Menu
 
-
+@permission_required('menu.add_menu', login_url="navegacion:login")
 def registrar_menu(request):
     nombre = upper(request.POST['nombreMenu'])
     print(nombre)
@@ -31,14 +31,17 @@ def registrar_menu(request):
     messages.success(request,"se registro el menu correctamente")
     return redirect(reverse("menu:cargar"))
 
+@permission_required('menu.change_menu', login_url="navegacion:login")
 def modificarMenu(request, id):
     return  render(request, 'menu/modificarModal.html', {'menu': Menu.objects.get(id=id)})
 
 
+@permission_required('menu.view_menu', login_url="navegacion:login")
 def cargarMenu(request):
     return render(request, 'menu/verMenus.html',
                   {'menus': Menu.objects.all()})
 
+@permission_required('menu.delete_menu', login_url="navegacion:login")
 def eliminarMenu(request,id):
     menu = Menu.objects.get(id=id)
     menu.delete()
@@ -46,6 +49,7 @@ def eliminarMenu(request,id):
     messages.success(request, "se elimino el menu correctamente")
     return redirect(reverse("menu:cargar"))
 
+@permission_required('menu.change_menu', login_url="navegacion:login")
 def editarMenu(request):
     nombre = upper(request.POST['nombreMenu'])
     print(nombre)

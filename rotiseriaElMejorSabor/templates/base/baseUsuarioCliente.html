@@ -87,6 +87,11 @@
                                         <li><a class="dropdown-item" href="#postre">Postre</a></li>
                                     </ul>
                             </li>
+                            <li class="nav-item">
+                                {% if perms.administrador %}
+                                    <a class="nav-link active" aria-current="page" href="{% url 'administrador:admin_login' %}">Administración</a>
+                                {% endif %}
+                            </li>
 
                             <form class="d-flex buscador {% if request.resolver_match.url_name != 'index' %}d-none{% endif %}">
                                 <input class="form-control me-2" type="search" placeholder="Buscar un menú" aria-label="Search">

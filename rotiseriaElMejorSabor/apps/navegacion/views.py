@@ -114,7 +114,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, "Se cerro la sesion correctamente")
-    return redirect(reverse("index:index"))
+    return redirect(reverse("navegacion:login"))
     # return render(request, "navegacion/login.html", {"msj":"la sesion de cerro correctamente"})
 
 def recuperarContraseña(request):

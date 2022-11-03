@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import HttpResponse
 from django.shortcuts import render
@@ -12,6 +13,7 @@ from .models import Pedido
 from ..cadete.models import Cadete
 
 
+@permission_required('administrador.view_pedido', login_url="navegacion:login")
 def admin_login(request):
     pedidos = Pedido.objects.all()
     data = {
@@ -19,9 +21,11 @@ def admin_login(request):
     }
     return  render(request, 'administrador/admin-login.html', data)
 
+@permission_required('administrador.view_pedido', login_url="navegacion:login")
 def administrador_configuracion(request):
     return  render(request, 'administrador/configuracion-admin.html')
 
+@permission_required('administrador.view_pedido', login_url="navegacion:login")
 def estadistica_principal(request):
     cadetes = Cadete.objects.all()
     data = {
@@ -29,6 +33,7 @@ def estadistica_principal(request):
     }
     return render(request, 'administrador/estadisticas.html', data)
 
+@permission_required('administrador.view_pedido', login_url="navegacion:login")
 def estadisticas(request):
     cuil = request.POST['cuilCadete']
     cadete = Cadete.objects.get(cuil=cuil)
@@ -46,6 +51,7 @@ def estadisticas(request):
 
 
 
+@permission_required('administrador.view_pedido', login_url="navegacion:login")
 def consulta_fecha(request):
     fechaConsulta = request.POST['fechaPedido']
     print(fechaConsulta)
@@ -58,6 +64,7 @@ def consulta_fecha(request):
     messages.success(request, "se mostrara los pedido con la fecha ingresada")
     return render(request, 'administrador/estadisticas.html', data)
 
+@permission_required('administrador.view_pedido', login_url="navegacion:login")
 def historial_pedidos(request):
     pedidos = Pedido.objects.all()
     data = {
@@ -70,6 +77,7 @@ def historial_pedidos(request):
 # def ver_empleados(request):
 #     return  render(request, 'administrador/verEmpleados.html')
 
+@permission_required('administrador.add_pedido', login_url="navegacion:login")
 def registrar_pedido(request):
     data = {
         'form': PedidoForm()
@@ -85,6 +93,7 @@ def registrar_pedido(request):
 
     return render(request, 'administrador/pedido.html', data)
 
+@permission_required('administrador.change_pedido', login_url="navegacion:login")
 def modificar_pedido(request, id):
     pedido = get_object_or_404(Pedido, id=id)
 

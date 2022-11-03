@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -7,7 +8,7 @@ from apps.cliente.models import Cliente
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-
+@permission_required('cliente.add_cliente', login_url="navegacion:login")
 def altaCliente(request):
     cuil = request.POST['cuilCliente']
     nombre = lower(request.POST['nombre'])
@@ -26,15 +27,17 @@ def altaCliente(request):
     messages.success(request, "se registro el cliente correctamente")
     return redirect(reverse("cliente:cargar"))
 
+@permission_required('cliente.change_cliente', login_url="navegacion:login")
 def modificarCliente(request):
     return  render(request, 'cliente/modificarCliente.html')
 
 
-
+@permission_required('cliente.view_cliente', login_url="navegacion:login")
 def cargarClientes(request):
     return render(request, 'cliente/verClientes.html',
                   {'clientes': Cliente.objects.all()})
 
+@permission_required('cliente.delete_cliente', login_url="navegacion:login")
 def eliminarCliente(request,cuil):
     cliente = Cliente.objects.get(cuil=cuil)
     cliente.delete()
@@ -42,9 +45,12 @@ def eliminarCliente(request,cuil):
     messages.success(request, "se elimino el cliente correctamente")
     return redirect(reverse("cliente:cargar"))
 
+@permission_required('cliente.change_cliente', login_url="navegacion:login")
 def modificarCliente(request, cuil):
     return  render(request, 'cliente/modificarCliente.html', {'cliente': Cliente.objects.get(cuil=cuil)})
 
+
+@permission_required('cliente.change_cliente', login_url="navegacion:login")
 def editarCliente(request):
     cuil = request.POST['cuilCliente']
     nombre = lower(request.POST['nombre'])
@@ -74,6 +80,7 @@ def editarCliente(request):
     cliente.save()
     messages.success(request, "se modifico el cliente correctamente")
     return redirect(reverse("cliente:cargar"))
+
 
 def registrar_cliente_desde_index(request):
     cuil = request.POST['cuilCliente']
