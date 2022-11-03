@@ -1,6 +1,6 @@
 //validar fecha, para que no pueda ser menor a la fecha actual
 function compararFecha(){
-    let fechaPedido=document.getElementById("fechaPedido").value;
+    let fechaPedido=document.getElementById("id_fechaPedido").value;
     let fechaActual = new Date();
     let mes = (fechaActual.getMonth()+1).toString()
     let devolver = false;
@@ -21,7 +21,12 @@ function compararFecha(){
         return true;
 
     }else {
-        alert('[ERROR] La fecha del pedido no puede ser anterior a la de fecha de hoy');
+        Swal.fire({
+            "title": "Dato de fecha Incorrecto",
+            "text": "La fecha del pedido no puede ser menor a la fecha acctual",
+            "icon": "error"
+        })
+        
         return devolver;
     }
 }
@@ -57,5 +62,5 @@ function validacion(){
     }
 }
 //validar fecha
-let boton = document.getElementById("botonVerificar");
-boton.addEventListener("click",verificarFechaBoton);
+// let boton = document.getElementById("botonVerificar");
+// boton.addEventListener("click",verificarFechaBoton);

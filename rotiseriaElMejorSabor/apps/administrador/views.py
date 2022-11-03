@@ -9,6 +9,7 @@ from .forms import PedidoForm
 # def index(request):
 #     return HttpResponse('hola mundo')
 from .models import Pedido
+from ..cadete.models import Cadete
 
 
 def admin_login(request):
@@ -21,10 +22,31 @@ def admin_login(request):
 def administrador_configuracion(request):
     return  render(request, 'administrador/configuracion-admin.html')
 
-
+def estadistica_principal(request):
+    cadetes = Cadete.objects.all()
+    data = {
+        'cadeteOpciones':cadetes
+    }
+    return render(request, 'administrador/estadisticas.html', data)
 
 def estadisticas(request):
-    return  render(request, 'administrador/estadisticas.html')
+    cuil = request.POST['cuilCadete']
+    cadete = Cadete.objects.get(cuil=cuil)
+    pedidoCadete = Pedido.objects.filter(cadete=cadete)
+    cadetes = Cadete.objects.all()
+    data = {
+        'pedidos': pedidoCadete,
+        'cadete': cadete,
+        'cadeteOpciones': cadetes
+    }
+
+    if cadete:
+        return  render(request, 'administrador/estadisticas.html', data)
+    else:
+        messages.error(request, "Se Agrego un pedido nuevo correctamente")
+        return render(request, 'administrador/estadisticas.html', data)
+
+
 
 def historial_pedidos(request):
     pedidos = Pedido.objects.all()
