@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modalNotificaciones" tabindex="-1" area-hidden="true" aria-labelledby="modalNotificaciones">
+        <div class="modal fade" id="modalNotificaciones" tabindex="-1" area-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -54,9 +54,13 @@
                         <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
+                        {% if user.is_authenticated %}
+                        {% else %}
+                        <h5 class="text-secondary text-center" style="user-select: none;" id="labelNotificacionesVacias">No tienes notificaciones.</h5>
+                        {% endif %}
                         <div id="contenedorNotificaciones">
                         </div>
-                        <h5 class="text-secondary text-center" style="user-select: none;" id="labelNotificacionesVacias">No tienes notificaciones.</h5>
+
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Aceptar</button>
@@ -104,21 +108,31 @@
                                 </button>
                             </form>
                         </ul>
-
-                        <form class="d-flex notificaciones {% if request.resolver_match.url_name != 'index' %}d-none{% endif %}">
-                            <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="modalNotificaciones">
-                                <i class="bi bi-bell-fill"></i>
-                                Notificaciones
-                                <span class="badge bg-danger text-light ms-1 rounded-pill" id="contadorNotificaciones"></span>
-                            </button>
-                        </form>
+                        {% if user.is_authenticated %}
+                            <form class="d-flex notificaciones {% if request.resolver_match.url_name != 'index' %}d-none{% endif %}">
+                                <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#modalNotificaciones">
+                                    <i class="bi bi-bell-fill"></i>
+                                    Notificaciones
+                                    <span class="badge bg-danger text-light ms-1 rounded-pill" id="contadorNotificaciones"></span>
+                                </button>
+                            </form>
+                        {% endif %}
 
                         <form class="d-flex carrito {% if request.resolver_match.url_name != 'index' %}d-none{% endif %}">
-                            <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#miModal">
-                                <i class="bi-cart-fill me-1"></i>
-                                Carrito
-                                <span class="badge bg-danger text-light ms-1 rounded-pill" id="contadorCarrito"></span>
-                            </button>
+                            {% if user.is_authenticated %}
+                                <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#miModal">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Carrito
+                                    <span class="badge bg-danger text-light ms-1 rounded-pill" id="contadorCarrito"></span>
+                                </button>
+                            {% else %}
+                                <a class="btn btn-outline-light" type="button" href="{% url 'navegacion:login' %}">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Carrito
+                                    <span class="badge bg-danger text-light ms-1 rounded-pill"></span>
+                                </a>
+                            {% endif %}
+
                         </form>
 
                         <ul class="navbar-nav micuenta">
@@ -133,16 +147,11 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                     {% if user.is_authenticated %}
-
-
-
                                         <a class="dropdown-item" href="{% url 'navegacion:configuracion' %}">Configuración</a>
                                         <a class="dropdown-item" href="{% url 'navegacion:logout' %}">Cerrar sesion</a>
                                     {% else %}
                                         <a class="dropdown-item" href="{% url 'navegacion:login' %}">Ingresar</a>
                                         <a class="dropdown-item" href="{% url 'navegacion:register' %}">Registrarse</a>
-                                        <hr class="dropdown-divider" />
-                                        <a class="dropdown-item" href="{% url 'navegacion:configuracion' %}">Configuración</a>
                                     {% endif %}
 
 

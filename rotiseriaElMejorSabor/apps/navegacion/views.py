@@ -45,25 +45,22 @@ def comprar(request, id, clienteTemp=None):
         return redirect(reverse("navegacion:login"))
 
 
-def comprarCarrito(request, clienteTemp=None):
-    if request.user.is_authenticated:
-        clientes = Cliente.objects.all()
-        usuario = User.objects.get(username=request.user.username)
-        clienteTemp
-
-        # if request.resolver_match.url_name == 'comprar_carrito':
-        #     print("1 2 3 ...")
-
-        for cliente in clientes:
-            if cliente.usuario == usuario:
-                clienteTemp = cliente
-
-        if clienteTemp != None:
-            return render(request, 'navegacion/comprar.html', {'cliente': clienteTemp})
-        else:
-            return redirect(reverse("cliente:registrar_cliente"))
-    else:
+def carrito(request):
+    if not request.user.is_authenticated:
         return redirect(reverse("navegacion:login"))
+
+def comprarCarrito(request, clienteTemp=None):
+    clientes = Cliente.objects.all()
+    usuario = User.objects.get(username=request.user.username)
+    clienteTemp
+
+    for cliente in clientes:
+        if cliente.usuario == usuario:
+            clienteTemp = cliente
+
+
+    return render(request, 'navegacion/comprar.html', {'cliente': clienteTemp})
+
 
 def altaPedidoCliente(request):
     fechaPedido = request.POST['fechaPedido']

@@ -39,8 +39,10 @@
                                 </tr>
                             </thead>
                             {% if menus  %}
-                                {% for menu in menus %}
+
                                 <tbody id="contenedorMenus">
+                                {% for menu in menus %}
+                                <tr>
                                     <td scope="row">{{ menu.id }}</th>
                                     <td>{{ menu.nombre }}</td>
                                     <td>{{ menu.descripcion }}</td>
@@ -68,14 +70,15 @@
                                     {% elif menu.vigencia == False %}
                                         <td>NO</td>
                                     {% endif %}
-<!--                                    <td>{{ menu.imagen }}</td>-->
                                     <td>
                                         <button class="btn btn-primary" onclick="abrirModal('{% url 'menu:modificar' menu.id %}')"><i class="bi bi-pencil-square"></i></button>
                                         <a class="btn btn-danger mx-2 eliminar" href="{% url 'menu:eliminar' menu.id %}"><i class="bi bi-trash-fill"></i></a>
 
                                     </td>
-                                </tbody>
+                                </tr>
                                 {% endfor %}
+                                </tbody>
+
                             {% else %}
                                 <div class="alert alert-danger" role="alert">
                                     No hay elementos para mostrar

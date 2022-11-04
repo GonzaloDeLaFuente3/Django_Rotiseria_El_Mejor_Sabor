@@ -1,12 +1,12 @@
+from apps.cliente.models import Cliente
+from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-
 # Create your views here.
 from django.template.defaultfilters import lower
 from django.urls import reverse
-from apps.cliente.models import Cliente
-from django.contrib import messages
-from django.contrib.auth.models import User
+
 
 @permission_required('cliente.add_cliente', login_url="navegacion:login")
 def altaCliente(request):

@@ -11,45 +11,14 @@
 {% endblock %}
 
 {% block contenido %}
-<div class="modal fade" id="modalModificarEmpleado" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="bi bi-pencil-square mx-2"></i>
-                    <h5 class="modal-title" id="modal-title">Modificar Empleado</h5>
-                    <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="contenedorModificarEmpleado">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-success" id="modificarEmpleado" type="button">Guardar cambios</a>
-                    <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="modalModificarCadete" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="bi bi-pencil-square mx-2"></i>
-                    <h5 class="modal-title" id="modal-title">Modificar Cadete</h5>
-                    <button class="btn-close" aria-label="Close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="contenedorModificarCadete">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-success" id="modificarCadete" type="button">Guardar cambios</a>
-                    <a class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
-                </div>
-            </div>
+        <div class="modal fade" id="modalModificarEmpleado" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
+
         </div>
-    </div>
+
+        <div class="modal fade" id="modalModificarCadete" tabindex="-1" area-hidden="true" aria-labelledby="modalInformacion">
+
+        </div>
 
     <div class="container-fluid">
         <div id="titulo">
@@ -66,20 +35,41 @@
                         <table class="table table-primary table-hover table-striped text-center align-middle" id="tablaEmpleados">
                             <thead>
                                 <tr>
-                                    <th scope="col" onclick="sortTable(0, 'str')">#</th>
-                                    <th scope="col" onclick="sortTable(1, 'int')" >Cuil</th>
-                                    <th scope="col" onclick="sortTable(2, 'str')" >Nombre</th>
-                                    <th scope="col" onclick="sortTable(3, 'str')" >Apellido</th>
-                                    <th scope="col" onclick="sortTable(4, 'date')" style="width: 13%;">Fecha Nacimiento</th>
-                                    <th scope="col" onclick="sortTable(5, 'str')">Barrio</th>
-                                    <th scope="col" onclick="sortTable(6, 'str')">Localidad</th>
-                                    <th scope="col" onclick="sortTable(7, 'int')">Telefono</th>
-                                    <th scope="col" onclick="sortTable(8, 'date')" style="width: 14%;">Fecha de ingreso</th>
+                                    <th scope="col" onclick="sortTable(0, 'int')" >Cuil</th>
+                                    <th scope="col" onclick="sortTable(1, 'str')" >Nombre</th>
+                                    <th scope="col" onclick="sortTable(2, 'str')" >Apellido</th>
+                                    <th scope="col" onclick="sortTable(3, 'date')" style="width: 13%;">Fecha Nacimiento</th>
+                                    <th scope="col" onclick="sortTable(4, 'str')">Localidad</th>
+                                    <th scope="col" onclick="sortTable(5, 'str')">Calle</th>
+                                    <th scope="col" onclick="sortTable(6, 'int')">Numero</th>
+                                    <th scope="col" onclick="sortTable(7, 'str')">Departamento</th>
+                                    <th scope="col" onclick="sortTable(8, 'int')">Telefono Fijo</th>
+                                    <th scope="col" onclick="sortTable(9, 'int')">Telefono Celular</th>
+                                    <th scope="col" onclick="sortTable(10, 'date')" style="width: 14%;">Fecha de ingreso</th>
                                     <th scope="col" style="width: 12%;">Acción</th>
                                 </tr>
                             </thead>
-                            <tbody id="contenedorEmpleados">
-                            </tbody>
+                                <tbody id="contenedorEmpleados">
+                                    {% for empleado in empleados %}
+                                        <tr>
+                                            <td scope="row">{{empleado.cuil}}</th>
+                                            <td>{{empleado.nombre}}</td>
+                                            <td>{{empleado.apellido}}</td>
+                                            <td>{{empleado.fechaNacimiento}}</td>
+                                            <td>{{empleado.domicilio_localidad}}</td>
+                                            <td>{{empleado.domicilio_calle}}</td>
+                                            <td>{{empleado.domicilio_numero}}</td>
+                                            <td>{{empleado.domicilio_departamento}}</td>
+                                            <td>{{empleado.telefonoFijo}}</td>
+                                            <td>{{empleado.telefonoCelular}}</td>
+                                            <td>{{empleado.fechaIngreso}}</td>
+                                            <td>
+                                                <button class="btn btn-primary" onclick="abrirModalEmpleado('{% url 'empleado:modificarEmpleado' empleado.cuil %}')"><i class="bi bi-pencil-square"></i></button>
+                                                <a class="btn btn-danger mx-2 eliminar" href="{% url 'empleado:eliminar' empleado.cuil %}" ><i class="bi bi-trash-fill"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -95,23 +85,45 @@
                         <table class="table table-primary table-hover table-striped text-center align-middle" id="tablaRegistro">
                             <thead>
                                 <tr>
-                                    <th scope="col" onclick="sortTable(0, 'str')">#</th>
-                                    <th scope="col" onclick="sortTable(1, 'int')" >Cuil</th>
-                                    <th scope="col" onclick="sortTable(2, 'str')" >Nombre</th>
-                                    <th scope="col" onclick="sortTable(3, 'str')" >Apellido</th>
-                                    <th scope="col" onclick="sortTable(4, 'date')" style="width: 13%;">Fecha Nacimiento</th>
-                                    <th scope="col" onclick="sortTable(5, 'str')">Barrio</th>
-                                    <th scope="col" onclick="sortTable(6, 'str')">Localidad</th>
-                                    <th scope="col" onclick="sortTable(7, 'int')">Telefono</th>
-                                    <th scope="col" onclick="sortTable(8, 'date')" style="width: 12%;">Fecha de ingreso</th>
-                                    <th scope="col" onclick="sortTable(9, 'str')" >Zona de entrega</th>
-                                    <th scope="col" onclick="sortTable(10, 'date')" >Vigencia Carnet</th>
-                                    <th scope="col" onclick="sortTable(11, 'str')" >Patente</th>
+                                    <th scope="col" onclick="sortTable(0, 'int')" >Cuil</th>
+                                    <th scope="col" onclick="sortTable(1, 'str')" >Nombre Completo</th>
+                                    <th scope="col" onclick="sortTable(2, 'date')" style="width: 13%;">Fecha Nacimiento</th>
+                                    <th scope="col" onclick="sortTable(3, 'str')">Localidad</th>
+                                    <th scope="col" onclick="sortTable(4, 'str')">Calle</th>
+                                    <th scope="col" onclick="sortTable(5, 'int')">Numero</th>
+                                    <th scope="col" onclick="sortTable(6, 'str')">Departamento</th>
+                                    <th scope="col" onclick="sortTable(7, 'int')">Telefono Fijo</th>
+                                    <th scope="col" onclick="sortTable(8, 'int')">Telefono Celular</th>
+                                    <th scope="col" onclick="sortTable(9, 'date')" style="width: 14%;">Fecha de ingreso</th>
+                                    <th scope="col" onclick="sortTable(10, 'date')" style="width: 14%;">Vigencia Carnet</th>
+                                    <th scope="col" onclick="sortTable(11, 'str')">Patente</th>
+                                    <th scope="col" onclick="sortTable(12, 'int')">Cod Zona</th>
                                     <th scope="col" style="width: 12%;">Acción</th>
                                 </tr>
                             </thead>
-                            <tbody id="contenedorCadetes">
-                            </tbody>
+                                <tbody id="contenedorCadetes">
+                                    {% for cadete in cadetes %}
+                                        <tr>
+                                            <td scope="row">{{cadete.cuil}}</th>
+                                            <td>{{cadete.nombre_completo}}</td>
+                                            <td>{{cadete.fechaNacimiento}}</td>
+                                            <td>{{cadete.domicilio_localidad}}</td>
+                                            <td>{{cadete.domicilio_calle}}</td>
+                                            <td>{{cadete.domicilio_numero}}</td>
+                                            <td>{{cadete.domicilio_departamento}}</td>
+                                            <td>{{cadete.telefonoFijo}}</td>
+                                            <td>{{cadete.telefonoCelular}}</td>
+                                            <td>{{cadete.fechaIngreso}}</td>
+                                            <td>{{cadete.vigenciaCarnet}}</td>
+                                            <td>{{cadete.patente}}</td>
+                                            <td>{{cadete.codigoZona}}</td>
+                                            <td>
+                                                <button class="btn btn-primary" onclick="abrirModalCadete('{% url 'cadete:modificarCadete' cadete.cuil %}')"><i class="bi bi-pencil-square"></i></button>
+                                                <a class="btn btn-danger mx-2 eliminar" href="{% url 'cadete:eliminar' cadete.cuil %}" ><i class="bi bi-trash-fill"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -120,11 +132,36 @@
     </div>
 {% endblock %}
 {% block js %}
-<script src="{% static 'js/ordenarTabla.js' %}"></script>
+    <script src="{% static 'js/ordenarTabla.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="{% static 'js/buscar.js' %}"></script>
-    <script src="{% static 'js/listas/listaEmpleados.js' %}"></script>
-    <script src="{% static 'js/listas/cargarEmpleados.js' %}"></script>
+    <script src="{% static 'js/alertaEliminar.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" >
+        function abrirModalEmpleado(url){
+            $('#modalModificarEmpleado').load(url, function(){
+                $(this).modal('show');
+            })
+        }
+
+        function abrirModalCadete(url){
+            $('#modalModificarCadete').load(url, function(){
+                $(this).modal('show');
+            })
+        }
+    </script>
+
+    {% if messages %}
+        {% for m in messages %}
+            <script>
+                Swal.fire({
+                    "title": "La operacion se realizo correctamente",
+                    "text": "{{m}}",
+                    "icon": "success"
+                })
+            </script>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

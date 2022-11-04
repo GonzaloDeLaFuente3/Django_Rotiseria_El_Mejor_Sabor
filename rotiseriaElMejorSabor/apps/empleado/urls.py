@@ -5,9 +5,10 @@ app_name = 'empleado'
 urlpatterns = [
 
     path('alta/', views.registrar_empleado, name='alta'),
-    # path('baja_cadete', views.bajaCadete, name='baja_cadete'),
-    # path('modificar_cadete', views.modificarCadete, name='modificar_cadete'),
-    path('ver/', views.verEmpleados, name='ver'),
+    path('ver/', views.cargarEmpleados, name='ver'),
+    path('modificarEmpleado/<str:cuil>', views.modificarEmpleado, name='modificarEmpleado'),
+    path('editar/', views.editarEmpleado, name='editar'),
+    path('eliminar/<str:cuil>', views.eliminarEmpleado, name='eliminar')
 
 
 ]

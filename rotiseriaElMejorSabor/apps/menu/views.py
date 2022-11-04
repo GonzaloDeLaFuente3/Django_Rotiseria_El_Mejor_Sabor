@@ -56,8 +56,6 @@ def editarMenu(request):
     descripcion = request.POST['descripcionMenu']
     tipo_menu = request.POST['tipoMenu']
     precio = request.POST['precioMenu']
-    # vigencia = False
-    # print(vigencia)
     revisado = request.POST.get('vigente')
 
     if (revisado == None):

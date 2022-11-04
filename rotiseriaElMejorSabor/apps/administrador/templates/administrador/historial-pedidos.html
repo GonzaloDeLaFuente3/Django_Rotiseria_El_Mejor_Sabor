@@ -73,8 +73,10 @@
                                 <th scope="col" onclick="sortTable(8, 'str')"><i class="bi bi-ui-checks-grid"></i> Estado</th>
                             </tr>
                         </thead>
-                        {% for pedido in pedidos %}
+
                         <tbody id="contenedorPedidos">
+                        {% for pedido in pedidos %}
+                        <tr>
                             <td scope="row">{{ pedido.id }}</th>
                             <td>{{ pedido.fechaPedido }}</td>
                             <td>{{ pedido.fecha_hora }}</td>
@@ -99,25 +101,23 @@
 
                             {% endif %}
 
-                                    {% if pedido.estadoPedido == 1 %}
-                                        <td>Pendiente</td>
-                                    {% elif pedido.estadoPedido == 2 %}
-                                        <td>En preparación</td>
-                                    {% elif pedido.estadoPedido == 3 %}
-                                        <td>En camino</td>
-                                    {% elif pedido.estadoPedido == 4 %}
-                                        <td>Entregado</td>
-                                    {% elif pedido.estadoPedido == 5 %}
-                                        <td>Devuelto</td>
-                                    {% elif pedido.estadoPedido == 6 %}
-                                        <td>Cancelado</td>
-                                    {% endif %}
-
-
-
-
-                        </tbody>
+                            {% if pedido.estadoPedido == 1 %}
+                                <td>Pendiente</td>
+                            {% elif pedido.estadoPedido == 2 %}
+                                <td>En preparación</td>
+                            {% elif pedido.estadoPedido == 3 %}
+                                <td>En camino</td>
+                            {% elif pedido.estadoPedido == 4 %}
+                                <td>Entregado</td>
+                            {% elif pedido.estadoPedido == 5 %}
+                                <td>Devuelto</td>
+                            {% elif pedido.estadoPedido == 6 %}
+                                <td>Cancelado</td>
+                            {% endif %}
+                        </tr>
                         {% endfor %}
+                        </tbody>
+
                     </table>
                 </div>
             </div>
