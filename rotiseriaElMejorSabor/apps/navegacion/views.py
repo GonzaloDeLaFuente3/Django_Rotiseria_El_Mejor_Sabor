@@ -132,4 +132,3 @@ def register(request):
         data['form']= formulario
 
     return  render(request, 'navegacion/register.html', data)
-

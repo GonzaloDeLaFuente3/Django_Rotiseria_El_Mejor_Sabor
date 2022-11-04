@@ -4,23 +4,29 @@ from django.shortcuts import render
 from apps.cliente.models import Cliente
 from apps.menu.models import Menu
 from apps.administrador.models import Pedido
+from django.contrib.auth.models import User
 
-def index(request):
+def index(request, clienteTemp=None):
     platos = Menu.objects.all()
-    clientes = Cliente.objects.all()
-
     data = {
-        'platos': platos,
-        'clientes': clientes
+        'platos': platos
     }
 
     if request.user.is_authenticated:
-        pedidos = Pedido.objects.filter(cliente=Cliente.objects.get(cuil=12123))
-        data = {
-            'platos': platos,
-            'clientes': clientes,
-            'pedidos': pedidos
-        }
+        clientes = Cliente.objects.all()
+        clienteTemp
+        for cliente in clientes:
+            if cliente.usuario == User.objects.get(username=request.user.username):
+                clienteTemp = cliente
+
+        if clienteTemp != None:
+            pedidos = Pedido.objects.filter(cliente=Cliente.objects.get(cuil=clienteTemp.cuil))
+            data = {
+                'platos': platos,
+                'clientes': clientes,
+                'pedidos': pedidos
+            }
+
 
     return render(request, 'index/index.html',
                   data)
