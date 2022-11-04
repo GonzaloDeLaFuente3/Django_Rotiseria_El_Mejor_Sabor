@@ -23,7 +23,7 @@ function compararFecha(){
     }else {
         Swal.fire({
             "title": "Dato de fecha Incorrecto",
-            "text": "La fecha del pedido no puede ser menor a la fecha acctual",
+            "text": "La fecha del pedido no puede ser menor a la fecha actual",
             "icon": "error"
         })
         

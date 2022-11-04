@@ -70,28 +70,43 @@ def editarEmpleado(request):
 
 
 
+
 @permission_required('empleado.add_empleado', login_url="navegacion:login")
 def registrar_empleado(request):
     data = {
         'form_empleado': EmpleadoForm(),
         'form_cadete': CadeteForm()
     }
+
+    return render(request, 'empleado/altaEmpleado.html', data)
+def registrar_Cadete(request):
+
+    data = {
+        'form_cadete': CadeteForm(),
+        'form_empleado': EmpleadoForm(),
+    }
+    if request.method == 'POST':
+        formularioCadete = CadeteForm(data=request.POST)
+        if formularioCadete.is_valid():
+            formularioCadete.save()
+            messages.success(request, "Se registro un cadete correctamente")
+            return render(request, 'empleado/altaEmpleado.html', data)
+        else:
+
+            data["form_cadete"] = formularioCadete
+            return render(request, 'empleado/altaEmpleado.html', data)
+
+def registrar_empleado_comun(request):
+    data = {
+        'form_empleado': EmpleadoForm(),
+        'form_cadete': CadeteForm()
+    }
     if request.method == 'POST':
         formularioEmpleado = EmpleadoForm(data=request.POST)
-        formularioCadete = CadeteForm(data=request.POST)
-
         if formularioEmpleado.is_valid():
             formularioEmpleado.save()
-            data["mensaje"] = "guardado correctamente"
+            messages.success(request, "Se registro un empleado correctamente")
             return render(request, 'empleado/altaEmpleado.html', data)
         else:
             data["form_empleado"] = formularioEmpleado
-
-        if formularioCadete.is_valid():
-            formularioCadete.save()
-            data["mensaje"] = "guardado correctamente"
             return render(request, 'empleado/altaEmpleado.html', data)
-        else:
-            data["form_cadete"] = formularioCadete
-
-    return render(request, 'empleado/altaEmpleado.html', data)

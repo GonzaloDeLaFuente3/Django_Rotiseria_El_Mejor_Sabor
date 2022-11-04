@@ -33,7 +33,7 @@ del vehículo y código de zona de entregas asignada.-->
 
                 </div>
                 <br><br>
-                <form action="#" method="post" class="formulario needs-validation" autocomplete="on" onsubmit="return validacion()" novalidate>
+                <form action="{% url 'empleado:registrar_Cadete' %}" method="post" class="formulario needs-validation" autocomplete="on" onsubmit="return validacion()" novalidate>
                     {% csrf_token %}
                     <fieldset>
                         <div class="card">
@@ -58,7 +58,7 @@ del vehículo y código de zona de entregas asignada.-->
                     <h1>Registro de Empleados</h1>
                 </div>
 
-                <form action="" method="post" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate>
+                <form action="{% url 'empleado:registrar_empleado_comun' %}" method="post" autocomplete="on" class="formulario needs-validation" onsubmit="return validacion()" novalidate>
                     {% csrf_token %}
                     <fieldset>
                         <div class="card">
@@ -82,4 +82,18 @@ del vehículo y código de zona de entregas asignada.-->
 <script src="{% static 'js/validacionBootstrap.js' %}"></script>
     <script src="{% static 'js/fechaNacimiento.js' %}"></script>
     <script src="{% static 'js/displayInfoCadete.js' %}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                "title": "La operacion se realizo correctamente",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+        </script>
+    {% endfor %}
+{% endif %}
 {% endblock %}
