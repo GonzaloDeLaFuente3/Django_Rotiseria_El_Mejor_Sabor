@@ -180,7 +180,7 @@
 /*DIMENSIONES DE LOS SWIPERS DE MENUS*/
 .swiper{
   width: 730px;
-  height: 400px;
+  height: 450px;
 }
 
 
@@ -225,7 +225,7 @@
   margin: auto;
   text-align: center;
   background-color: #83C5BE;
-  height: 540px;
+  height: 600px;
   width: 65%;
   border-radius: 2rem;
   margin-bottom: 7rem;
