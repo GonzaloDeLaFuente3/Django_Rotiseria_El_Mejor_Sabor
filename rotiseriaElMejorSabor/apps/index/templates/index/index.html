@@ -3,8 +3,9 @@
 {% block titulo %}Rotiseria El Mejor Sabor{% endblock %}
 {% block css %}
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-    <script src="{% static 'js/listas/listaPlatos.js' %}"></script>
+
     <script>
+        let listaPlatos = [];
 <!--    Agregar platos de la base de datos a la pagina index-->
 
         {% for plato in platos%}
@@ -103,7 +104,7 @@
         <div class="container-fluid" id="filtroFondo">
             <br>
             <div id="cajaMenu">
-                <h1 >Nuestros Menús</h1>
+                <h1 id="entrada">Nuestros Menús</h1>
             </div>
 
             <section class="panelMenus swiper mySwiper" >
@@ -111,7 +112,7 @@
                 <h2 id="labelMenus">Entradas de mesa</h2>
 
                 <div class="swiper mySwiper">
-                    <div class="swiper-wrapper content" id="entrada">
+                    <div class="swiper-wrapper content" >
                         {% for plato in platos%}
                             {% if plato.tipoMenu == 1 and plato.vigencia %}
                                 <div class="swiper-slide card h-100">
@@ -127,6 +128,18 @@
                                             <div class="bi-star-fill"></div>
                                         </div>
                                         ${{plato.precio}}
+                                        <br>
+                                        {% if plato.tipoComida == 1 %}
+                                            Plato Normal
+                                        {% elif plato.tipoComida == 2 %}
+                                            Plato Vegetariano
+                                        {% elif plato.tipoComida == 3 %}
+                                            Plato Celiaco
+                                        {% else %}
+                                            Plato Diabético
+                                        {% endif %}
+                                        <br>
+                                        {{plato.descripcion}}
                                     </div>
                                     </div>
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -135,9 +148,9 @@
                                         </div>
                                         <div class="text-center">
                                             {% if user.is_authenticated %}
-                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}" onclick="agregarCarrito({{plato.id}})">Añadir al carrito</a>
+                                                <a class="btn btn-outline-primary mt-auto" type="button" onclick="agregarCarrito({{plato.id}})">Añadir al carrito</a>
                                             {% else %}
-                                                <a class="btn btn-outline-primary mt-auto" type="button" id="agregar{{plato.id}}" href="{% url 'navegacion:carrito' %}">Añadir al carrito</a>
+                                                <a class="btn btn-outline-primary mt-auto" type="button" href="{% url 'navegacion:carrito' %}">Añadir al carrito</a>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -150,7 +163,7 @@
                 <div class="swiper-button-prev"></div>
             </section>
 
-            <br >
+            <br id="platoprincipal">
             <br>
             <br>
             <br>
@@ -158,7 +171,7 @@
                     <br>
                     <h2 id="labelMenus">Platos principales</h2>
                     <div class="swiper mySwiper">
-                        <div class="swiper-wrapper content" id="platoprincipal">
+                        <div class="swiper-wrapper content">
                             {% for plato in platos%}
                                 {% if plato.tipoMenu == 2 and plato.vigencia %}
                                     <div class="swiper-slide card h-100">
@@ -174,6 +187,18 @@
                                                 <div class="bi-star-fill"></div>
                                             </div>
                                             ${{plato.precio}}
+                                            <br>
+                                        {% if plato.tipoComida == 1 %}
+                                            Plato Normal
+                                        {% elif plato.tipoComida == 2 %}
+                                            Plato Vegetariano
+                                        {% elif plato.tipoComida == 3 %}
+                                            Plato Celiaco
+                                        {% else %}
+                                            Plato Diabético
+                                        {% endif %}
+                                        <br>
+                                        {{plato.descripcion}}
                                         </div>
                                         </div>
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -197,7 +222,7 @@
                     <div class="swiper-button-prev"></div>
                 </section>
 
-            <br >
+            <br id="postre">
             <br>
             <br>
             <br>
@@ -205,7 +230,7 @@
                     <br>
                     <h2 id="labelMenus">Postres</h2>
                     <div class="swiper mySwiper">
-                        <div class="swiper-wrapper content" id="postre">
+                        <div class="swiper-wrapper content">
                             {% for plato in platos%}
                                 {% if plato.tipoMenu == 3 and plato.vigencia %}
                                     <div class="swiper-slide card h-100">
@@ -221,6 +246,18 @@
                                                 <div class="bi-star-fill"></div>
                                             </div>
                                             ${{plato.precio}}
+                                                <br>
+                                        {% if plato.tipoComida == 1 %}
+                                            Plato Normal
+                                        {% elif plato.tipoComida == 2 %}
+                                            Plato Vegetariano
+                                        {% elif plato.tipoComida == 3 %}
+                                            Plato Celiaco
+                                        {% else %}
+                                            Plato Diabético
+                                        {% endif %}
+                                        <br>
+                                        {{plato.descripcion}}
                                         </div>
                                         </div>
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
