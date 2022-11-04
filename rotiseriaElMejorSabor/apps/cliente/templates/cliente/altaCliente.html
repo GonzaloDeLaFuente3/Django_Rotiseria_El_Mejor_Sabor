@@ -27,7 +27,7 @@
             <br><br>
 
             <div>
-                <form action="{% url 'cliente:registrar_cliente' %}" method="post" autocomplete="on" class="needs-validation" novalidate>
+                <form action="{% url 'cliente:registrar_cliente_admin' %}" method="post" autocomplete="on" class="needs-validation" novalidate>
                     {% csrf_token %}
                     <fieldset>
                         <div class="card">
